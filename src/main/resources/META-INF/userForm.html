@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:val="http://html5valdialect.sourceforge.net">
+    <head>
+        <title>HTML5 Validation dialect</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>HTML5 Validation dialect</h1>
+        <form action="userSave.do" val:validate="${userFormBean}" method="post">
+            <p>
+                <label for="username">E-mail</label>
+                <input type="text" id="username" />
+            </p>
+            <p>
+                <label for="phone">Phone number</label>
+                <input type="text" id="phone" />
+            </p>
+            <input type="submit" />
+        </form>
+    </body>
+</html>
