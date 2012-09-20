@@ -23,10 +23,7 @@ public class Html5ValDialect extends AbstractXHTMLEnabledDialect {
     @Override
     public Set<IProcessor> getProcessors() {
         Set<IProcessor> attrProcessors = new HashSet<IProcessor>();
-        // val:validate
         attrProcessors.add(new ValidateAttrProcessor("validate"));
-        // val:required
-        attrProcessors.add(new RequiredAttrProcessor("required"));
         return attrProcessors;
     }
 }
