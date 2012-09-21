@@ -14,7 +14,7 @@ import javax.validation.constraints.Null;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import net.sourceforge.html5val.validation.EqualTo;
+import net.sourceforge.html5val.validation.Equals;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -34,10 +34,9 @@ public class Jsr303toJQueryBridge {
     protected static String translate(Annotation annotation) {
         StringBuilder sb = new StringBuilder();
         // Custom annotations
-        if (annotation instanceof EqualTo) {
+        if (annotation instanceof Equals) {
             // The annotated element must be equal to target element.
-            EqualTo equalTo = (EqualTo) annotation;
-            sb.append("equalTo: '#").append(equalTo.target()).append("'");
+            Equals equalTo = (Equals) annotation;
         // Hibernate validator annotations
         } else if (annotation instanceof NotEmpty) {
             // The annotated element must be not empty.
