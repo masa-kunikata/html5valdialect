@@ -10,7 +10,7 @@ import org.thymeleaf.util.DOMUtils;
 public class Html5ValIntegrationTest extends TestBase {
 
     private Context context = new Context();
-    
+
     @Test
     public void userFormValidation() throws IOException {
         context.setVariable("userFormBean", new UserFormBean());

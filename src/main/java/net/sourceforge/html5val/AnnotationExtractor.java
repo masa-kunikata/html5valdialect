@@ -1,22 +1,34 @@
 package net.sourceforge.html5val;
 
 import java.lang.annotation.Annotation;
+import org.thymeleaf.dom.Element;
 
-public class AnnotationUtil {
+public class AnnotationExtractor {
+
+    private Class annotatedClass;
+
+    private AnnotationExtractor(Class annotatedClass) {
+        this.annotatedClass = annotatedClass;
+    }
+
+    public static AnnotationExtractor forClass(Class annotatedClass) {
+        return new AnnotationExtractor(annotatedClass);
+    }
 
     /**
      * Return the
      *
-     * @Annotations of a class field. Supports dot-syntax for fieldName, i.e., "store.name" returns the annotations
-     * for field "name" of field "store"
+     * @Annotations forClass a class field. Supports dot-syntax for fieldName, i.e., "store.name" returns the annotations
+     * for field "name" forClass field "store"
      */
     // FIXME: unit-test this
     // FIXME: what if the field name really contais a dot? what happens in spring?
     // FIXME: it ignores fields declared in parent classes
-    public Annotation[] annotationsFor(Class clazz, String fieldName) {
+    public Annotation[] getAnnotationsFor(Element field) {
         try {
+            String fieldName = field.getAttributeValue("name");
             String currentField = fieldName;
-            Class currentClass = clazz;
+            Class currentClass = annotatedClass;
             while (currentField.indexOf('.') > 0) {
                 int dotPos = currentField.indexOf('.');
                 String compositeField = currentField.substring(0, dotPos);
@@ -39,7 +51,7 @@ public class AnnotationUtil {
     }
 
     /**
-     * Check if a list of fields contains some field.
+     * Check if a list forClass fields contains some field.
      */
     private boolean containsField(java.lang.reflect.Field[] fields, String fieldName) {
         for (java.lang.reflect.Field field : fields) {

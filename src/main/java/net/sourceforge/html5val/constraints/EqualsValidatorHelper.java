@@ -10,18 +10,18 @@ class EqualsValidatorHelper {
 
     private Object property2;
 
-    private EqualsValidatorHelper() {
+    private EqualsValidatorHelper(Object object, Equals annotation) {
+        this.annotation = annotation;
+        this.property1 = getProperty(object, annotation.property1());
+        this.property2 = getProperty(object, annotation.property2());
     }
 
-    public static EqualsValidatorHelper with(Object object, Equals annotation) {
-        EqualsValidatorHelper helper = new EqualsValidatorHelper();
-        helper.annotation = annotation;
-        helper.property1 = getProperty(object, annotation.property1());
-        helper.property2 = getProperty(object, annotation.property2());
-        return helper;
+    public static boolean validate(Object object, Equals annotation) {
+        EqualsValidatorHelper helper = new EqualsValidatorHelper(object, annotation);
+        return helper.isValid();
     }
 
-    public boolean performValidation() {
+    public boolean isValid() {
         if (bothPropertiesAreNull()) {
             return true;
         }

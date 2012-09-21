@@ -7,6 +7,7 @@ import org.thymeleaf.dom.Element;
 import org.thymeleaf.processor.ProcessorResult;
 import org.thymeleaf.processor.attr.AbstractAttrProcessor;
 import org.thymeleaf.standard.expression.StandardExpressionProcessor;
+import static net.sourceforge.html5val.FormParser.findFormElements;
 
 /**
  * Client-side validation using HTML5 validation for a JSR-303 annotated Java class.
@@ -22,6 +23,8 @@ import org.thymeleaf.standard.expression.StandardExpressionProcessor;
  */
 public class ValidateAttrProcessor extends AbstractAttrProcessor {
 
+    private final ValidationPerformerFactory validationPerformerFactory = new ValidationPerformerFactory();
+
     public ValidateAttrProcessor(String attributeName) {
         super(attributeName);
     }
@@ -33,31 +36,26 @@ public class ValidateAttrProcessor extends AbstractAttrProcessor {
 
     @Override
     public ProcessorResult processAttribute(Arguments arguments, Element element, String attributeName) {
-        Class formValidationClass = formValidationClass(arguments, element, attributeName);
-        List<Element> fields = new FormParser().findFormElements(element);
+        Class jsr303AnnotatedClass = jsr303AnnotatedClass(arguments, element, attributeName);
+        List<Element> fields = findFormElements(element);
         for (Element field : fields) {
-            String fieldName = field.getAttributeValue("name");
-            Annotation[] annotations = new AnnotationUtil().annotationsFor(formValidationClass, fieldName);
-            if (annotations.length > 0) {
-                validationForField(fieldName, annotations);
-            }
+            processFieldValidation(field, jsr303AnnotatedClass);
         }
         // Housekeeping
         element.removeAttribute(attributeName);
         return ProcessorResult.OK;
     }
 
-    private Class formValidationClass(Arguments arguments, Element element, String attributeName) {
+    private Class jsr303AnnotatedClass(Arguments arguments, Element element, String attributeName) {
         String attributeValue = element.getAttributeValue(attributeName);
         return StandardExpressionProcessor.processExpression(arguments, attributeValue).getClass();
     }
 
-    /**
-     * @return null if this field has no validation rules.
-     */
-    private void validationForField(String fieldName, Annotation[] annotations) {
-        for (Annotation annotation : annotations) {
-            Jsr303toJQueryBridge.translate(annotation);
+    private void processFieldValidation(Element field, Class jsr303AnnotatedClass) {
+        Annotation[] constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsFor(field);
+        for (Annotation constraint : constraints) {
+            ValidationPerformer processor = validationPerformerFactory.getProcessorFor(constraint);
+            processor.putValidationCodeInto(field);
         }
     }
 }
