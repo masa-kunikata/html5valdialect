@@ -1,6 +1,6 @@
-package net.sourceforge.html5val.validation;
+package net.sourceforge.html5val.constraints;
 
-import static net.sourceforge.html5val.validation.PropertyRetriever.getProperty;
+import static net.sourceforge.html5val.constraints.PropertyRetriever.getProperty;
 
 class EqualsValidatorHelper {
 
@@ -50,5 +50,4 @@ class EqualsValidatorHelper {
     private boolean propertiesHaveDifferentType() {
         return !property1.getClass().equals(property2.getClass());
     }
-
 }

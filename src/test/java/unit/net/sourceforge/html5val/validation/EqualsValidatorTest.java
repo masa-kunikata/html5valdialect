@@ -1,8 +1,8 @@
 package unit.net.sourceforge.html5val.validation;
 
 import javax.validation.ConstraintValidatorContext;
-import net.sourceforge.html5val.validation.Equals;
-import net.sourceforge.html5val.validation.EqualsValidator;
+import net.sourceforge.html5val.constraints.Equals;
+import net.sourceforge.html5val.constraints.EqualsValidator;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnit4Mockery;
@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class EqualsValidatorTest {
-    
+
     private final Mockery context = new JUnit4Mockery();
     private final String STRING_PROPERTY1 = "property1";
     private final String STRING_PROPERTY2 = "property2";
@@ -20,7 +20,7 @@ public class EqualsValidatorTest {
     private EqualsValidator validator;
     private ConstraintValidatorContext validatorContext;
     private Equals annotation;
-    
+
     @Before
     public void setUp() {
         validator = new EqualsValidator();
@@ -30,42 +30,42 @@ public class EqualsValidatorTest {
             allowing(annotation).property2(); will(returnValue(STRING_PROPERTY2));
         }});
     }
-    
+
     @Test
     public void equals() {
         validator.initialize(annotation);
         Object testObject = MockObject.build("aaa", "aaa");
         assertTrue(validator.isValid(testObject, validatorContext));
     }
-    
+
     @Test
     public void notEquals() {
         validator.initialize(annotation);
         Object testObject = MockObject.build("aaa", "bbb");
         assertFalse(validator.isValid(testObject, validatorContext));
     }
-    
+
     @Test
     public void bothPropertiesNull() {
         validator.initialize(annotation);
         Object testObject = MockObject.build(null, null);
         assertTrue(validator.isValid(testObject, validatorContext));
     }
-    
+
     @Test
     public void firstPropertyNull() {
         validator.initialize(annotation);
         Object testObject = MockObject.build(null, "bbb");
         assertFalse(validator.isValid(testObject, validatorContext));
     }
-    
+
     @Test
     public void secondPropertyNull() {
         validator.initialize(annotation);
         Object testObject = MockObject.build("aaa", null);
         assertFalse(validator.isValid(testObject, validatorContext));
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void differentClasses() {
         final Equals differentTypeAnnotation = context.mock(Equals.class, "diff");

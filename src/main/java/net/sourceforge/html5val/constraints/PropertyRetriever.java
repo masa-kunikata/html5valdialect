@@ -1,4 +1,4 @@
-package net.sourceforge.html5val.validation;
+package net.sourceforge.html5val.constraints;
 
 import java.lang.reflect.Field;
 

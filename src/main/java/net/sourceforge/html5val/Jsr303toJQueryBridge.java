@@ -14,7 +14,7 @@ import javax.validation.constraints.Null;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import net.sourceforge.html5val.validation.Equals;
+import net.sourceforge.html5val.constraints.Equals;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -140,7 +140,7 @@ public class Jsr303toJQueryBridge {
             sb.append("minlength: ").append(size.min()).append(",\n");
             sb.append("maxlength: ").append(size.max());
         } else if (annotation instanceof Size.List) {
-            // Defines several @Size annotations on the same element			
+            // Defines several @Size annotations on the same element
             throw new UnsupportedOperationException("Not implemented");
         }
         return sb.toString();
