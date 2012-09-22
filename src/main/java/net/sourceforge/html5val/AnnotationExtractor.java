@@ -1,7 +1,6 @@
 package net.sourceforge.html5val;
 
 import java.lang.annotation.Annotation;
-import org.thymeleaf.dom.Element;
 
 public class AnnotationExtractor {
 
@@ -22,9 +21,8 @@ public class AnnotationExtractor {
     // FIXME: unit-test this
     // FIXME: what if the field name really contais a dot? what happens in spring?
     // FIXME: it ignores fields declared in parent classes
-    public Annotation[] getAnnotationsFor(Element field) {
+    public Annotation[] getAnnotationsFor(String fieldName) {
         try {
-            String fieldName = field.getAttributeValue("name");
             String currentField = fieldName;
             Class currentClass = annotatedClass;
             while (currentField.indexOf('.') > 0) {

@@ -7,7 +7,7 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.dom.Document;
 import org.thymeleaf.util.DOMUtils;
 
-public class Html5ValIntegrationTest extends TestBase {
+public class Html5ValIntegrationTest extends IntegrationTestBase {
 
     private Context context = new Context();
 

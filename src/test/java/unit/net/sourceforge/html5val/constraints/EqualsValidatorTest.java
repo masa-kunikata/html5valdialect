@@ -1,4 +1,4 @@
-package unit.net.sourceforge.html5val.validation;
+package unit.net.sourceforge.html5val.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 import net.sourceforge.html5val.constraints.Equals;

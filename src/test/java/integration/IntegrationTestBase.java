@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
-abstract public class TestBase {
+abstract public class IntegrationTestBase {
 
     private TemplateEngine templateEngine;
 

@@ -1,8 +1,8 @@
 package net.sourceforge.html5val;
 
 import java.lang.annotation.Annotation;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import net.sourceforge.html5val.performers.DigitsPerformer;
 import net.sourceforge.html5val.performers.EmailPerformer;
 import net.sourceforge.html5val.performers.MaxPerformer;
@@ -20,30 +20,32 @@ public class ValidationPerformerFactory {
         public void putValidationCodeInto(Element element) {}
     };
 
-    private final Map<Class, ValidationPerformer> performerMap;
+    private final List<ValidationPerformer> performers;
 
     public ValidationPerformerFactory() {
         // TODO: read http://www.the-art-of-web.com/html/html5-form-validation/ for ideas
-        performerMap = new HashMap<Class, ValidationPerformer>();
-        addPerformer(new DigitsPerformer());
-        addPerformer(new EmailPerformer());
-        addPerformer(new MaxPerformer());
-        addPerformer(new MinPerformer());
-        addPerformer(new NotEmptyPerformer());
-        addPerformer(new NotNullPerformer());
-        addPerformer(new PatternPerformer());
-        addPerformer(new SizePerformer());
-    }
-
-    private void addPerformer(ValidationPerformer performer) {
-        performerMap.put(performer.getClass(), performer);
+        performers = new ArrayList<ValidationPerformer>();
+        performers.add(new DigitsPerformer());
+        performers.add(new EmailPerformer());
+        performers.add(new MaxPerformer());
+        performers.add(new MinPerformer());
+        performers.add(new NotEmptyPerformer());
+        performers.add(new NotNullPerformer());
+        performers.add(new PatternPerformer());
+        performers.add(new SizePerformer());
     }
 
     public ValidationPerformer getProcessorFor(Annotation constraint) {
-        Class constraintClass = constraint.getClass();
-        if (performerMap.containsKey(constraintClass)) {
-            return performerMap.get(constraintClass);
+        for (ValidationPerformer performer : performers) {
+            if (isPerformerForConstraint(performer, constraint)) {
+                return performer;
+            }
         }
         return NULL_PERFORMER;
+    }
+
+    private boolean isPerformerForConstraint(ValidationPerformer performer, Annotation constraint) {
+        Class constraintClass = constraint.getClass();
+        return constraintClass.isAssignableFrom(performer.getClass());
     }
 }

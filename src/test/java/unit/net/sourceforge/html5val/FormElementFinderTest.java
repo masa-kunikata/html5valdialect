@@ -14,6 +14,7 @@ import org.thymeleaf.dom.Node;
 import org.thymeleaf.util.DOMUtils;
 import static org.junit.Assert.*;
 
+// FIXME: only test the "happy path". Test the boundary conditions.
 public class FormElementFinderTest {
 
     @Test
