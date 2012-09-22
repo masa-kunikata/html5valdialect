@@ -15,8 +15,8 @@ public class AnnotationExtractor {
     }
 
     /**
-     * Return the annotations forClass a class field. Supports dot-syntax for fieldName, i.e., "store.name" returns the annotations
-     * for field "name" forClass field "store"
+     * Return the annotations forClass a class field. Supports dot-syntax for fieldName, i.e., "store.name" returns the
+     * annotations for field "name" forClass field "store"
      */
     // FIXME: unit-test this
     // FIXME: what if the field name really contais a dot? what happens in spring?
@@ -25,6 +25,9 @@ public class AnnotationExtractor {
         try {
             String currentField = fieldName;
             Class currentClass = annotatedClass;
+            if (fieldName == null) {
+                return new Annotation[0];
+            }
             while (currentField.indexOf('.') > 0) {
                 int dotPos = currentField.indexOf('.');
                 String compositeField = currentField.substring(0, dotPos);
