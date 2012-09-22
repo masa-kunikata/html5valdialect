@@ -3,9 +3,49 @@
     <head>
         <title>HTML5 Validation Dialect</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="main.css" />
+        <link type="text/css" rel="stylesheet" href="main.css" />
     </head>
     <body>
         <h1>HTML5 Validation Dialect for the Thymeleaf template engine</h1>
+        <h2>Overview</h2>
+        <p>
+            This Thymeleaf dialect reads JSR-303 annotations and modify HMTL code introducing
+            HTML5 form validation code matching the annotations.
+        </p>
+        <h2>Rationale</h2>
+        <p>
+            JSR-303 provides server-size validation for Java web applications, but client size validation
+            has usually been achieved using Javascript. <br />
+            Fortunately, HTML5 brings attributes for browser validation. <br />
+            Through HTML5 validation is not supported by all browsers, nowadays the
+            <a href="http://caniuse.com/#feat=form-validation">form validation support</a> is quite good,
+            so we prefer favoring users with modern browsers and lay on server validation for users with
+            older browsers.
+        </p>
+        <h2>Supported constraints</h2>
+        <table class="doc">
+            <thead>
+                <tr>
+                    <th>Constraint</th>
+                    <th>Usage</th>
+                    <th>Before</th>
+                    <th>After</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>javax.validation.constraints.Size</td>
+                    <td>@Size(min = 5, max = 10)</td>
+                    <td>&lt;input type="text" name="code" /&gt;</td>
+                    <td>&lt;input type="text" name="code" pattern=".{5,10}" /&gt;</td>
+                </tr>
+                <tr>
+                    <td>org.hibernate.validator.constraints.Email</td>
+                    <td>@Email</td>
+                    <td>&lt;input type="text" name="userEmail" /&gt;</td>
+                    <td>&lt;input type="email" name="userEmail" /&gt;</td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>

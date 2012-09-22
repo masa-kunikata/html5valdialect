@@ -1,0 +1,23 @@
+body {
+    padding: 2em;
+    font-family: Verdana, Arial, sans-serif;
+}
+
+h1, h2 {
+    color: darkolivegreen;
+}
+
+table.doc {
+    background-color: antiquewhite;
+    border: solid 1px lightgrey;
+    padding: 1em;
+}
+
+table.doc td {
+    border: solid 1px lightgrey;
+    padding: 0.4em;
+}
+
+table.doc tbody {
+    font-family: monospace;
+}
