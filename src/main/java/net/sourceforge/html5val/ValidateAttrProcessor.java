@@ -49,12 +49,25 @@ public class ValidateAttrProcessor extends AbstractAttrProcessor {
         return StandardExpressionProcessor.processExpression(arguments, attributeValue).getClass();
     }
 
-    private void processFieldValidation(Element field, Class jsr303AnnotatedClass) {
-        String fieldName = field.getAttributeValue("name");
-        Annotation[] constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsFor(fieldName);
-        for (Annotation constraint : constraints) {
-            ValidationPerformer processor = ValidationPerformerFactory.getPerformerFor(constraint);
-            processor.putValidationCodeInto(constraint, field);
+    private void processFieldValidation(Element fieldElement, Class jsr303AnnotatedClass) {
+        String fieldName = getFieldName(fieldElement);
+        if (fieldName != null) {
+            Annotation[] constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsFor(fieldName);
+            for (Annotation constraint : constraints) {
+                ValidationPerformer processor = ValidationPerformerFactory.getPerformerFor(constraint);
+                processor.putValidationCodeInto(constraint, fieldElement);
+            }
         }
+    }
+
+    private String getFieldName(Element fieldElement) {
+        String TH_FIELD = "th:field"; // FIXME: get dynamic prefix
+        if (fieldElement.getAttributeValue("name") != null) {
+            return fieldElement.getAttributeValue("name");
+        } else if (fieldElement.getAttributeValue(TH_FIELD) != null && fieldElement.getAttributeValue(TH_FIELD).startsWith("*")) {
+            String value = fieldElement.getAttributeValue(TH_FIELD);
+            return value.substring(2, value.length() - 1);
+        }
+        return null;
     }
 }
