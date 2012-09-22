@@ -16,9 +16,7 @@ public class AnnotationExtractor {
     }
 
     /**
-     * Return the
-     *
-     * @Annotations forClass a class field. Supports dot-syntax for fieldName, i.e., "store.name" returns the annotations
+     * Return the annotations forClass a class field. Supports dot-syntax for fieldName, i.e., "store.name" returns the annotations
      * for field "name" forClass field "store"
      */
     // FIXME: unit-test this
