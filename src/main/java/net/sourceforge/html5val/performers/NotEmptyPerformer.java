@@ -10,7 +10,7 @@ public class NotEmptyPerformer implements ValidationPerformer<NotEmpty> {
         return NotEmpty.class;
     }
 
-    public void putValidationCodeInto(Element element) {
+    public void putValidationCodeInto(NotEmpty constraint, Element element) {
         element.setAttribute("required", "required");
     }
 }

@@ -7,5 +7,5 @@ public interface ValidationPerformer<T extends Annotation> {
 
     Class<T> getConstraintClass();
 
-    void putValidationCodeInto(Element element);
+    void putValidationCodeInto(T constraint, Element element);
 }

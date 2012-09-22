@@ -10,7 +10,7 @@ public class MinPerformer implements ValidationPerformer<Min> {
         return Min.class;
     }
 
-    public void putValidationCodeInto(Element element) {
+    public void putValidationCodeInto(Min constraint, Element element) {
         /**
             // The annotated element must be a number whose value must be higher or equal to the specified minimum.
             Min min = (Min) annotation;

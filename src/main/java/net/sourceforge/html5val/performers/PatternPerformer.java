@@ -10,7 +10,7 @@ public class PatternPerformer implements ValidationPerformer<Pattern> {
         return Pattern.class;
     }
 
-    public void putValidationCodeInto(Element element) {
+    public void putValidationCodeInto(Pattern constraint, Element element) {
         throw new UnsupportedOperationException("Not implemented");
     }
 }

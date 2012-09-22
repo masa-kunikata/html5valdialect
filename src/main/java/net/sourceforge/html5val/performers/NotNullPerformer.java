@@ -10,7 +10,7 @@ public class NotNullPerformer implements ValidationPerformer<NotNull> {
         return NotNull.class;
     }
 
-    public void putValidationCodeInto(Element element) {
+    public void putValidationCodeInto(NotNull constraint, Element element) {
         element.setAttribute("required", "required");
     }
 }

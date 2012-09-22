@@ -10,7 +10,7 @@ public class EmailPerformer implements ValidationPerformer<Email> {
         return Email.class;
     }
 
-    public void putValidationCodeInto(Element element) {
+    public void putValidationCodeInto(Email constraint, Element element) {
         element.setAttribute("type", "email");
     }
 }

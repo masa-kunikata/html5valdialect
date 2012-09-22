@@ -10,7 +10,7 @@ public class DigitsPerformer implements ValidationPerformer<Digits> {
         return Digits.class;
     }
 
-    public void putValidationCodeInto(Element element) {
+    public void putValidationCodeInto(Digits constraint, Element element) {
         /**
             // The annotated element must be a number within accepted range Supported types are: BigDecimal BigInteger
             // String byte, short, int, long, and their respective wrapper types

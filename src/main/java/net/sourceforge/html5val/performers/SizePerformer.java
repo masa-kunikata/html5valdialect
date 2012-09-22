@@ -10,16 +10,17 @@ public class SizePerformer implements ValidationPerformer<Size> {
         return Size.class;
     }
 
-    public void putValidationCodeInto(Element element) {
-        /**
-            // The annotated element size must be between the specified boundaries (included).
-            Size size = (Size) annotation;
-            if (size.min() > 0) {
-                sb.append("required: true, \n");
-            }
-            sb.append("minlength: ").append(size.min()).append(",\n");
-            sb.append("maxlength: ").append(size.max());
-         */
-        throw new UnsupportedOperationException("Not implemented");
+    public void putValidationCodeInto(Size size, Element element) {
+        if (size.min() > 0) {
+            element.setAttribute("required", "required");
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(".{");
+        sb.append(size.min()).append(",");
+        if (size.max() < Integer.MAX_VALUE) {
+            sb.append(size.max());
+        }
+        sb.append("}");
+        element.setAttribute("pattern", sb.toString());
     }
 }

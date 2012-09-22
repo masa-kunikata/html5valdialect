@@ -54,7 +54,7 @@ public class ValidateAttrProcessor extends AbstractAttrProcessor {
         Annotation[] constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsFor(fieldName);
         for (Annotation constraint : constraints) {
             ValidationPerformer processor = ValidationPerformerFactory.getPerformerFor(constraint);
-            processor.putValidationCodeInto(field);
+            processor.putValidationCodeInto(constraint, field);
         }
     }
 }

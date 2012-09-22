@@ -10,7 +10,7 @@ public class MaxPerformer implements ValidationPerformer<Max> {
         return Max.class;
     }
 
-    public void putValidationCodeInto(Element element) {
+    public void putValidationCodeInto(Max constraint, Element element) {
         /**
             // The annotated element must be a number whose value must be lower or equal to the specified maximum.
             Max max = (Max) annotation;

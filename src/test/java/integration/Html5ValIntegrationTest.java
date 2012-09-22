@@ -17,12 +17,11 @@ public class Html5ValIntegrationTest extends IntegrationTestBase {
         Document html = processTemplate("userForm.html");
         HtmlChecker checker = new HtmlChecker(html);
         checker.elementWithId("username").containsAttributeWithValue("type", "email");
-//        checker.elementWithId("code").containsAttributeWithValue("pattern", ".{5,10}");
+        checker.elementWithId("code").containsAttributeWithValue("pattern", ".{5,10}");
     }
 
     private Document processTemplate(String templateName) {
         String html = getTemplateEngine().process(templateName, context);
-        System.out.println(html);
         return DOMUtils.getHtml5DOMFor(new StringReader(html));
     }
 }

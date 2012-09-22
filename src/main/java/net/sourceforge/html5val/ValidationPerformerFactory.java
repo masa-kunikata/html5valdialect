@@ -19,7 +19,7 @@ public class ValidationPerformerFactory {
 
     private static final ValidationPerformer NULL_PERFORMER = new ValidationPerformer() {
         public Class getConstraintClass() { return null; }
-        public void putValidationCodeInto(Element element) {}
+        public void putValidationCodeInto(Annotation constraint, Element element) {}
     };
 
     private final List<ValidationPerformer> performers;

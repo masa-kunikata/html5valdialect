@@ -13,12 +13,11 @@ import static org.junit.Assert.*;
 public class EmailPerformerTest {
 
     private final Mockery context = new JUnit4Mockery();
-
+    private Email emailAnnotation = context.mock(Email.class);
     private ValidationPerformer performer = new EmailPerformer();
 
     @Test
     public void factoryKnownsPerformer() {
-        Email emailAnnotation = context.mock(Email.class);
         ValidationPerformerFactoryTest.assertGetPerformer(performer, emailAnnotation);
     }
 
@@ -27,7 +26,7 @@ public class EmailPerformerTest {
         // Before: <input type="text" />
         Element input = new Element("input");
         input.setAttribute("type", "text");
-        performer.putValidationCodeInto(input);
+        performer.putValidationCodeInto(emailAnnotation, input);
         // After: <input type="email" />
         assertEquals("email", input.getAttributeValue("type"));
     }
