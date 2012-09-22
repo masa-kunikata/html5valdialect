@@ -8,8 +8,8 @@ class UserFormBean {
     @Email
     private String username;
 
-    @Size(min = 6)
-    private String password;
+    @Size(min = 5, max = 10)
+    private String code;
 
     public String getUsername() {
         return username;
@@ -19,11 +19,11 @@ class UserFormBean {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getCode() {
+        return code;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCode(String code) {
+        this.code = code;
     }
 }

@@ -15,6 +15,8 @@ import org.thymeleaf.dom.Element;
 
 public class ValidationPerformerFactory {
 
+    private static final ValidationPerformerFactory SINGLE_INSTANCE = new ValidationPerformerFactory();
+
     private static final ValidationPerformer NULL_PERFORMER = new ValidationPerformer() {
         public Class getConstraintClass() { return null; }
         public void putValidationCodeInto(Element element) {}
@@ -22,7 +24,7 @@ public class ValidationPerformerFactory {
 
     private final List<ValidationPerformer> performers;
 
-    public ValidationPerformerFactory() {
+    private ValidationPerformerFactory() {
         // TODO: read http://www.the-art-of-web.com/html/html5-form-validation/ for ideas
         performers = new ArrayList<ValidationPerformer>();
         performers.add(new DigitsPerformer());
@@ -35,7 +37,11 @@ public class ValidationPerformerFactory {
         performers.add(new SizePerformer());
     }
 
-    public ValidationPerformer getProcessorFor(Annotation constraint) {
+    public static ValidationPerformer getPerformerFor(Annotation constraint) {
+        return SINGLE_INSTANCE.getPerformerForConstraint(constraint);
+    }
+
+    private ValidationPerformer getPerformerForConstraint(Annotation constraint) {
         for (ValidationPerformer performer : performers) {
             if (isPerformerForConstraint(performer, constraint)) {
                 return performer;
@@ -46,6 +52,6 @@ public class ValidationPerformerFactory {
 
     private boolean isPerformerForConstraint(ValidationPerformer performer, Annotation constraint) {
         Class constraintClass = constraint.getClass();
-        return constraintClass.isAssignableFrom(performer.getClass());
+        return performer.getConstraintClass().isAssignableFrom(constraintClass);
     }
 }

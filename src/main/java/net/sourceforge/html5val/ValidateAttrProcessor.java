@@ -23,8 +23,6 @@ import static net.sourceforge.html5val.FormElementFinder.findFormElements;
  */
 public class ValidateAttrProcessor extends AbstractAttrProcessor {
 
-    private final ValidationPerformerFactory validationPerformerFactory = new ValidationPerformerFactory();
-
     public ValidateAttrProcessor(String attributeName) {
         super(attributeName);
     }
@@ -52,13 +50,10 @@ public class ValidateAttrProcessor extends AbstractAttrProcessor {
     }
 
     private void processFieldValidation(Element field, Class jsr303AnnotatedClass) {
-        System.out.println("Processing field " + field.getAttributeValue("name"));
         String fieldName = field.getAttributeValue("name");
         Annotation[] constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsFor(fieldName);
-        System.out.println("Annotations: " + constraints);
         for (Annotation constraint : constraints) {
-            ValidationPerformer processor = validationPerformerFactory.getProcessorFor(constraint);
-            System.out.println("Processor for annotation " + constraint + "? " + processor);
+            ValidationPerformer processor = ValidationPerformerFactory.getPerformerFor(constraint);
             processor.putValidationCodeInto(field);
         }
     }

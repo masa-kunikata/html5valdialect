@@ -1,5 +1,7 @@
 package unit.net.sourceforge.html5val;
 
+import java.lang.annotation.Annotation;
+import net.sourceforge.html5val.ValidationPerformer;
 import net.sourceforge.html5val.ValidationPerformerFactory;
 import net.sourceforge.html5val.performers.EmailPerformer;
 import org.hibernate.validator.constraints.Email;
@@ -13,11 +15,19 @@ public class ValidationPerformerFactoryTest {
 
     private final Mockery context = new JUnit4Mockery();
 
-    private ValidationPerformerFactory factory = new ValidationPerformerFactory();
-
     @Test
-    public void getProcessorFor() {
+    public void getPerformerFor() {
         Email emailAnnotation = context.mock(Email.class);
-        assertEquals(EmailPerformer.class, factory.getProcessorFor(emailAnnotation).getClass());
+        assertGetPerformer(EmailPerformer.class, emailAnnotation);
+    }
+
+    private static void assertGetPerformer(Class expectedPerformerClass, Annotation annotation) {
+        ValidationPerformer performer = ValidationPerformerFactory.getPerformerFor(annotation);
+        assertEquals(expectedPerformerClass, performer.getClass());
+    }
+
+    /** Public method to be used in every ValidationPerformer test. */
+    public static void assertGetPerformer(ValidationPerformer expectedPerformer, Annotation annotation) {
+        assertGetPerformer(expectedPerformer.getClass(), annotation);
     }
 }
