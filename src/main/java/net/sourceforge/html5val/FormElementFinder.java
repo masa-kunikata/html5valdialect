@@ -1,26 +1,27 @@
 package net.sourceforge.html5val;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.thymeleaf.dom.Element;
 import org.thymeleaf.exceptions.TemplateProcessingException;
 import org.thymeleaf.util.ArrayUtils;
 import static net.sourceforge.html5val.EmptyChecker.notEmpty;
 
-public class FormParser {
+// FIXME: refactor, remove duplicate code, clean code
+public class FormElementFinder {
+
     /**
      * Valid values for type attribute of input elements.
      * HTML5 allowed values from http://www.w3.org/TR/html5/the-input-element.html#the-input-element
      */
     private static final String[] allowedInputTypes = {"text", "search", "tel", "url", "email", "password", "datetime", "date", "month", "week", "time", "datetime-local", "number", "range", "color", "checkbox", "radio", "file"};
 
-
     /**
      * Given a from element, return all valid input names.
      */
-    // FIXME: remove duplicate code
-    public static List<Element> findFormElements(Element form) {
-        List<Element> fields = new ArrayList<Element>();
+    public static Set<Element> findFormElements(Element form) {
+        Set<Element> fields = new HashSet<Element>();
         List<Element> inputs = DomUtils.getElementsByTagName(form, "input"); // text, checkbox, radio
         // text, checkbox, radio
         for (Element input : inputs) {

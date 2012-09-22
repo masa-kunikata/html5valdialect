@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:val="http://html5valdialect.sourceforge.net">
+    <head>
+        <title>HTML5 Validation dialect</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>HTML5 Validation dialect</h1>
+        <form action="userSave.do" val:validate="${userFormBean}" method="post">
+            <p>
+                <label for="username">E-mail</label>
+                <input type="text" name="username" id="username" />
+            </p>
+            <p>
+                <label for="cv">CV</label>
+                <textarea name="cv" id="cv"></textarea>
+            </p>
+            <p>
+                <label for="phone">Phone number</label>
+                <input type="text" name="phone" id="phone" />
+            </p>
+            <p>
+                <label for="city">City</label>
+                <select name="city" id="city">
+                    <option>London</option>
+                    <option>Paris</option>
+                    <option>Berlin</option>
+                </select>
+            </p>
+            <p>
+                <label for="customer">Customer</label>
+                <input type="radio" name="relationship" id="customer" value="customer" />
+                <label for="provider">Provider</label>
+                <input type="radio" name="relationship" id="provider" value="provider" />
+                <label for="both">Both</label>
+                <input type="radio" name="relationship" id="both" value="both" />
+            </p>
+            <p>
+                <label for="enabled">Enabled</label>
+                <input type="checkbox" name="enabled" id="enabled" />
+            </p>
+            <input type="submit" />
+        </form>
+    </body>
+</html>
