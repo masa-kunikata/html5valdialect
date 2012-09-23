@@ -40,6 +40,18 @@
                     <td>&lt;input type="text" name="code" pattern=".{5,10}" /&gt;</td>
                 </tr>
                 <tr>
+                    <td>javax.validation.constraints.NotNull</td>
+                    <td>@NotNull</td>
+                    <td>&lt;input type="text" name="code" /&gt;</td>
+                    <td>&lt;input type="text" name="code" required="required" /&gt;</td>
+                </tr>
+                <tr>
+                    <td>org.hibernate.validator.constraints.NotEmpty</td>
+                    <td>@NotEmpty</td>
+                    <td>&lt;input type="text" name="code" /&gt;</td>
+                    <td>&lt;input type="text" name="code" required="required" /&gt;</td>
+                </tr>
+                <tr>
                     <td>org.hibernate.validator.constraints.Email</td>
                     <td>@Email</td>
                     <td>&lt;input type="text" name="userEmail" /&gt;</td>
