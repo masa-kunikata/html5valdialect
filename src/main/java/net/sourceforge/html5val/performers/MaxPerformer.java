@@ -11,12 +11,9 @@ public class MaxPerformer implements ValidationPerformer<Max> {
     }
 
     public void putValidationCodeInto(Max constraint, Element element) {
-        /**
-            // The annotated element must be a number whose value must be lower or equal to the specified maximum.
-            Max max = (Max) annotation;
-            sb.append("number: true, \n");
-            sb.append("max: ").append(max.value());
-         */
-        throw new UnsupportedOperationException("Not implemented");
+        // The annotated element must be a number whose value must be lower or equal to the specified maximum.
+        Max max = (Max) constraint;
+        element.setAttribute("type", "number");
+        element.setAttribute("max", Long.toString(max.value()));
     }
 }
