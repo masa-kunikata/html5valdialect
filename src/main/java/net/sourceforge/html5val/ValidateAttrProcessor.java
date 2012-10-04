@@ -51,12 +51,10 @@ public class ValidateAttrProcessor extends AbstractAttrProcessor {
 
     private void processFieldValidation(Element fieldElement, Class jsr303AnnotatedClass) {
         String fieldName = getFieldName(fieldElement);
-        if (fieldName != null) {
-            Annotation[] constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsFor(fieldName);
-            for (Annotation constraint : constraints) {
-                ValidationPerformer processor = ValidationPerformerFactory.getPerformerFor(constraint);
-                processor.putValidationCodeInto(constraint, fieldElement);
-            }
+        Annotation[] constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsFor(fieldName);
+        for (Annotation constraint : constraints) {
+            ValidationPerformer processor = ValidationPerformerFactory.getPerformerFor(constraint);
+            processor.putValidationCodeInto(constraint, fieldElement);
         }
     }
 
