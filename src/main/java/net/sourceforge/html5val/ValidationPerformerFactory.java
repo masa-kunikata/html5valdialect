@@ -10,7 +10,9 @@ import net.sourceforge.html5val.performers.MinPerformer;
 import net.sourceforge.html5val.performers.NotEmptyPerformer;
 import net.sourceforge.html5val.performers.NotNullPerformer;
 import net.sourceforge.html5val.performers.PatternPerformer;
+import net.sourceforge.html5val.performers.RangePerformer;
 import net.sourceforge.html5val.performers.SizePerformer;
+import net.sourceforge.html5val.performers.URLPerformer;
 import org.thymeleaf.dom.Element;
 
 public class ValidationPerformerFactory {
@@ -31,10 +33,12 @@ public class ValidationPerformerFactory {
         performers.add(new EmailPerformer());
         performers.add(new MaxPerformer());
         performers.add(new MinPerformer());
+        performers.add(new RangePerformer());
         performers.add(new NotEmptyPerformer());
         performers.add(new NotNullPerformer());
         performers.add(new PatternPerformer());
         performers.add(new SizePerformer());
+        performers.add(new URLPerformer());
     }
 
     public static ValidationPerformer getPerformerFor(Annotation constraint) {

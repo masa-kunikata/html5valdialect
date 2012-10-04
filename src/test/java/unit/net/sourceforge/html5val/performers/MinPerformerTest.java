@@ -33,11 +33,12 @@ public class MinPerformerTest {
 
     @Test
     public void putValidationCodeInto() {
-        // Before: <input type="number" />
+        // Before: <input type="text" />
         Element input = new Element("input");
-        input.setAttribute("type", "number");
+        input.setAttribute("type", "text");
         performer.putValidationCodeInto(minAnnotation, input);
         // After: <input type="text" max="{maxValue}" />
+        assertEquals("number", input.getAttributeValue("type"));
         assertEquals(minAnnotation.value(), Long.parseLong(input.getAttributeValue("min")));
     }
 }

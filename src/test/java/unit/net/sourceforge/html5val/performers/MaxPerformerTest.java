@@ -33,11 +33,12 @@ public class MaxPerformerTest {
 
     @Test
     public void putValidationCodeInto() {
-        // Before: <input type="number" />
+        // Before: <input type="text" />
         Element input = new Element("input");
-        input.setAttribute("type", "number");
+        input.setAttribute("type", "text");
         performer.putValidationCodeInto(maxAnnotation, input);
-        // After: <input type="text" max="{maxValue}" />
+        // After: <input type="number" max="{maxValue}" />
+        assertEquals("number", input.getAttributeValue("type"));
         assertEquals(maxAnnotation.value(), Long.parseLong(input.getAttributeValue("max")));
     }
 }
