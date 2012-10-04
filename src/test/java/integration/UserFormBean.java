@@ -3,6 +3,7 @@ package integration;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import net.sourceforge.html5val.performers.URLPerformer;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
@@ -22,7 +23,7 @@ class UserFormBean {
     @Range(min = 0, max = 10)
     private Integer highSchoolMark;
 
-    @URL(regexp = "^http://[a-zA-Z0-9-.]+.[a-zA-Z]{2,3}(/S*)?$")
+    @URL(regexp = URLPerformer.URL_REGEXP)
     private String personalWebPage;
 
     @URL(protocol = "http", host = "localhost", port = 8080)

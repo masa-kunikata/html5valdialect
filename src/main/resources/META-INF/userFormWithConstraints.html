@@ -9,27 +9,27 @@
         <form action="userSave.do" val:validate="${userFormBean}" method="post">
             <p>
                 <label for="username">E-mail</label>
-                <input type="text" name="username" id="username" />
+                <input type="email" name="username" id="username" />
             </p>
             <p>
                 <label for="code">Code</label>
-                <input type="text" name="code" id="code" />
+                <input type="text" name="code" id="code" pattern=".{5,10}" />
             </p>
             <p>
                 <label for="age">Age</label>
-                <input type="text" name="age" id="age" />
+                <input type="number" name="age" id="age" min="18" max="100" />
             </p>
             <p>
                 <label for="highSchoolMark">Mark</label>
-                <input type="text" name="highSchoolMark" id="highSchoolMark" />
+                <input type="range" name="highSchoolMark" id="highSchoolMark" min="0" max="10" />
             </p>
             <p>
                 <label for="personalWebPage">Personal Web Page</label>
-                <input type="text" name="personalWebPage" id="personalWebPage" />
+                <input type="url" name="personalWebPage" id="personalWebPage" pattern="^.+://.+(:[0-9]+)?(/.*)?" />
             </p>
             <p>
                 <label for="applicationWebPage">Demo application Web Page</label>
-                <input type="text" name="applicationWebPage" id="applicationWebPage" />
+                <input type="url" name="applicationWebPage" id="applicationWebPage" pattern="^http://localhost:8080(/.*)?" />
             </p>
             <input type="submit" />
         </form>

@@ -10,21 +10,18 @@ public class DigitsPerformer implements ValidationPerformer<Digits> {
         return Digits.class;
     }
 
-    public void putValidationCodeInto(Digits constraint, Element element) {
-        /**
-            // The annotated element must be a number within accepted range Supported types are: BigDecimal BigInteger
-            // String byte, short, int, long, and their respective wrapper types
-            // null elements are considered valid
-            Digits digits = (Digits) annotation;
-            if (digits.fraction() == 0) {
-                sb.append("digits: true, \n");
-                sb.append("maxlength: ").append(digits.integer());
-            } else {
-                // Something like /^\d{1,5}(\.\d{1,2})?$/
-                sb.append("pattern: /^\\d{1,").append(digits.integer()).append("}(\\.\\d{1,").append(digits.fraction()).append("})?$/ ");
-            }
-         *
-         */
-        throw new UnsupportedOperationException("Not implemented");
+    public void putValidationCodeInto(Digits digits, Element element) {
+        // The annotated element must be a number within accepted range
+        // Pattern example: [0-9]{1,4}(\\.[0-9]{1,2})?
+        StringBuilder sb = new StringBuilder();
+        if (digits.integer() > 0) {
+            sb.append("[0-9]{1,").append(digits.integer()).append("}");
+        }
+        if (digits.fraction() > 0) {
+            sb.append("(\\.[0-9]{1,").append(digits.fraction()).append("})?");
+        }
+        if (sb.length() > 0) {
+            element.setAttribute("pattern", sb.toString());
+        }
     }
 }

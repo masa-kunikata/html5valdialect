@@ -13,12 +13,12 @@ import unit.net.sourceforge.html5val.ValidationPerformerFactoryTest;
 import static org.junit.Assert.*;
 
 public class MinPerformerTest {
-    
-    private final Long minAllowedValue = 75l;
+
+    private final Long minAllowedValue = 75L;
     private final Mockery context = new JUnit4Mockery();
     private Min minAnnotation = context.mock(Min.class);
     private ValidationPerformer performer = new MinPerformer();
-    
+
     @Before
     public void setUp() {
          context.checking(new Expectations(){{
@@ -37,7 +37,7 @@ public class MinPerformerTest {
         Element input = new Element("input");
         input.setAttribute("type", "text");
         performer.putValidationCodeInto(minAnnotation, input);
-        // After: <input type="text" max="{maxValue}" />
+        // After: <input type="number" min="75" />
         assertEquals("number", input.getAttributeValue("type"));
         assertEquals(minAnnotation.value(), Long.parseLong(input.getAttributeValue("min")));
     }

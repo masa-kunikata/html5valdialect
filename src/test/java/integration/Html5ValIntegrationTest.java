@@ -2,6 +2,7 @@ package integration;
 
 import java.io.IOException;
 import java.io.StringReader;
+import net.sourceforge.html5val.performers.URLPerformer;
 import org.junit.Before;
 import org.junit.Test;
 import org.thymeleaf.context.Context;
@@ -48,11 +49,11 @@ public class Html5ValIntegrationTest extends IntegrationTestBase {
 
     private void checkPersonalWebPage() {
         checker.elementWithId("personalWebPage").containsAttributeWithValue("type", "url");
-        checker.elementWithId("personalWebPage").containsAttributeWithValue("pattern", "^http://[a-zA-Z0-9-.]+.[a-zA-Z]{2,3}(/S*)?$");
+        checker.elementWithId("personalWebPage").containsAttributeWithValue("pattern", URLPerformer.URL_REGEXP);
     }
 
     private void checkHostingServer() {
         checker.elementWithId("applicationWebPage").containsAttributeWithValue("type", "url");
-        checker.elementWithId("applicationWebPage").containsAttributeWithValue("pattern", "^(http://localhost:8080/)");
+        checker.elementWithId("applicationWebPage").containsAttributeWithValue("pattern", "^http://localhost:8080(/.*)?");
     }
 }

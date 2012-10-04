@@ -14,12 +14,12 @@ import static org.junit.Assert.*;
 
 public class RangePerformerTest {
 
-    private final Long maxAllowedValue = 1l;
-    private final Long minAllowedValue = 100l;
+    private final Long maxAllowedValue = 1L;
+    private final Long minAllowedValue = 100L;
     private final Mockery context = new JUnit4Mockery();
     private Range rangeAnnotation = context.mock(Range.class);
     private ValidationPerformer performer = new RangePerformer();
-    
+
     @Before
     public void setUp() {
          context.checking(new Expectations(){{
@@ -39,7 +39,7 @@ public class RangePerformerTest {
         Element input = new Element("input");
         input.setAttribute("type", "text");
         performer.putValidationCodeInto(rangeAnnotation, input);
-        // After: <input type="range" min="{minValue}" max="{maxValue}" />
+        // After: <input type="range" min="1" max="10" />
         assertEquals("range", input.getAttributeValue("type"));
         assertEquals(rangeAnnotation.min(), Long.parseLong(input.getAttributeValue("min")));
         assertEquals(rangeAnnotation.max(), Long.parseLong(input.getAttributeValue("max")));

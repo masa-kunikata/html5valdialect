@@ -40,6 +40,18 @@
                     <td>&lt;input type="text" name="code" pattern=".{5,10}" /&gt;</td>
                 </tr>
                 <tr>
+                    <td>javax.validation.constraints.Min</td>
+                    <td>@Min(value = 18)</td>
+                    <td>&lt;input type="text" name="age" /&gt;</td>
+                    <td>&lt;input type="number" name="age" min="18" /&gt;</td>
+                </tr>
+                <tr>
+                    <td>javax.validation.constraints.Max</td>
+                    <td>@Max(value = 65)</td>
+                    <td>&lt;input type="text" name="age" /&gt;</td>
+                    <td>&lt;input type="number" name="age" max="65" /&gt;</td>
+                </tr>
+                <tr>
                     <td>javax.validation.constraints.NotNull</td>
                     <td>@NotNull</td>
                     <td>&lt;input type="text" name="code" /&gt;</td>
@@ -52,10 +64,22 @@
                     <td>&lt;input type="text" name="code" required="required" /&gt;</td>
                 </tr>
                 <tr>
+                    <td>org.hibernate.validator.constraints.Range</td>
+                    <td>@Range(min = 0, max = 10)</td>
+                    <td>&lt;input type="text" name="rank" /&gt;</td>
+                    <td>&lt;input type="range" name="rank" min="0" max="10" /&gt;</td>
+                </tr>
+                <tr>
                     <td>org.hibernate.validator.constraints.Email</td>
                     <td>@Email</td>
                     <td>&lt;input type="text" name="userEmail" /&gt;</td>
                     <td>&lt;input type="email" name="userEmail" /&gt;</td>
+                </tr>
+                <tr>
+                    <td>org.hibernate.validator.constraints.URL</td>
+                    <td>@Url(protocol = "https")</td>
+                    <td>&lt;input type="text" name="website" /&gt;</td>
+                    <td>&lt;input type="text" name="website" pattern="^https://.+(:[0-9]+)?(/.*)?" /&gt;</td>
                 </tr>
             </tbody>
         </table>

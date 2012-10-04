@@ -14,11 +14,11 @@ import static org.junit.Assert.*;
 
 public class MaxPerformerTest {
 
-    private final Long maxAllowedValue = 75l;
+    private final Long maxAllowedValue = 75L;
     private final Mockery context = new JUnit4Mockery();
     private Max maxAnnotation = context.mock(Max.class);
     private ValidationPerformer performer = new MaxPerformer();
-    
+
     @Before
     public void setUp() {
          context.checking(new Expectations(){{
@@ -37,7 +37,7 @@ public class MaxPerformerTest {
         Element input = new Element("input");
         input.setAttribute("type", "text");
         performer.putValidationCodeInto(maxAnnotation, input);
-        // After: <input type="number" max="{maxValue}" />
+        // After: <input type="number" max="75" />
         assertEquals("number", input.getAttributeValue("type"));
         assertEquals(maxAnnotation.value(), Long.parseLong(input.getAttributeValue("max")));
     }

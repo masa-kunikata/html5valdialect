@@ -11,7 +11,7 @@ public class MaxPerformer implements ValidationPerformer<Max> {
     }
 
     public void putValidationCodeInto(Max constraint, Element element) {
-        // The annotated element must be a number whose value must be lower or equal to the specified maximum.
+        // The annotated element must be a number with value lower or equal to the specified maximum.
         Max max = (Max) constraint;
         element.setAttribute("type", "number");
         element.setAttribute("max", Long.toString(max.value()));

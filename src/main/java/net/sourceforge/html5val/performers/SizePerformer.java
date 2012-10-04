@@ -11,9 +11,6 @@ public class SizePerformer implements ValidationPerformer<Size> {
     }
 
     public void putValidationCodeInto(Size size, Element element) {
-        if (size.min() > 0) {
-            element.setAttribute("required", "required");
-        }
         StringBuilder sb = new StringBuilder();
         sb.append(".{");
         sb.append(size.min()).append(",");
