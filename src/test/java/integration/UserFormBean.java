@@ -9,12 +9,22 @@ import org.hibernate.validator.constraints.URL;
 
 class UserFormBean {
 
-    @Email private String username;
-    @Size(min = 5, max = 10) private String code;
-    @Min(value = 18) @Max(value = 100) private Integer age;
-    @Range(min = 0, max = 10) private Integer highSchoolMark;
+    @Email
+    private String username;
+
+    @Size(min = 5, max = 10)
+    private String code;
+
+    @Min(value = 18)
+    @Max(value = 100)
+    private Integer age;
+
+    @Range(min = 0, max = 10)
+    private Integer highSchoolMark;
+
     @URL(regexp = "^http://[a-zA-Z0-9-.]+.[a-zA-Z]{2,3}(/S*)?$")
     private String personalWebPage;
+
     @URL(protocol = "http", host = "localhost", port = 8080)
     private String applicationWebPage;
 

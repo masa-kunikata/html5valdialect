@@ -1,12 +1,14 @@
- 
+
 package net.sourceforge.html5val.performers;
 
 import java.util.regex.Pattern;
 import org.hibernate.validator.constraints.URL;
+import static net.sourceforge.html5val.EmptyChecker.empty;
 
 public class URLPatternBuilder {
-    
-    private final String DEFAULT_REGEXP = ".*";
+
+    public static final String DEFAULT_REGEXP = ".*";
+    public static final int EMPTY_PORT = -1;
     private URL url;
 
     private URLPatternBuilder(URL url) {
@@ -38,10 +40,25 @@ public class URLPatternBuilder {
 
     private String buildRegex() {
         StringBuilder sb = new StringBuilder();
-        sb.append("^(");
-        sb.append(url.protocol()).append("://").append(url.host()).append(":").append(url.port()).append("/");
-        sb.append(")");
+        sb.append("^");
+        if (empty(url.protocol())) {
+            sb.append(".+");
+        } else {
+            sb.append(url.protocol());
+        }
+        sb.append("://");
+        if (empty(url.host())) {
+            sb.append(".+");
+        } else {
+            sb.append(url.host());
+        }
+        if (url.port() == EMPTY_PORT) {
+            sb.append("(:[0-9]+)?");
+        } else {
+            sb.append(":").append(url.port());
+        }
+        sb.append("(/.*)?");
         return sb.toString();
     }
-    
+
 }

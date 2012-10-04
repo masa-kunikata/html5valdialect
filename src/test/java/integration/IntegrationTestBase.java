@@ -1,10 +1,14 @@
 package integration;
 
 import integration.util.ClasspathResourceResolver;
+import java.io.StringReader;
 import net.sourceforge.html5val.Html5ValDialect;
 import org.junit.Before;
 import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.dom.Document;
 import org.thymeleaf.templateresolver.TemplateResolver;
+import org.thymeleaf.util.DOMUtils;
 
 abstract public class IntegrationTestBase {
 
@@ -22,7 +26,8 @@ abstract public class IntegrationTestBase {
         templateEngine.initialize();
     }
 
-    protected TemplateEngine getTemplateEngine() {
-        return templateEngine;
+    protected Document processTemplate(String templateName, Context context) {
+        String html = templateEngine.process(templateName, context);
+        return DOMUtils.getHtml5DOMFor(new StringReader(html));
     }
 }

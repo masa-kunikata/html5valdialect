@@ -18,7 +18,7 @@ public class URLPerformerTest {
     private final String URL_REGEXP = "^http://[a-zA-Z0-9-.]+.[a-zA-Z]{2,3}(/S*)?$";
     private URL urlAnnotation = context.mock(URL.class);
     private ValidationPerformer performer = new URLPerformer();
-    
+
     @Before
     public void setUp() {
          context.checking(new Expectations(){{
@@ -37,7 +37,7 @@ public class URLPerformerTest {
         Element input = new Element("input");
         input.setAttribute("type", "url");
         performer.putValidationCodeInto(urlAnnotation, input);
-        // After: <input type="url" pattern={patternRegexp}  />
+        // After: <input type="url" pattern="{patternRegexp}" />
         assertEquals("url", input.getAttributeValue("type"));
         assertEquals(URL_REGEXP, input.getAttributeValue("pattern"));
     }
