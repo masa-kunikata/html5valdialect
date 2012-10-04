@@ -13,6 +13,6 @@ public class URLPerformer implements ValidationPerformer<URL> {
     public void putValidationCodeInto(URL constraint, Element element) {
         URL url = (URL) constraint;
         element.setAttribute("type", "url");
-        element.setAttribute("pattern", URLPatternBuilder.forURL(url).getPattern());
+        element.setAttribute("pattern", URLRegexpComposer.forURL(url).regexp());
     }
 }
