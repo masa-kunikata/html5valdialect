@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import net.sourceforge.html5val.performers.DigitsPerformer;
 import net.sourceforge.html5val.performers.EmailPerformer;
+import net.sourceforge.html5val.performers.LengthPerformer;
 import net.sourceforge.html5val.performers.MaxPerformer;
 import net.sourceforge.html5val.performers.MinPerformer;
+import net.sourceforge.html5val.performers.NotBlankPerformer;
 import net.sourceforge.html5val.performers.NotEmptyPerformer;
 import net.sourceforge.html5val.performers.NotNullPerformer;
 import net.sourceforge.html5val.performers.PatternPerformer;
@@ -36,8 +38,10 @@ public class ValidationPerformerFactory {
         performers.add(new RangePerformer());
         performers.add(new NotEmptyPerformer());
         performers.add(new NotNullPerformer());
+        performers.add(new NotBlankPerformer());
         performers.add(new PatternPerformer());
         performers.add(new SizePerformer());
+        performers.add(new LengthPerformer());
         performers.add(new URLPerformer());
     }
 

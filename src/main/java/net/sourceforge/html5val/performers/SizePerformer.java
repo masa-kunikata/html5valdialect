@@ -11,13 +11,8 @@ public class SizePerformer implements ValidationPerformer<Size> {
     }
 
     public void putValidationCodeInto(Size size, Element element) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(".{");
-        sb.append(size.min()).append(",");
-        if (size.max() < Integer.MAX_VALUE) {
-            sb.append(size.max());
-        }
-        sb.append("}");
-        element.setAttribute("pattern", sb.toString());
+        int min = size.min();
+        int max = size.max();
+        element.setAttribute("pattern", LengthRegexpComposer.forMinAndMax(min, max).regexp());
     }
 }

@@ -11,6 +11,8 @@ public class PatternPerformer implements ValidationPerformer<Pattern> {
     }
 
     public void putValidationCodeInto(Pattern constraint, Element element) {
-        throw new UnsupportedOperationException("Not implemented");
+        Pattern pattern = (Pattern) constraint;
+        element.setAttribute("type", "text");
+        element.setAttribute("pattern", pattern.regexp());
     }
 }

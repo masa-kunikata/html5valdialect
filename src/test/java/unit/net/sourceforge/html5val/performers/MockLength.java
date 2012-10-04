@@ -2,16 +2,16 @@ package unit.net.sourceforge.html5val.performers;
 
 import java.lang.annotation.Annotation;
 import javax.validation.Payload;
-import javax.validation.constraints.Size;
 import net.sourceforge.html5val.performers.LengthRegexpComposer;
+import org.hibernate.validator.constraints.Length;
 
-public class MockSize implements Size {
+public class MockLength implements Length {
 
     private int min;
     /** By default max attribute is MAX_INT */
     private int max = LengthRegexpComposer.MAX_BOUNDARY;
 
-    public MockSize() {
+    public MockLength() {
     }
 
     public void setMin(int min) {
