@@ -6,9 +6,6 @@ import static org.junit.Assert.*;
 
 public class LengthRegexComposerTest {
 
-    public LengthRegexComposerTest() {
-    }
-
     @Test
     public void minAndMax() {
         int min = 1;
@@ -18,7 +15,7 @@ public class LengthRegexComposerTest {
         String regexpExpected = ".{1,154}";
         assertEquals(regexpExpected, regexp);
     }
-    
+
      @Test
     public void onlyMin() {
         int min = 50;

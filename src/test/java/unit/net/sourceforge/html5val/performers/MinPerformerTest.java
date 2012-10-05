@@ -21,10 +21,10 @@ public class MinPerformerTest {
 
     @Before
     public void setUp() {
-         context.checking(new Expectations(){{
+        context.checking(new Expectations(){{
             allowing(minAnnotation).value(); will(returnValue(minAllowedValue));
         }});
-     }
+    }
 
     @Test
     public void factoryKnownsPerformer() {

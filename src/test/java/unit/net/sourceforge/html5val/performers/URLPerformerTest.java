@@ -21,10 +21,10 @@ public class URLPerformerTest {
 
     @Before
     public void setUp() {
-         context.checking(new Expectations(){{
+        context.checking(new Expectations(){{
             allowing(urlAnnotation).regexp(); will(returnValue(URL_REGEXP));
         }});
-     }
+    }
 
     @Test
     public void factoryKnownsPerformer() {

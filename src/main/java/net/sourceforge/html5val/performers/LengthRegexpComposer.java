@@ -1,6 +1,9 @@
 package net.sourceforge.html5val.performers;
 
-public class LengthRegexpComposer {
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
+
+public class LengthRegexpComposer implements RegexpComposer {
 
     public static final int MAX_BOUNDARY = Integer.MAX_VALUE;
 
@@ -16,7 +19,15 @@ public class LengthRegexpComposer {
     public static LengthRegexpComposer forMinAndMax(int min, int max) {
         return new LengthRegexpComposer(min, max);
     }
-    
+
+    public static LengthRegexpComposer forSize(Size size) {
+        return new LengthRegexpComposer(size.min(), size.max());
+    }
+
+    public static LengthRegexpComposer forLength(Length length) {
+        return new LengthRegexpComposer(length.min(), length.max());
+    }
+
     public String regexp() {
         StringBuilder sb = new StringBuilder();
         sb.append(".{");

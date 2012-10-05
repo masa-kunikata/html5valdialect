@@ -4,7 +4,7 @@ package net.sourceforge.html5val.performers;
 import org.hibernate.validator.constraints.URL;
 import static net.sourceforge.html5val.EmptyChecker.empty;
 
-public class URLRegexpComposer {
+public class URLRegexpComposer implements RegexpComposer {
 
     public static final String DEFAULT_REGEXP = ".*";
     public static final int EMPTY_PORT = -1;

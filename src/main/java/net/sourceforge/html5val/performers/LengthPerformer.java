@@ -11,8 +11,6 @@ public class LengthPerformer implements ValidationPerformer<Length> {
     }
 
     public void putValidationCodeInto(Length length, Element element) {
-        int min = length.min();
-        int max = length.max();
-        element.setAttribute("pattern", LengthRegexpComposer.forMinAndMax(min, max).regexp());
+        element.setAttribute("pattern", LengthRegexpComposer.forLength(length).regexp());
     }
 }
