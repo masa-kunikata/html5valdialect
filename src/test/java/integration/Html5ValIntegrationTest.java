@@ -1,13 +1,11 @@
 package integration;
 
 import java.io.IOException;
-import java.io.StringReader;
 import net.sourceforge.html5val.performers.URLPerformer;
 import org.junit.Before;
 import org.junit.Test;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.dom.Document;
-import org.thymeleaf.util.DOMUtils;
 
 public class Html5ValIntegrationTest extends IntegrationTestBase {
 

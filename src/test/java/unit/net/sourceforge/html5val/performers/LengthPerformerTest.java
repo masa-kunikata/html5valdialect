@@ -2,7 +2,6 @@ package unit.net.sourceforge.html5val.performers;
 
 import net.sourceforge.html5val.ValidationPerformer;
 import net.sourceforge.html5val.performers.LengthPerformer;
-import net.sourceforge.html5val.performers.LengthRegexpComposer;
 import org.hibernate.validator.constraints.Length;
 import org.junit.Before;
 import unit.net.sourceforge.html5val.*;
