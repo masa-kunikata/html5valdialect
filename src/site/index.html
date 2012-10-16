@@ -14,10 +14,10 @@
         </p>
         <h2>Rationale</h2>
         <p>
-            JSR-303 provides server-size validation for Java web applications, but client size validation
+            JSR-303 provides server-side validation for Java web applications, but client side validation
             has usually been achieved using Javascript. <br />
-            Fortunately, HTML5 brings attributes for browser validation. <br />
-            Through HTML5 validation is not supported by all browsers, nowadays the
+            Fortunately, HTML5 has brought attributes for simple browser validation. <br />
+            Although HTML5 validation is not supported by all browsers, nowadays the
             <a href="http://caniuse.com/#feat=form-validation">form validation support</a> is quite good,
             so we prefer favoring users with modern browsers and rely on server validation for users with
             older browsers.
@@ -52,6 +52,12 @@
                     <td>&lt;input type="number" name="age" max="65" /&gt;</td>
                 </tr>
                 <tr>
+                    <td>javax.validation.constraints.Digits</td>
+                    <td>@Digits(integer = 3, fraction = 2)</td>
+                    <td>&lt;input type="text" name="price" /&gt;</td>
+                    <td>&lt;input type="text" name="price" pattern="([0-9]{1,3}\.?|\.[0-9]{1,2}|[0-9]{1,3}\.[0-9]{1,2}){1}" /&gt;</td>
+                </tr>
+                <tr>
                     <td>javax.validation.constraints.NotNull</td>
                     <td>@NotNull</td>
                     <td>&lt;input type="text" name="code" /&gt;</td>
@@ -64,10 +70,22 @@
                     <td>&lt;input type="text" name="code" required="required" /&gt;</td>
                 </tr>
                 <tr>
+                    <td>org.hibernate.validator.constraints.NotBlank</td>
+                    <td>@NotBlank</td>
+                    <td>&lt;input type="text" name="code" /&gt;</td>
+                    <td>&lt;input type="text" name="code" required="required" /&gt;</td>
+                </tr>
+                <tr>
                     <td>org.hibernate.validator.constraints.Range</td>
                     <td>@Range(min = 0, max = 10)</td>
                     <td>&lt;input type="text" name="rank" /&gt;</td>
                     <td>&lt;input type="range" name="rank" min="0" max="10" /&gt;</td>
+                </tr>
+                <tr>
+                    <td>org.hibernate.validator.constraints.Length</td>
+                    <td>@Length(min = 1, max = 10)</td>
+                    <td>&lt;input type="text" name="rank" /&gt;</td>
+                    <td>&lt;input type="text" name="rank" pattern=".{1,10}" /&gt;</td>
                 </tr>
                 <tr>
                     <td>org.hibernate.validator.constraints.Email</td>
