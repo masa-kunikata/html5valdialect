@@ -1,0 +1,95 @@
+body {
+    font-family: 'Trebuchet Ms', Verdana, Arial, sans-serif;
+    padding: 1em 4em 4em 4em;
+}
+
+h1, h2, h3 {
+    padding: 0.2em;
+    background-color: #cce699;
+    border-bottom: solid 4px #5c7a1f;
+}
+
+h1 {
+    font-size: 1.6em;
+}
+
+table {
+    border: solid 1px #5c7a1f;
+    width: 100%;
+}
+
+caption {
+    font-weight: bold;
+    font-size: 1.4em;
+    margin-bottom: 0.2em;
+}
+
+thead {
+    background-color: #5c7a1f;
+    font-weight: bold;
+    color: white;
+}
+
+thead a {
+    color: white;    
+}
+
+tbody tr:nth-child(even) {
+    background-color: #cce699;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #e0f0c2;
+}
+
+th, td {
+    padding: 1em;
+    min-width: 10em;
+}
+
+span.paginate-count {
+    display: block;
+    margin: 0.5em 0em 0.5em 0em;
+    padding: 0.2em;
+    background-color: #5c7a1f;
+    color: white;
+    text-align:center;
+}
+
+div.paginate, span.paginate-no-result {
+    display: block;
+    background-color: #EEEEEE;
+    padding: 0.2em;
+    text-align: center;
+    margin-bottom: 0.4em;
+}
+
+a {
+    color: #5c7a1f;
+}
+
+a.paginate-first { margin-right: 0.6em; }
+a.paginate-first:before { content: '« '; font-weight: bolder; }
+
+a.paginate-previous { margin-right: 0.6em; }
+a.paginate-previous:before { content: '‹ '; font-weight: bolder; }
+
+a.paginate-next { margin-left: 0.6em; }
+a.paginate-next:after { content: ' ›'; font-weight: bolder; }
+
+a.paginate-last { margin-left: 0.6em; }
+a.paginate-last:after { content: ' »'; font-weight: bolder; }
+
+a.sort-asc:after { content: ' ▲'; font-weight: bolder; }
+a.sort-desc:after { content: ' ▼'; font-weight: bolder; }
+
+a.export-pdf, a.export-excel {
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 24px;
+    margin-right: 0.4em;
+}
+
+/* Excel and PDF icons by http://saviourmachine.deviantart.com/ (License CC-by) */
+a.export-pdf { background-image: url('pdf.png'); }
+a.export-excel { background-image: url('excel.png'); }
