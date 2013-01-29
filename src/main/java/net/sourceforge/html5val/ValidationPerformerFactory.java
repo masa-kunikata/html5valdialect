@@ -29,7 +29,7 @@ public class ValidationPerformerFactory {
     private final List<ValidationPerformer> performers;
 
     private ValidationPerformerFactory() {
-        // TODO: read http://www.the-art-of-web.com/html/html5-form-validation/ for ideas
+        // TODO: read http://www.the-art-of-web.com/html/html5-form-validation/ for further ideas
         performers = new ArrayList<ValidationPerformer>();
         performers.add(new DigitsPerformer());
         performers.add(new EmailPerformer());

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>HTML5 Validation Dialect</title>
+        <meta charset="utf-8" />
+        <link type="text/css" rel="stylesheet" href="main.css" />
+    </head>
+    <body>
+        <h1>HTML5 Validation Dialect - Usage</h1>
+        <h2>Spring users</h2>
+        <ol>
+            <li>
+                <p>Configure JSR-303 annotations in your form bean</p>
+                <script src="https://gist.github.com/4663177.js"></script>
+            </li>
+            <li>
+                <p>Add a instance of the form bean to your model in your controller</p>
+                <script src="https://gist.github.com/4663188.js"></script>
+            </li>
+            <li>
+                <p>Use <b>val:validate</b> in your HTML form</p>
+                <script src="https://gist.github.com/4663193.js"></script>
+            </li>
+            <li>
+                <p>Use <b>@Valid</b> annotation in your controller</p>
+                <script src="https://gist.github.com/4663208.js"></script>
+            </li>
+        </ol>
+        <p>
+            In order to make the example simpler, <b>th:field</b> is not used, but you
+            usually would combine <b>val:validate</b> with <b>th:object</b>.
+        </p>
+        <br /><br />
+        <p>
+            <a href="index.html">Back to home page</a>
+        </p>
+    </body>
+</html>
+
