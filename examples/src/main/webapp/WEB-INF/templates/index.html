@@ -8,30 +8,34 @@
     </head>
     <body>
         <h1>HTML5 validation dialect example</h1>
-        <form action="userSave.do" val:validate="${userFormBean}" method="post">
+        <p>
+            If your browser does not trigger HTML5 validation, try using Google Chrome.
+        </p>
+        <form action="userSave.do" val:validate="${user}" method="post">
             <p>
                 <label for="username">E-mail</label>
                 <input type="text" name="username" id="username" />
+                (Type a valid e-mail)
             </p>
             <p>
                 <label for="code">Code</label>
                 <input type="text" name="code" id="code" />
+                (Type between 5 and 10 chars)
             </p>
             <p>
                 <label for="age">Age</label>
                 <input type="text" name="age" id="age" />
+                (Type a number between 18 and 100)
             </p>
             <p>
                 <label for="highSchoolMark">Mark</label>
                 <input type="text" name="highSchoolMark" id="highSchoolMark" />
+                (Type a number between 0 and 10)
             </p>
             <p>
                 <label for="personalWebPage">Personal Web Page</label>
                 <input type="text" name="personalWebPage" id="personalWebPage" />
-            </p>
-            <p>
-                <label for="applicationWebPage">Demo application Web Page</label>
-                <input type="text" name="applicationWebPage" id="applicationWebPage" />
+                (Type a valid URL)
             </p>
             <input type="submit" />
         </form>

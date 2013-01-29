@@ -8,32 +8,28 @@
     </head>
     <body>
         <h1>HTML5 validation dialect example</h1>
-        <form action="userSave.do" val:validate="${userFormBean}" method="post">
-            <p>
-                <label for="username">E-mail</label>
-                <input type="text" name="username" id="username" />
-            </p>
-            <p>
-                <label for="code">Code</label>
-                <input type="text" name="code" id="code" />
-            </p>
-            <p>
-                <label for="age">Age</label>
-                <input type="text" name="age" id="age" />
-            </p>
-            <p>
-                <label for="highSchoolMark">Mark</label>
-                <input type="text" name="highSchoolMark" id="highSchoolMark" />
-            </p>
-            <p>
-                <label for="personalWebPage">Personal Web Page</label>
-                <input type="text" name="personalWebPage" id="personalWebPage" />
-            </p>
-            <p>
-                <label for="applicationWebPage">Demo application Web Page</label>
-                <input type="text" name="applicationWebPage" id="applicationWebPage" />
-            </p>
-            <input type="submit" />
-        </form>
+        <p>
+            <span>E-mail:</span>
+            <span th:text="${user.username}">john.doe@gmail.com</span>
+        </p>
+        <p>
+            <span>Code:</span>
+            <span th:text="${user.code}">AZ12345</span>
+        </p>
+        <p>
+            <span>Age:</span>
+            <span th:text="${user.age}">32</span>
+        </p>
+        <p>
+            <span>Mark:</span>
+            <span th:text="${user.highSchoolMark}">8</span>
+        </p>
+        <p>
+            <span>Personal Web Page:</span>
+            <span th:text="${user.personalWebPage}">8</span>
+        </p>
+        <p>
+            <a th:href="@{/}">Back</a>
+        </p>
     </body>
 </html>
