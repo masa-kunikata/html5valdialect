@@ -20,9 +20,9 @@
     </licenses>
 
     <scm>
-        <url>https://svn.code.sf.net/p/html5valdialect/code/trunk</url>
-        <connection>scm:svn:https://svn.code.sf.net/p/htm5validationdialect/code/trunk</connection>
-        <developerConnection>scm:svn:https://svn.code.sf.net/p/html5valdialect/code/trunk</developerConnection>
+        <url>https://svn.code.sf.net/p/html5valdialect/code/trunk/core</url>
+        <connection>scm:svn:https://svn.code.sf.net/p/htm5validationdialect/code/trunk/core</connection>
+        <developerConnection>scm:svn:https://svn.code.sf.net/p/html5valdialect/code/trunk/core</developerConnection>
     </scm>
 
     <developers>

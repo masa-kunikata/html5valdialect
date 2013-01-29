@@ -1,0 +1,13 @@
+This is HTML5 validation dialect for the Thymeleaf template engine.
+
+If you want to use HTML5 validation dialect in your project, download the latest html5valdialect.jar file.
+
+Maven users can find the library in the Central Repository:
+        <dependency>
+            <groupId>net.sourceforge.html5valdialect</groupId>
+            <artifactId>html5valdialect</artifactId>
+            <version>1.0.0-beta1</version>
+        </dependency>
+
+If you want to see the library in action, download the html5valdialect-example-webapp.war demo application.
+
