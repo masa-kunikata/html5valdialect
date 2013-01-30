@@ -37,8 +37,9 @@ public class URLPerformerTest {
         Element input = new Element("input");
         input.setAttribute("type", "url");
         performer.putValidationCodeInto(urlAnnotation, input);
-        // After: <input type="url" pattern="{patternRegexp}" />
+        // After: <input type="url" pattern="{patternRegexp}" required="required" />
         assertEquals("url", input.getAttributeValue("type"));
         assertEquals(URL_REGEXP, input.getAttributeValue("pattern"));
+        assertEquals("required", input.getAttributeValue("required"));
     }
 }

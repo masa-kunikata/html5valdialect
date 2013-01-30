@@ -18,8 +18,6 @@ public class AnnotationExtractor {
      * Return the annotations forClass a class field. Supports dot-syntax for fieldName, i.e., "store.name" returns the
      * annotations for field "name" forClass field "store"
      */
-    // FIXME: unit-test this
-    // FIXME: what if the field name really contais a dot? what happens in spring?
     // FIXME: it ignores fields declared in parent classes
     public Annotation[] getAnnotationsFor(String fieldName) {
         try {

@@ -16,5 +16,6 @@ public class URLPerformer implements ValidationPerformer<URL> {
         URL url = (URL) constraint;
         element.setAttribute("type", "url");
         element.setAttribute("pattern", URLRegexpComposer.forURL(url).regexp());
+        element.setAttribute("required", "required");
     }
 }

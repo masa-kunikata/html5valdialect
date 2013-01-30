@@ -32,15 +32,26 @@ public class LengthPerformerTest {
     public void minAndMax() {
         Length length = new MockLengthBuilder().withMin(2).withMax(5).build();
         performer.putValidationCodeInto(length, input);
-        // After: <input type="text" pattern=".{2,5}" />
+        // After: <input type="text" pattern=".{2,5}" required="required" />
         assertEquals(".{2,5}", input.getAttributeValue("pattern"));
+        assertEquals("required", input.getAttributeValue("required"));
     }
 
     @Test
     public void onlyMin() {
         Length length = new MockLengthBuilder().withMin(2).build();
         performer.putValidationCodeInto(length, input);
-        // After: <input type="text" pattern=".{2,}" />
+        // After: <input type="text" pattern=".{2,}" required="required" />
         assertEquals(".{2,}", input.getAttributeValue("pattern"));
+        assertEquals("required", input.getAttributeValue("required"));
+    }
+
+    @Test
+    public void notMin() {
+        Length length = new MockLengthBuilder().withMin(0).withMax(5).build();
+        performer.putValidationCodeInto(length, input);
+        // After: <input type="text" pattern=".{0,5}" />
+        assertEquals(".{0,5}", input.getAttributeValue("pattern"));
+        assertNull(input.getAttributeValue("required"));
     }
 }

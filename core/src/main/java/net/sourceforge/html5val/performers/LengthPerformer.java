@@ -12,5 +12,8 @@ public class LengthPerformer implements ValidationPerformer<Length> {
 
     public void putValidationCodeInto(Length length, Element element) {
         element.setAttribute("pattern", LengthRegexpComposer.forLength(length).regexp());
+        if (length.min() > 0) {
+            element.setAttribute("required", "required");
+        }
     }
 }

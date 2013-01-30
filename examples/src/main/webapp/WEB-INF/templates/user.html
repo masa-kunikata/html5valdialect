@@ -10,24 +10,29 @@
         <h1>HTML5 validation dialect example</h1>
         <p>
             <span>E-mail:</span>
-            <span th:text="${user.username}">john.doe@gmail.com</span>
+            <span th:text="${userFormBean.username}">john.doe@gmail.com</span>
         </p>
         <p>
             <span>Code:</span>
-            <span th:text="${user.code}">AZ12345</span>
+            <span th:text="${userFormBean.code}">AZ12345</span>
         </p>
         <p>
             <span>Age:</span>
-            <span th:text="${user.age}">32</span>
+            <span th:text="${userFormBean.age}">32</span>
         </p>
         <p>
             <span>Mark:</span>
-            <span th:text="${user.highSchoolMark}">8</span>
+            <span th:text="${userFormBean.highSchoolMark}">8</span>
         </p>
         <p>
             <span>Personal Web Page:</span>
-            <span th:text="${user.personalWebPage}">8</span>
+            <span th:text="${userFormBean.personalWebPage}">8</span>
         </p>
+        <p>
+            <span>Fall enroll price:</span>
+            <span th:text="${userFormBean.price}">143.34</span>
+        </p>
+
         <p>
             <a th:href="@{/}">Back</a>
         </p>

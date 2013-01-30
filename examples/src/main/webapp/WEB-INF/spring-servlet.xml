@@ -14,7 +14,7 @@
 	<!-- Use @MVC annotations -->
     <mvc:annotation-driven />
 	<!-- User @Controller, @Service... annotations -->
-    <context:component-scan base-package="net.sourceforge.html5valdialect.examples" />
+    <context:component-scan base-package="net.sourceforge.html5val.examples" />
     <!-- Thymeleaf configuration -->
     <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="cacheable" value="false" />
