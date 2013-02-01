@@ -7,22 +7,23 @@ import java.util.List;
 
 public class FormTextareaFinder {
 
-    static List<Element> findTextAreas(Element form) {
+    private List<Element> validTextAreas = new ArrayList<Element>();
+
+    List<Element> findTextAreas(Element form) {
         List<Element> textareas = DomUtils.getElementsByTagName(form, "textarea");
-        List<Element> validTextAreas = new ArrayList<Element>();
         for (Element textarea : textareas) {
-            addTextarea(validTextAreas, textarea);
+            addTextarea(textarea);
         }
         return textareas;
     }
 
-    private static void addTextarea(List<Element> validTextAreas, Element element) {
+    private void addTextarea(Element element) {
         if (hasNotEmptyName(element)) {
             validTextAreas.add(element);
         }
     }
 
-    private static boolean hasNotEmptyName(Element element) {
+    private boolean hasNotEmptyName(Element element) {
         String name = element.getAttributeValue("name");
         return EmptyChecker.notEmpty(name);
     }

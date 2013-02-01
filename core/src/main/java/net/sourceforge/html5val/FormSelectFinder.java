@@ -7,22 +7,23 @@ import java.util.List;
 
 public class FormSelectFinder {
 
-    static List<Element> findSelects(Element form) {
+    private List<Element> validSelects = new ArrayList<Element>();
+
+    List<Element> findSelects(Element form) {
         List<Element> selects = DomUtils.getElementsByTagName(form, "select");
-        List<Element> validSelects = new ArrayList<Element>();
         for (Element textarea : selects) {
-            addTextarea(validSelects, textarea);
+            addTextarea(textarea);
         }
         return validSelects;
     }
 
-    private static void addTextarea(List<Element> validSelects, Element textarea) {
+    private void addTextarea(Element textarea) {
         if (hasNotEmptyName(textarea)) {
             validSelects.add(textarea);
         }
     }
 
-    private static boolean hasNotEmptyName(Element textarea) {
+    private boolean hasNotEmptyName(Element textarea) {
         String name = textarea.getAttributeValue("name");
         return EmptyChecker.notEmpty(name);
     }
