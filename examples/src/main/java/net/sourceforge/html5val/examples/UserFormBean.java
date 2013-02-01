@@ -2,6 +2,7 @@ package net.sourceforge.html5val.examples;
 
 import javax.validation.constraints.*;
 
+import net.sourceforge.html5val.performers.URLPerformer;
 import org.hibernate.validator.constraints.*;
 
 import java.math.BigDecimal;
