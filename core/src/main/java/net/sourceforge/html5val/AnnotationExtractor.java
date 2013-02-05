@@ -1,13 +1,17 @@
 package net.sourceforge.html5val;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AnnotationExtractor {
 
-    private Class annotatedClass;
+    private Class targetClass;
 
     private AnnotationExtractor(Class annotatedClass) {
-        this.annotatedClass = annotatedClass;
+        this.targetClass = annotatedClass;
     }
 
     public static AnnotationExtractor forClass(Class annotatedClass) {
@@ -15,47 +19,46 @@ public class AnnotationExtractor {
     }
 
     /**
-     * Return the annotations forClass a class field. Supports dot-syntax for fieldName, i.e., "store.name" returns the
-     * annotations for field "name" forClass field "store"
+     * Return the annotations forClass a class field.
      */
-    // FIXME: it ignores fields declared in parent classes
-    public Annotation[] getAnnotationsFor(String fieldName) {
-        try {
-            String currentField = fieldName;
-            Class currentClass = annotatedClass;
-            if (fieldName == null) {
-                return new Annotation[0];
-            }
-            while (currentField.indexOf('.') > 0) {
-                int dotPos = currentField.indexOf('.');
-                String compositeField = currentField.substring(0, dotPos);
-                currentField = currentField.substring(dotPos + 1);
-                if (!containsField(currentClass.getDeclaredFields(), compositeField)) {
-                    return new Annotation[0];
-                }
-                currentClass = currentClass.getDeclaredField(compositeField).getType();
-            }
-            if (containsField(currentClass.getDeclaredFields(), currentField)) {
-                return currentClass.getDeclaredField(currentField).getAnnotations();
-            } else {
-                return new Annotation[0];
-            }
-        } catch (NoSuchFieldException ex) {
-            throw new RuntimeException(ex);
-        } catch (SecurityException ex) {
-            throw new RuntimeException(ex);
+    public List<Annotation> getAnnotationsFor(String fieldName) {
+        if (fieldName == null) {
+            return new ArrayList<Annotation>();
         }
+        return fieldAnnotations(fieldName);
     }
 
     /**
-     * Check if a list forClass fields contains some field.
+     * Return annotations for a given field name
      */
-    private boolean containsField(java.lang.reflect.Field[] fields, String fieldName) {
-        for (java.lang.reflect.Field field : fields) {
-            if (field.getName().equals(fieldName)) {
+    private List<Annotation> fieldAnnotations(String fieldname) {
+        try {
+            if (isSuperclassField(fieldname)) {
+                return annotations(targetClass.getSuperclass(), fieldname);
+            } else {
+                return annotations(targetClass, fieldname);
+            }
+        } catch (NoSuchFieldException e) {
+            throw new IllegalArgumentException("Field not found in class" + targetClass.getName()
+                    + ", nor superclass: " + targetClass.getSuperclass().getName() + ": " + fieldname);
+        }
+    }
+
+    private boolean isClassField(Class aClass, String fieldname) {
+        for (Field field : aClass.getDeclaredFields()) {
+            if (field.getName().equals(fieldname)) {
                 return true;
             }
         }
         return false;
     }
+
+    private boolean isSuperclassField(String fieldname) {
+        return isClassField(targetClass.getSuperclass(), fieldname);
+    }
+
+    private List<Annotation> annotations(Class aClass, String fieldname) throws NoSuchFieldException {
+        return Arrays.asList(aClass.getDeclaredField(fieldname).getAnnotations());
+    }
+
 }

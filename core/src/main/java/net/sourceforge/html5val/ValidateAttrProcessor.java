@@ -1,17 +1,21 @@
 package net.sourceforge.html5val;
 
-import java.lang.annotation.Annotation;
-import java.util.Set;
 import org.thymeleaf.Arguments;
 import org.thymeleaf.dom.Element;
 import org.thymeleaf.processor.ProcessorResult;
 import org.thymeleaf.processor.attr.AbstractAttrProcessor;
 import org.thymeleaf.standard.expression.StandardExpressionProcessor;
+import org.thymeleaf.standard.processor.attr.StandardIncludeFragmentAttrProcessor;
+
+import java.lang.annotation.Annotation;
+import java.util.List;
+import java.util.Set;
+
 import static net.sourceforge.html5val.FormElementFinder.findFormElements;
 
 /**
  * Client-side validation using HTML5 validation for a JSR-303 annotated Java class.
- *
+ * <p/>
  * Usage:
  * <pre>
  * {@code
@@ -29,13 +33,14 @@ public class ValidateAttrProcessor extends AbstractAttrProcessor {
 
     @Override
     public int getPrecedence() {
-        return 10000;
+        return StandardIncludeFragmentAttrProcessor.ATTR_PRECEDENCE + 1;
     }
 
     @Override
     public ProcessorResult processAttribute(Arguments arguments, Element element, String attributeName) {
         Class jsr303AnnotatedClass = jsr303AnnotatedClass(arguments, element, attributeName);
         Set<Element> fields = findFormElements(element);
+        System.out.println("Fields: " + fields.size());
         for (Element field : fields) {
             processFieldValidation(field, jsr303AnnotatedClass);
         }
@@ -51,7 +56,7 @@ public class ValidateAttrProcessor extends AbstractAttrProcessor {
 
     private void processFieldValidation(Element fieldElement, Class jsr303AnnotatedClass) {
         String fieldName = getFieldName(fieldElement);
-        Annotation[] constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsFor(fieldName);
+        List<Annotation> constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsFor(fieldName);
         for (Annotation constraint : constraints) {
             ValidationPerformer processor = ValidationPerformerFactory.getPerformerFor(constraint);
             processor.putValidationCodeInto(constraint, fieldElement);
