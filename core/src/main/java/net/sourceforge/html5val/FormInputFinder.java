@@ -22,7 +22,6 @@ public class FormInputFinder {
 
     List<Element> findInputs(Element form) {
         List<Element> inputs = DomUtils.getElementsByTagName(form, "input");
-        System.out.println("Inputs: " + inputs.size());
         for (Element input : inputs) {
             addInput(input);
         }
