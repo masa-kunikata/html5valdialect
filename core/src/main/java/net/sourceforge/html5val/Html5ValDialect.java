@@ -10,9 +10,11 @@ import org.thymeleaf.processor.IProcessor;
  */
 public class Html5ValDialect extends AbstractXHTMLEnabledDialect {
 
+    public static final String ATTR_PREFIX = "val";
+
     @Override
     public String getPrefix() {
-        return "val";
+        return ATTR_PREFIX;
     }
 
     @Override
@@ -23,7 +25,8 @@ public class Html5ValDialect extends AbstractXHTMLEnabledDialect {
     @Override
     public Set<IProcessor> getProcessors() {
         Set<IProcessor> attrProcessors = new HashSet<IProcessor>();
-        attrProcessors.add(new ValidateAttrProcessor("validate"));
+        attrProcessors.add(new ValidateAttrProcessor());
+        attrProcessors.add(new ValidatePreviousFormAttrProcessor());
         return attrProcessors;
     }
 }

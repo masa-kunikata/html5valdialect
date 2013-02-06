@@ -1,13 +1,11 @@
 package net.sourceforge.html5val;
 
+import org.thymeleaf.dom.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.thymeleaf.dom.DOMSelector;
-import org.thymeleaf.dom.Document;
-import org.thymeleaf.dom.Element;
-import org.thymeleaf.dom.NestableNode;
-import org.thymeleaf.dom.Node;
+
 import static net.sourceforge.html5val.EmptyChecker.empty;
 import static net.sourceforge.html5val.EmptyChecker.notEmpty;
 
@@ -63,7 +61,7 @@ public class DomUtils {
     /**
      * Check if targetString starts with any of the searchStrings
      *
-     * @param targetString string to search in
+     * @param targetString  string to search in
      * @param searchStrings sequences to search for
      */
     private static boolean startsWith(String targetString, List<String> searchStrings) {
@@ -75,5 +73,28 @@ public class DomUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * Finds the immediatly previous DOM element for an element with a given type name
+     */
+    public static Element findPreviousElement(Element element, String elementName) {
+        List<Element> siblings = element.getParent().getElementChildren();
+        int currentIndex = siblings.indexOf(element);
+        for (int i = currentIndex - 1; i >= 0; i--) {
+            Element sibling = siblings.get(i);
+            if (sibling.getNormalizedName().equals(elementName)) {
+                return sibling;
+            }
+        }
+        throw new IllegalArgumentException("No previous " + elementName + " element has been found");
+    }
+
+    /**
+     * Remove provided element from DOM.
+     */
+    public static void removeElement(Element element) {
+        element.clearChildren();
+        element.getParent().removeChild(element);
     }
 }

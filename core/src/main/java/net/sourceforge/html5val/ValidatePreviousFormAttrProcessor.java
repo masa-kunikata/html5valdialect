@@ -5,23 +5,11 @@ import org.thymeleaf.dom.Element;
 import org.thymeleaf.processor.ProcessorResult;
 import org.thymeleaf.processor.attr.AbstractAttrProcessor;
 
-/**
- * Client-side validation using HTML5 validation for a JSR-303 annotated Java class.
- * <p/>
- * Usage:
- * <pre>
- * {@code
- *    <form th:validate="${product}">
- *         <input type="text" name="description" />
- *    </form>
- * }
- * </pre>
- */
-public class ValidateAttrProcessor extends AbstractAttrProcessor {
+public class ValidatePreviousFormAttrProcessor extends AbstractAttrProcessor {
 
-    public static final String ATTR_NAME = "validate";
+    public static final String ATTR_NAME = "validatePreviousForm";
 
-    public ValidateAttrProcessor() {
+    public ValidatePreviousFormAttrProcessor() {
         super(ATTR_NAME);
     }
 
@@ -32,7 +20,7 @@ public class ValidateAttrProcessor extends AbstractAttrProcessor {
 
     @Override
     public ProcessorResult processAttribute(Arguments arguments, Element element, String attributeName) {
-        new ValidateCommand(element, attributeName).execute();
+        new ValidatePreviousFormCommand(arguments, element, attributeName).execute();
         return ProcessorResult.OK;
     }
 }
