@@ -6,8 +6,6 @@ import org.thymeleaf.dom.Element;
 
 public class URLPerformer implements ValidationPerformer<URL> {
 
-    public static final String URL_REGEXP = "^.+://.+(:[0-9]+)?(/.*)?";
-
     public Class<URL> getConstraintClass() {
         return URL.class;
     }
@@ -16,6 +14,5 @@ public class URLPerformer implements ValidationPerformer<URL> {
         URL url = (URL) constraint;
         element.setAttribute("type", "url");
         element.setAttribute("pattern", URLRegexpComposer.forURL(url).regexp());
-        element.setAttribute("required", "required");
     }
 }

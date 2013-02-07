@@ -23,7 +23,7 @@ class UserFormBean {
     @Range(min = 0, max = 10)
     private Integer highSchoolMark;
 
-    @URL(regexp = URLPerformer.URL_REGEXP)
+    @URL
     private String personalWebPage;
 
     @URL(protocol = "http", host = "localhost", port = 8080)

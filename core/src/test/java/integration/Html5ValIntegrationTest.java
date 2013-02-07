@@ -9,6 +9,7 @@ import org.thymeleaf.dom.Document;
 
 public class Html5ValIntegrationTest extends IntegrationTestBase {
 
+    private static final String URL_REGEXP = "^.+://.+(:[0-9]+)?(/.*)?";
     private Context context = new Context();
     private HtmlChecker checker;
 
@@ -47,7 +48,7 @@ public class Html5ValIntegrationTest extends IntegrationTestBase {
 
     private void checkPersonalWebPage() {
         checker.elementWithId("personalWebPage").containsAttributeWithValue("type", "url");
-        checker.elementWithId("personalWebPage").containsAttributeWithValue("pattern", URLPerformer.URL_REGEXP);
+        checker.elementWithId("personalWebPage").containsAttributeWithValue("pattern", URL_REGEXP);
     }
 
     private void checkHostingServer() {

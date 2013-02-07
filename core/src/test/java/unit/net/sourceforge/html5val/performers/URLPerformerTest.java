@@ -40,6 +40,5 @@ public class URLPerformerTest {
         // After: <input type="url" pattern="{patternRegexp}" required="required" />
         assertEquals("url", input.getAttributeValue("type"));
         assertEquals(URL_REGEXP, input.getAttributeValue("pattern"));
-        assertEquals("required", input.getAttributeValue("required"));
     }
 }
