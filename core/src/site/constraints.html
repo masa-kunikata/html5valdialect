@@ -21,7 +21,7 @@
                     <td>javax.validation.constraints.Size</td>
                     <td>@Size(min = 5, max = 10)</td>
                     <td>&lt;input type="text" name="code" /&gt;</td>
-                    <td>&lt;input type="text" name="code" pattern=".{5,10}" /&gt;</td>
+                    <td>&lt;input type="text" name="code" pattern=".{5,10}" required="required" /&gt;</td>
                 </tr>
                 <tr>
                     <td>javax.validation.constraints.Min</td>
@@ -69,7 +69,7 @@
                     <td>org.hibernate.validator.constraints.Length</td>
                     <td>@Length(min = 1, max = 10)</td>
                     <td>&lt;input type="text" name="rank" /&gt;</td>
-                    <td>&lt;input type="text" name="rank" pattern=".{1,10}" /&gt;</td>
+                    <td>&lt;input type="text" name="rank" pattern=".{1,10}" required="required" /&gt;</td>
                 </tr>
                 <tr>
                     <td>org.hibernate.validator.constraints.Email</td>
