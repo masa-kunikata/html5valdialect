@@ -73,7 +73,7 @@ public class AnnotationExtractor {
         }
         return currentClass;
     }
-                    DomUtils
+
     private String findTargetFieldName() {
         if (isNestedField()) {
             return targetFieldName.substring(targetFieldName.lastIndexOf(".") + 1);
