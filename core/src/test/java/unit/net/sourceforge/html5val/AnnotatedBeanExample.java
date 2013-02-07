@@ -8,6 +8,12 @@ import org.hibernate.validator.constraints.URL;
 import javax.validation.constraints.NotNull;
 
 
+class AnnotatedChild {
+
+    @NotNull
+    private String postalCode;
+}
+
 class AnnotatedBeanParent {
 
     @NotNull
@@ -16,7 +22,6 @@ class AnnotatedBeanParent {
     @NotNull
     @Length(max = 100)
     private int age;
-
 }
 
 class AnnotatedBeanExample extends AnnotatedBeanParent {
@@ -27,5 +32,7 @@ class AnnotatedBeanExample extends AnnotatedBeanParent {
     @Email
     @NotEmpty
     private String email;
+
+    private AnnotatedChild child;
 }
 

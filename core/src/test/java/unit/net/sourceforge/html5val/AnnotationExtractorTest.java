@@ -36,25 +36,33 @@ public class AnnotationExtractorTest {
         assertTrue(Email.class.isAssignableFrom(emailClass));
         Class notEmptyClass = annotations.get(1).getClass();
         assertTrue(NotEmpty.class.isAssignableFrom(notEmptyClass));
+
         annotations = extractor.getAnnotationsFor("name");
         assertEquals(1, annotations.size());
         Class notNullClass = annotations.get(0).getClass();
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
+
         annotations = extractor.getAnnotationsFor("age");
         assertEquals(2, annotations.size());
         notNullClass = annotations.get(0).getClass();
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
         Class lengthClass = annotations.get(1).getClass();
         assertTrue(Length.class.isAssignableFrom(lengthClass));
+
         annotations = extractor.getAnnotationsFor("location");
         assertEquals(1, annotations.size());
         Class urlClass = annotations.get(0).getClass();
         assertTrue(URL.class.isAssignableFrom(urlClass));
+
+        annotations = extractor.getAnnotationsFor("child.postalCode");
+        assertEquals(1, annotations.size());
+        notNullClass= annotations.get(0).getClass();
+        assertTrue(NotNull.class.isAssignableFrom(notNullClass));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void annotationsForInvalidField() {
         AnnotationExtractor extractor = AnnotationExtractor.forClass(AnnotatedBeanExample.class);
-        extractor.getAnnotationsFor("postalcode");
+        extractor.getAnnotationsFor("phone");
     }
 }
