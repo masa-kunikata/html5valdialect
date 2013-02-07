@@ -2,7 +2,6 @@ package net.sourceforge.html5val.examples;
 
 import javax.validation.constraints.*;
 
-import net.sourceforge.html5val.performers.URLPerformer;
 import org.hibernate.validator.constraints.*;
 
 import java.math.BigDecimal;
@@ -24,7 +23,7 @@ public class UserFormBean {
     @Range(min = 0, max = 10)
     private Integer highSchoolMark;
 
-    @URL(regexp = URLPerformer.URL_REGEXP)
+    @URL
     private String personalWebPage;
 
     @Digits(integer = 3, fraction = 2)
