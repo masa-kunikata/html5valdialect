@@ -1,7 +1,7 @@
 package integration;
 
 import java.io.IOException;
-import net.sourceforge.html5val.performers.URLPerformer;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.thymeleaf.context.Context;
