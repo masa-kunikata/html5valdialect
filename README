@@ -6,7 +6,7 @@ Maven users can find the library in the Central Repository:
         <dependency>
             <groupId>net.sourceforge.html5val</groupId>
             <artifactId>html5valdialect</artifactId>
-            <version>1.0.0-beta1</version>
+            <version>1.0.0-beta3</version>
         </dependency>
 
 If you want to see the library in action, download the html5valdialect-example-webapp.war demo application.
