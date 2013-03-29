@@ -12,6 +12,15 @@ public class Html5ValDialect extends AbstractXHTMLEnabledDialect {
 
     public static final String ATTR_PREFIX = "val";
 
+    /**
+     * Add a set of additional ValidationPerformers to ValidateProcessor.
+     */
+    public void setAdditionalPerformers(Set<ValidationPerformer> additionalPerformers) {
+        for (ValidationPerformer performer : additionalPerformers) {
+            ValidationPerformerFactory.addCustomPerformer(performer);
+        }
+    }
+    
     @Override
     public String getPrefix() {
         return ATTR_PREFIX;

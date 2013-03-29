@@ -2,6 +2,7 @@ package net.sourceforge.html5val;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import net.sourceforge.html5val.performers.DigitsPerformer;
 import net.sourceforge.html5val.performers.EmailPerformer;
@@ -29,7 +30,7 @@ public class ValidationPerformerFactory {
     private final List<ValidationPerformer> performers;
 
     private ValidationPerformerFactory() {
-        performers = new ArrayList<ValidationPerformer>();
+        performers = Collections.synchronizedList(new ArrayList<ValidationPerformer>());
         performers.add(new DigitsPerformer());
         performers.add(new EmailPerformer());
         performers.add(new MaxPerformer());
@@ -42,6 +43,13 @@ public class ValidationPerformerFactory {
         performers.add(new SizePerformer());
         performers.add(new LengthPerformer());
         performers.add(new URLPerformer());
+    }
+
+    /**
+     * Add a custom ValidationPerformer to the list of performers.
+     */
+    public static void addCustomPerformer(ValidationPerformer performer) {
+        SINGLE_INSTANCE.performers.add(performer);
     }
 
     public static ValidationPerformer getPerformerFor(Annotation constraint) {
