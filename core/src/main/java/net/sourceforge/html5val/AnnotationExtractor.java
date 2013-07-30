@@ -53,9 +53,9 @@ public class AnnotationExtractor {
         }
     }
 
-    /** A field is considered nested if its name contains at least one dot */
+    /** A field is considered nested if its name contains at least one dot and is not an array fo values */
     private boolean isNestedField() {
-        return targetFieldName.contains(".");
+        return targetFieldName.contains(".") && !targetFieldName.contains("[");
     }
 
     /** Given a nested field, this method finds its class searching in nested class fields */
@@ -77,6 +77,11 @@ public class AnnotationExtractor {
     private String findTargetFieldName() {
         if (isNestedField()) {
             return targetFieldName.substring(targetFieldName.lastIndexOf(".") + 1);
+        }
+        // Case field is a list
+        if (targetFieldName.contains("[")) {
+            int bracketPos = targetFieldName.indexOf('[');
+            return targetFieldName.substring(0, bracketPos);
         }
         return targetFieldName;
     }
