@@ -1,5 +1,7 @@
 This is HTML5 validation dialect for the Thymeleaf template engine.
 
+2.0.x versions are compatible with Thymeleaf 2.0.x versions, while 2.1.x versions are compatible with Thymeleaf 2.1.x versions. 
+
 If you want to use HTML5 validation dialect in your project, download the latest html5valdialect.jar file.
 
 Maven users can find the library in the Central Repository:
