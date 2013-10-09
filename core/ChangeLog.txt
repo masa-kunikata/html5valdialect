@@ -1,3 +1,12 @@
+2.1.0
+===========
+- Version compatible with Thymleaf 2.1.x.
+
+2.0.0
+===========
+- First stable release.
+- Version number change to match Thymeleaf version numbers.
+
 1.0.0-beta3
 ===========
 - Support for adding custom validation performers.
