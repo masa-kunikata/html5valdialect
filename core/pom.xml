@@ -46,7 +46,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <thymeleaf.version>2.0.13</thymeleaf.version>
+        <thymeleaf.version>2.0.19</thymeleaf.version>
     </properties>
 
     <dependencies>
@@ -96,6 +96,7 @@
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
+                    <compilerArgument>-Xlint:deprecation</compilerArgument>
                     <debug>false</debug>
                 </configuration>
             </plugin>
