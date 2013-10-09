@@ -2,7 +2,6 @@ package net.sourceforge.html5val;
 
 import org.thymeleaf.Arguments;
 import org.thymeleaf.dom.Element;
-import org.thymeleaf.standard.expression.StandardExpressionProcessor;
 
 import java.lang.annotation.Annotation;
 import java.util.List;
@@ -39,7 +38,7 @@ public class ValidatePreviousFormCommand {
 
     private void readJsr303AnnotatedClass() {
         String attributeValue = element.getAttributeValue(attributeName);
-        jsr303AnnotatedClass = StandardExpressionProcessor.processExpression(arguments, attributeValue).getClass();
+        jsr303AnnotatedClass = ExpressionUtil.evaluate(arguments, attributeValue).getClass();
     }
 
     private void findPreviousFormElement() {

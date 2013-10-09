@@ -27,11 +27,6 @@ public class Html5ValDialect extends AbstractXHTMLEnabledDialect {
     }
 
     @Override
-    public boolean isLenient() {
-        return false;
-    }
-
-    @Override
     public Set<IProcessor> getProcessors() {
         Set<IProcessor> attrProcessors = new HashSet<IProcessor>();
         attrProcessors.add(new ValidateAttrProcessor());
