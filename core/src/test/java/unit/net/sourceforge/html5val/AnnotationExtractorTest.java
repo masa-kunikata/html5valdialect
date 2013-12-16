@@ -60,9 +60,9 @@ public class AnnotationExtractorTest {
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void annotationsForInvalidField() {
         AnnotationExtractor extractor = AnnotationExtractor.forClass(AnnotatedBeanExample.class);
-        extractor.getAnnotationsFor("phone");
+        assertTrue(extractor.getAnnotationsFor("phone").isEmpty());
     }
 }
