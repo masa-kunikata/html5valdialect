@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.sourceforge.html5val.EmptyChecker.empty;
 import static net.sourceforge.html5val.ReflectionUtil.fieldAnnotations;
 import static net.sourceforge.html5val.ReflectionUtil.isClassField;
 
@@ -27,7 +28,7 @@ public class AnnotationExtractor {
      */
     public List<Annotation> getAnnotationsFor(String fieldName) {
         this.targetFieldName = fieldName;
-        if (targetFieldName == null) {
+        if (empty(targetFieldName)) {
             return new ArrayList<Annotation>();
         }
         try {
