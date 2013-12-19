@@ -54,7 +54,7 @@ public class ValidatePreviousFormCommand {
 
     private void processFieldValidation(Element fieldElement) {
         String fieldName = getFieldName(fieldElement);
-        List<Annotation> constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsFor(fieldName);
+        List<Annotation> constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsForField(fieldName);
         for (Annotation constraint : constraints) {
             ValidationPerformer processor = ValidationPerformerFactory.getPerformerFor(constraint);
             processor.putValidationCodeInto(constraint, fieldElement);

@@ -1,19 +1,18 @@
 package net.sourceforge.html5val;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static net.sourceforge.html5val.EmptyChecker.empty;
-import static net.sourceforge.html5val.ReflectionUtil.fieldAnnotations;
-import static net.sourceforge.html5val.ReflectionUtil.isClassField;
 
 // TODO Refactor
 public class AnnotationExtractor {
 
     private Class targetClass;
-
     private String targetFieldName;
 
     private AnnotationExtractor(Class annotatedClass) {
@@ -27,65 +26,71 @@ public class AnnotationExtractor {
     /**
      * Return the annotations forClass a class field.
      */
-    public List<Annotation> getAnnotationsFor(String fieldName) {
+    public List<Annotation> getAnnotationsForField(String fieldName) {
         this.targetFieldName = fieldName;
         if (empty(targetFieldName)) {
             return new ArrayList<Annotation>();
         }
-        Class classWithField = findClassWithField();
-        String field = findTargetFieldName();
-        return fieldAnnotations(classWithField, field);
+        return fieldAnnotations();
     }
 
-    /** Find field class by searching in the given class, its nested fields and its superclass */
-    private Class findClassWithField() {
-        if (isNestedField()) {
-            return findClassInFields();
+    /**
+     * Return annotations for a given field name
+     */
+    private List<Annotation> fieldAnnotations() {
+        Field field = findField();
+        if (field != null) {
+            return Arrays.asList(field.getAnnotations());
         } else {
-            if (isSuperClassField()) {
-                return targetClass.getSuperclass();
-            } else {
-                return targetClass;
-            }
+            return Collections.EMPTY_LIST;
         }
     }
 
-    /** A field is considered nested if its name contains at least one dot and is not an array fo values */
-    private boolean isNestedField() {
+    private Field findField() {
+        if (isCompositeField()) {
+            return compositeField(targetClass, targetFieldName);
+        } else {
+            return declaredFieldInClassOrSuperclass(targetClass, targetFieldName);
+        }
+    }
+
+    private boolean isCompositeField() {
         return targetFieldName.contains(".");
     }
 
-    /** Given a nested field, this method finds its class searching in nested class fields */
-    private Class findClassInFields() {
-        Class matchingClass = null;
-        Class currentClass = targetClass;
-        String currentField = targetFieldName;
-        while (currentField.indexOf('.') > 0) {
-            int dotPos = currentField.indexOf('.');
-            String compositeField = currentField.substring(0, dotPos);
-            currentField = currentField.substring(dotPos + 1);
-            // TODO Refactor
-            String getter = "get" + compositeField.substring(0, 1).toUpperCase().
-                    concat(compositeField.substring(1, compositeField.length()));
-            for (Method method : currentClass.getMethods()) {
-                if (method.getName().equals(getter)) {
-                    currentClass = method.getReturnType();
-                    matchingClass = currentClass;
-                    break;
-                }
+    private Field compositeField(Class type, String fieldName) {
+        if (fieldName.indexOf('.') > 0) {
+            int dotPos = fieldName.indexOf('.');
+            String attribute = fieldName.substring(0, dotPos);
+            String field = fieldName.substring(dotPos + 1);
+            Class attributeType = getField(type, attribute).getType();
+            return compositeField(attributeType, field);
+        } else {
+            return declaredFieldInClassOrSuperclass(type, fieldName);
+        }
+    }
+
+    private Field getField(Class type, String attribute) {
+        for (Field classField : type.getDeclaredFields()) {
+            if (classField.getName().equals(attribute)) {
+                return classField;
             }
         }
-        return matchingClass;
+        return null;
     }
 
-    private String findTargetFieldName() {
-        if (isNestedField()) {
-            return targetFieldName.substring(targetFieldName.lastIndexOf(".") + 1);
+    /**
+     * Return a field given its name.
+     * Return null if the given field name doesn't match any of the class fields.
+     */
+    private Field declaredFieldInClassOrSuperclass(Class type, String targetFieldName) {
+        Field field = getField(type, targetFieldName);
+        if (field != null) {
+            return field;
         }
-        return targetFieldName;
-    }
-
-    private boolean isSuperClassField() {
-        return isClassField(targetClass.getSuperclass(), targetFieldName);
+        if (type.getSuperclass() != null) {
+            return declaredFieldInClassOrSuperclass(type.getSuperclass(), targetFieldName);
+        }
+        return null;
     }
 }
