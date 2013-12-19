@@ -1,6 +1,7 @@
 package net.sourceforge.html5val;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import static net.sourceforge.html5val.EmptyChecker.empty;
 import static net.sourceforge.html5val.ReflectionUtil.fieldAnnotations;
 import static net.sourceforge.html5val.ReflectionUtil.isClassField;
 
-// FIXME Better refactoring is possible
+// TODO Refactor
 public class AnnotationExtractor {
 
     private Class targetClass;
@@ -31,18 +32,13 @@ public class AnnotationExtractor {
         if (empty(targetFieldName)) {
             return new ArrayList<Annotation>();
         }
-        try {
-            Class classWithField = findClassWithField();
-            String field = findTargetFieldName();
-            return fieldAnnotations(classWithField, field);
-        } catch (NoSuchFieldException e) {
-            throw new IllegalArgumentException("Field not found in class" + targetClass.getName()
-                    + ", nor superclass: " + targetClass.getSuperclass().getName() + ": " + targetFieldName);
-        }
+        Class classWithField = findClassWithField();
+        String field = findTargetFieldName();
+        return fieldAnnotations(classWithField, field);
     }
 
     /** Find field class by searching in the given class, its nested fields and its superclass */
-    private Class findClassWithField() throws NoSuchFieldException {
+    private Class findClassWithField() {
         if (isNestedField()) {
             return findClassInFields();
         } else {
@@ -60,19 +56,26 @@ public class AnnotationExtractor {
     }
 
     /** Given a nested field, this method finds its class searching in nested class fields */
-    private Class findClassInFields() throws NoSuchFieldException {
+    private Class findClassInFields() {
+        Class matchingClass = null;
         Class currentClass = targetClass;
         String currentField = targetFieldName;
         while (currentField.indexOf('.') > 0) {
             int dotPos = currentField.indexOf('.');
             String compositeField = currentField.substring(0, dotPos);
             currentField = currentField.substring(dotPos + 1);
-            if (!isClassField(currentClass, compositeField)) {
-                return null;
+            // TODO Refactor
+            String getter = "get" + compositeField.substring(0, 1).toUpperCase().
+                    concat(compositeField.substring(1, compositeField.length()));
+            for (Method method : currentClass.getMethods()) {
+                if (method.getName().equals(getter)) {
+                    currentClass = method.getReturnType();
+                    matchingClass = currentClass;
+                    break;
+                }
             }
-            currentClass = currentClass.getDeclaredField(compositeField).getType();
         }
-        return currentClass;
+        return matchingClass;
     }
 
     private String findTargetFieldName() {
