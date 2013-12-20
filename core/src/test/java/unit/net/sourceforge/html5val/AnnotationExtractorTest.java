@@ -15,7 +15,6 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-// FIXME: only test the "happy path". Test the boundary conditions.
 public class AnnotationExtractorTest {
 
 
@@ -109,5 +108,10 @@ public class AnnotationExtractorTest {
         assertEquals(1, annotations.size());
         notNullClass= annotations.get(0).getClass();
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
+
+        annotations = extractor.getAnnotationsForField("child.grandChild.phone");
+        assertEquals(1, annotations.size());
+        notEmptyClass= annotations.get(0).getClass();
+        assertTrue(NotEmpty.class.isAssignableFrom(notEmptyClass));
     }
 }

@@ -11,10 +11,6 @@ abstract class AnnotatedGrandParent {
 
     @NotEmpty
     private String type;
-
-    public String getType() {
-        return type;
-    }
 }
 
 class AnnotatedChild {
@@ -22,10 +18,15 @@ class AnnotatedChild {
     @NotNull
     private String postalCode;
 
-    public String getPostalCode() {
-        return postalCode;
-    }
+    private AnnotatedGrandChild grandChild;
 }
+
+class AnnotatedGrandChild {
+
+    @NotEmpty
+    private String phone;
+}
+
 
 class AnnotatedParent extends  AnnotatedGrandParent {
 
@@ -35,14 +36,6 @@ class AnnotatedParent extends  AnnotatedGrandParent {
     @NotNull
     @Length(max = 100)
     private int age;
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
 }
 
 class AnnotatedExample extends AnnotatedParent {
@@ -55,17 +48,5 @@ class AnnotatedExample extends AnnotatedParent {
     private String email;
 
     private AnnotatedChild child;
-
-    public String getLocation() {
-        return location;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public AnnotatedChild getChild() {
-        return child;
-    }
 }
 
