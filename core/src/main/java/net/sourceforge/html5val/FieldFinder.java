@@ -61,7 +61,7 @@ public class FieldFinder {
         if (isCompositeField(fieldName)) {
             String attribute = getAttribute(fieldName);
             String field = getField(fieldName);
-            Class attributeType = getField(type, attribute).getType();
+            Class attributeType = fieldInClassOrSuperclass(type, attribute).getType();
             return compositeField(attributeType, field);
         } else {
             return fieldInClassOrSuperclass(type, fieldName);
