@@ -57,14 +57,17 @@ public class FieldFinder {
      *
      *  Note that the field 'doo' could be in a superclass of Bar.
      */
-    private Field compositeField(Class type, String fieldName) {
-        if (isCompositeField(fieldName)) {
-            String attribute = getAttribute(fieldName);
-            String field = getField(fieldName);
-            Class attributeType = fieldInClassOrSuperclass(type, attribute).getType();
-            return compositeField(attributeType, field);
+    private Field compositeField(Class type, String compositeFieldName) {
+        if (isCompositeField(compositeFieldName)) {
+            String attribute = getParentField(compositeFieldName);
+            Field field = fieldInClassOrSuperclass(type, attribute);
+            if (field != null) {
+                return compositeField(field.getType(), getField(compositeFieldName));
+            } else {
+                return null;
+            }
         } else {
-            return fieldInClassOrSuperclass(type, fieldName);
+            return fieldInClassOrSuperclass(type, compositeFieldName);
         }
     }
 
@@ -73,7 +76,7 @@ public class FieldFinder {
         return fieldName.substring(dotPos + 1);
     }
 
-    private String getAttribute(String fieldName) {
+    private String getParentField(String fieldName) {
         int dotPos = fieldName.indexOf('.');
         return fieldName.substring(0, dotPos);
     }
