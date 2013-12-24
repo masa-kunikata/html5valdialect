@@ -1,9 +1,14 @@
+2.1.1
+=====
+- Find inherited fields in composite field name case.
+- Ignore form fields not belonging to the validation class.
+
 2.1.0
-===========
+=====
 - Version compatible with Thymleaf 2.1.x.
 
 2.0.0
-===========
+=====
 - First stable release.
 - Version number change to match Thymeleaf version numbers.
 
