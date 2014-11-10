@@ -1,3 +1,7 @@
+2.1.2
+=====
+- Apply @Pattern perfomer to allowed input types (http://www.w3.org/TR/html/forms.html#input-type-attr-summary)
+
 2.1.1
 =====
 - Find inherited fields in composite field name case.

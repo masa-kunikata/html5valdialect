@@ -21,7 +21,6 @@ public class Html5ValDialect extends AbstractXHTMLEnabledDialect {
         }
     }
     
-    @Override
     public String getPrefix() {
         return ATTR_PREFIX;
     }
