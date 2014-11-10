@@ -32,13 +32,24 @@ public class PatternPerformerTest {
     }
 
     @Test
-    public void putValidationCodeInto() {
-        // Before: <input type="text" />
+    public void incompatibleElementTypeRemainUnchanged() {
+        // Before: <input type="submit" />
         Element input = new Element("input");
-        input.setAttribute("type", "text");
+        input.setAttribute("type", "submit");
         performer.putValidationCodeInto(patternAnnotation, input);
-        // After: <input type="url" pattern="{patternRegexp}" />
-        assertEquals("text", input.getAttributeValue("type"));
+        // After: <input type="submit" />
+        assertEquals("submit", input.getAttributeValue("type"));
+        assertNull(input.getAttributeValue("pattern"));
+    }
+
+    @Test
+    public void putValidationCodeInto() {
+        // Before: <input type="email" />
+        Element input = new Element("input");
+        input.setAttribute("type", "email");
+        performer.putValidationCodeInto(patternAnnotation, input);
+        // After: <input type="email" pattern="{patternRegexp}" />
+        assertEquals("email", input.getAttributeValue("type"));
         assertEquals(PATTERN_REGEXP, input.getAttributeValue("pattern"));
     }
 }
