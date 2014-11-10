@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:pages="http://www.thymeleaf.org/pagesdialect">
+      xmlns:val="http://sourceforge.net/projects/html5valdialect">
     <head>
         <title>HTML5 validation dialect example</title>
         <link rel="stylesheet" href="../../main.css" th:href="@{/main.css}" />
@@ -46,7 +46,13 @@
                 <label for="price">Fall enroll price</label>
                 <input type="text" id="price" th:field="*{price}" />
                 (Type a number between 0 and 999 with a maximum of 2 decimals)
-            <p th:if="${#fields.hasErrors('price')}" class="error">Not a number between 0 and 999 with a maximum of 2 decimals</p>
+                <p th:if="${#fields.hasErrors('price')}" class="error">Not a number between 0 and 999 with a maximum of 2 decimals</p>
+            </p>
+            <p>
+                <label for="phoneNumber">Phone number</label>
+                <input type="tel" id="phoneNumber" th:field="*{phoneNumber}" />
+                (Type a phone number formatted like ###-######)
+                <p th:if="${#fields.hasErrors('phoneNumber')}" class="error">Not a phone number format (###-######)</p>
             </p>
             <input type="submit" />
         </form>
