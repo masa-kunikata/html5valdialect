@@ -1,6 +1,7 @@
 2.1.2
 =====
 - Apply @Pattern perfomer to allowed input types (http://www.w3.org/TR/html/forms.html#input-type-attr-summary)
+- Set maxlength attribute in LengthPerformer and SizePerformer when a max value is present.
 
 2.1.1
 =====

@@ -1,13 +1,16 @@
 package unit.net.sourceforge.html5val.performers;
 
-import javax.validation.constraints.Size;
 import net.sourceforge.html5val.ValidationPerformer;
 import net.sourceforge.html5val.performers.SizePerformer;
 import org.junit.Before;
-import unit.net.sourceforge.html5val.*;
 import org.junit.Test;
 import org.thymeleaf.dom.Element;
-import static org.junit.Assert.*;
+import unit.net.sourceforge.html5val.ValidationPerformerFactoryTest;
+
+import javax.validation.constraints.Size;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class SizePerformerTest {
 
@@ -31,8 +34,9 @@ public class SizePerformerTest {
     public void minAndMax() {
         Size size = new MockSizeBuilder().withMin(2).withMax(5).build();
         performer.putValidationCodeInto(size, input);
-        // After: <input type="text" pattern=".{2,5}" required="required" />
+        // After: <input type="text" pattern=".{2,5}" maxlength="5" required="required" />
         assertEquals(".{2,5}", input.getAttributeValue("pattern"));
+	    assertEquals("5", input.getAttributeValue("maxlength"));
         assertEquals("required", input.getAttributeValue("required"));
     }
 
@@ -42,6 +46,7 @@ public class SizePerformerTest {
         performer.putValidationCodeInto(size, input);
         // After: <input type="text" pattern=".{2,}" required="required" />
         assertEquals(".{2,}", input.getAttributeValue("pattern"));
+        assertNull(input.getAttributeValue("maxlength"));
         assertEquals("required", input.getAttributeValue("required"));
     }
 
@@ -49,8 +54,9 @@ public class SizePerformerTest {
     public void notMin() {
         Size size = new MockSizeBuilder().withMin(0).withMax(5).build();
         performer.putValidationCodeInto(size, input);
-        // After: <input type="text" pattern=".{0,5}" />
+        // After: <input type="text" pattern=".{0,5}" maxlength="5"/>
         assertEquals(".{0,5}", input.getAttributeValue("pattern"));
+        assertEquals("5", input.getAttributeValue("maxlength"));
         assertNull(input.getAttributeValue("required"));
     }
 }

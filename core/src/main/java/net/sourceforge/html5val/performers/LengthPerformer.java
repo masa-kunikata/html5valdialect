@@ -15,5 +15,8 @@ public class LengthPerformer implements ValidationPerformer<Length> {
         if (length.min() > 0) {
             element.setAttribute("required", "required");
         }
+	    if (length.max() > 0 && length.max() < Integer.MAX_VALUE) {
+		    element.setAttribute("maxlength", length.max() + "");
+	    }
     }
 }

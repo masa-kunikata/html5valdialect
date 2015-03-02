@@ -16,5 +16,8 @@ public class SizePerformer implements ValidationPerformer<Size> {
         if (size.min() > 0) {
             element.setAttribute("required", "required");
         }
+	    if (size.max() > 0 && size.max() < Integer.MAX_VALUE) {
+		    element.setAttribute("maxlength", size.max() + "");
+	    }
     }
 }
