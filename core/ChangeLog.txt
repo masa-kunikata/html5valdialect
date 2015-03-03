@@ -1,3 +1,6 @@
+2.1.3
+=====
+
 2.1.2
 =====
 - Apply @Pattern perfomer to allowed input types (http://www.w3.org/TR/html/forms.html#input-type-attr-summary)
