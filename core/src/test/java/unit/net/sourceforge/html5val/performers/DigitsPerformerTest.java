@@ -1,10 +1,10 @@
 package unit.net.sourceforge.html5val.performers;
 
 import javax.validation.constraints.Digits;
-import net.sourceforge.html5val.ValidationPerformer;
+import net.sourceforge.html5val.performers.ValidationPerformer;
 import net.sourceforge.html5val.performers.DigitsPerformer;
-import net.sourceforge.html5val.performers.DigitsRegexpComposer;
-import net.sourceforge.html5val.performers.RegexpComposer;
+import net.sourceforge.html5val.performers.regexp_composer.DigitsRegexpComposer;
+import net.sourceforge.html5val.performers.regexp_composer.RegexpComposer;
 import org.junit.Test;
 import org.thymeleaf.dom.Element;
 import unit.net.sourceforge.html5val.ValidationPerformerFactoryTest;

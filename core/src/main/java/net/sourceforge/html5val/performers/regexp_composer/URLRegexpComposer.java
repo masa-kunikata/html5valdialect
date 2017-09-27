@@ -1,8 +1,8 @@
 
-package net.sourceforge.html5val.performers;
+package net.sourceforge.html5val.performers.regexp_composer;
 
 import org.hibernate.validator.constraints.URL;
-import static net.sourceforge.html5val.EmptyChecker.empty;
+import static net.sourceforge.html5val.util.EmptyChecker.empty;
 
 public class URLRegexpComposer implements RegexpComposer {
 

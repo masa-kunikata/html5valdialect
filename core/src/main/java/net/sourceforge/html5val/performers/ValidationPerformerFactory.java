@@ -1,4 +1,4 @@
-package net.sourceforge.html5val;
+package net.sourceforge.html5val.performers;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;

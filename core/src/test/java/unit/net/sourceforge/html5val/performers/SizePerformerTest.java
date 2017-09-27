@@ -1,6 +1,6 @@
 package unit.net.sourceforge.html5val.performers;
 
-import net.sourceforge.html5val.ValidationPerformer;
+import net.sourceforge.html5val.performers.ValidationPerformer;
 import net.sourceforge.html5val.performers.SizePerformer;
 import org.junit.Before;
 import org.junit.Test;

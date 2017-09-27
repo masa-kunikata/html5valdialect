@@ -1,6 +1,5 @@
 package net.sourceforge.html5val.performers;
 
-import net.sourceforge.html5val.ValidationPerformer;
 import org.hibernate.validator.constraints.Range;
 import org.thymeleaf.dom.Element;
 

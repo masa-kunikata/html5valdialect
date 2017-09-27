@@ -1,6 +1,6 @@
 package unit.net.sourceforge.html5val.performers;
 
-import net.sourceforge.html5val.performers.LengthRegexpComposer;
+import net.sourceforge.html5val.performers.regexp_composer.LengthRegexpComposer;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

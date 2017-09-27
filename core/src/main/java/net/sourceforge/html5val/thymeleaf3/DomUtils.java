@@ -1,4 +1,4 @@
-package net.sourceforge.html5val;
+package net.sourceforge.html5val.thymeleaf3;
 
 import org.thymeleaf.dom.*;
 
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static net.sourceforge.html5val.EmptyChecker.empty;
-import static net.sourceforge.html5val.EmptyChecker.notEmpty;
+import static net.sourceforge.html5val.util.EmptyChecker.empty;
+import static net.sourceforge.html5val.util.EmptyChecker.notEmpty;
 
 /**
  * Some utility methods for managing DOM objects.

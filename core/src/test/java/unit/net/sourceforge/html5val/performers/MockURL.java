@@ -3,7 +3,7 @@ package unit.net.sourceforge.html5val.performers;
 import java.lang.annotation.Annotation;
 import javax.validation.Payload;
 import javax.validation.constraints.Pattern.Flag;
-import net.sourceforge.html5val.performers.URLRegexpComposer;
+import net.sourceforge.html5val.performers.regexp_composer.URLRegexpComposer;
 import org.hibernate.validator.constraints.URL;
 
 public class MockURL implements URL {

@@ -7,9 +7,14 @@ import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Set;
 
-import static net.sourceforge.html5val.FormElementFinder.findFormElements;
-import static net.sourceforge.html5val.DomUtils.findPreviousElement;
-import static net.sourceforge.html5val.DomUtils.removeElement;
+import static net.sourceforge.html5val.thymeleaf3.FormElementFinder.findFormElements;
+import static net.sourceforge.html5val.thymeleaf3.DomUtils.findPreviousElement;
+import static net.sourceforge.html5val.thymeleaf3.DomUtils.removeElement;
+import net.sourceforge.html5val.thymeleaf3.ExpressionUtil;
+
+import net.sourceforge.html5val.reflect.AnnotationExtractor;
+import net.sourceforge.html5val.performers.ValidationPerformer;
+import net.sourceforge.html5val.performers.ValidationPerformerFactory;
 
 public class ValidatePreviousFormCommand {
 

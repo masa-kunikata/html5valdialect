@@ -2,7 +2,7 @@ package unit.net.sourceforge.html5val.performers;
 
 import java.lang.annotation.Annotation;
 import javax.validation.Payload;
-import net.sourceforge.html5val.performers.LengthRegexpComposer;
+import net.sourceforge.html5val.performers.regexp_composer.LengthRegexpComposer;
 import org.hibernate.validator.constraints.Length;
 
 public class MockLength implements Length {

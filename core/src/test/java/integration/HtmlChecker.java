@@ -2,7 +2,7 @@ package integration;
 
 import org.thymeleaf.dom.Document;
 import org.thymeleaf.dom.Element;
-import net.sourceforge.html5val.DomUtils;
+import net.sourceforge.html5val.thymeleaf3.DomUtils;
 import static org.junit.Assert.*;
 
 class HtmlChecker {

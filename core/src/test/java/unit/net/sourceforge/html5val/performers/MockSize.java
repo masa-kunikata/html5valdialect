@@ -3,7 +3,7 @@ package unit.net.sourceforge.html5val.performers;
 import java.lang.annotation.Annotation;
 import javax.validation.Payload;
 import javax.validation.constraints.Size;
-import net.sourceforge.html5val.performers.LengthRegexpComposer;
+import net.sourceforge.html5val.performers.regexp_composer.LengthRegexpComposer;
 
 public class MockSize implements Size {
 

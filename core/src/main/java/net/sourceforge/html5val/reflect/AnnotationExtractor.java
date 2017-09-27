@@ -1,4 +1,4 @@
-package net.sourceforge.html5val;
+package net.sourceforge.html5val.reflect;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static net.sourceforge.html5val.EmptyChecker.empty;
+import static net.sourceforge.html5val.util.EmptyChecker.empty;
 
 public class AnnotationExtractor {
 

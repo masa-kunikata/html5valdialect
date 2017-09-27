@@ -5,6 +5,9 @@ import java.util.Set;
 import org.thymeleaf.dialect.AbstractXHTMLEnabledDialect;
 import org.thymeleaf.processor.IProcessor;
 
+import net.sourceforge.html5val.performers.ValidationPerformer;
+import net.sourceforge.html5val.performers.ValidationPerformerFactory;
+
 /**
  * Custom extension to Thymeleaf dialect to provide HTML5 validation to forms.
  */

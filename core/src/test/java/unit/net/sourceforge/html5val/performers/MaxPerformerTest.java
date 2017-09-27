@@ -1,7 +1,7 @@
 package unit.net.sourceforge.html5val.performers;
 
 import javax.validation.constraints.Max;
-import net.sourceforge.html5val.ValidationPerformer;
+import net.sourceforge.html5val.performers.ValidationPerformer;
 import net.sourceforge.html5val.performers.MaxPerformer;
 import org.jmock.Expectations;
 import org.jmock.Mockery;

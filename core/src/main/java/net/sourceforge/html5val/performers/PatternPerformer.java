@@ -1,7 +1,6 @@
 package net.sourceforge.html5val.performers;
 
 import javax.validation.constraints.Pattern;
-import net.sourceforge.html5val.ValidationPerformer;
 import org.thymeleaf.dom.Element;
 
 import java.util.Arrays;

@@ -1,7 +1,7 @@
 package unit.net.sourceforge.html5val.performers;
 
 import javax.validation.constraints.Pattern;
-import net.sourceforge.html5val.ValidationPerformer;
+import net.sourceforge.html5val.performers.ValidationPerformer;
 import net.sourceforge.html5val.performers.PatternPerformer;
 import unit.net.sourceforge.html5val.*;
 import org.jmock.Expectations;

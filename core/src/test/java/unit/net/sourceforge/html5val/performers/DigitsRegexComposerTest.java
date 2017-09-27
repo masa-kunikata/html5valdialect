@@ -1,7 +1,7 @@
 package unit.net.sourceforge.html5val.performers;
 
 import javax.validation.constraints.Digits;
-import net.sourceforge.html5val.performers.DigitsRegexpComposer;
+import net.sourceforge.html5val.performers.regexp_composer.DigitsRegexpComposer;
 import org.junit.Test;
 
 public class DigitsRegexComposerTest {

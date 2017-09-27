@@ -1,4 +1,4 @@
-package net.sourceforge.html5val;
+package net.sourceforge.html5val.thymeleaf3;
 
 import org.thymeleaf.dom.Element;
 

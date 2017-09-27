@@ -1,8 +1,8 @@
 package net.sourceforge.html5val.performers;
 
-import net.sourceforge.html5val.ValidationPerformer;
 import org.hibernate.validator.constraints.Length;
 import org.thymeleaf.dom.Element;
+import net.sourceforge.html5val.performers.regexp_composer.LengthRegexpComposer;
 
 public class LengthPerformer implements ValidationPerformer<Length> {
 

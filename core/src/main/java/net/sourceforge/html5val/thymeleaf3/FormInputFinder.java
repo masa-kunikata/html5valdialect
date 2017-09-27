@@ -1,4 +1,4 @@
-package net.sourceforge.html5val;
+package net.sourceforge.html5val.thymeleaf3;
 
 import org.thymeleaf.dom.Element;
 import org.thymeleaf.exceptions.TemplateProcessingException;
@@ -6,6 +6,8 @@ import org.thymeleaf.util.ArrayUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import net.sourceforge.html5val.util.EmptyChecker;
 
 public class FormInputFinder {
 

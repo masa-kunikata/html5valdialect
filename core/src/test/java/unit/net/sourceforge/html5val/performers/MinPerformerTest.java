@@ -1,7 +1,7 @@
 package unit.net.sourceforge.html5val.performers;
 
 import javax.validation.constraints.Min;
-import net.sourceforge.html5val.ValidationPerformer;
+import net.sourceforge.html5val.performers.ValidationPerformer;
 import net.sourceforge.html5val.performers.MinPerformer;
 import org.jmock.Expectations;
 import org.jmock.Mockery;

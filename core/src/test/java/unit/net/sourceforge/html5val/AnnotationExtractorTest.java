@@ -1,6 +1,6 @@
 package unit.net.sourceforge.html5val;
 
-import net.sourceforge.html5val.AnnotationExtractor;
+import net.sourceforge.html5val.reflect.AnnotationExtractor;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;

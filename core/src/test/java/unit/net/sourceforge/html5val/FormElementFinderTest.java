@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.List;
 import java.util.Set;
-import net.sourceforge.html5val.FormElementFinder;
+import net.sourceforge.html5val.thymeleaf3.FormElementFinder;
 import org.junit.Test;
 import org.thymeleaf.dom.DOMSelector;
 import org.thymeleaf.dom.Document;

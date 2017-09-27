@@ -1,4 +1,4 @@
-package net.sourceforge.html5val;
+package net.sourceforge.html5val.reflect;
 
 import java.lang.reflect.Field;
 

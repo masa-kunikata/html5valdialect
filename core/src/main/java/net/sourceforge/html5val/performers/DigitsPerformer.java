@@ -1,8 +1,8 @@
 package net.sourceforge.html5val.performers;
 
 import javax.validation.constraints.Digits;
-import net.sourceforge.html5val.ValidationPerformer;
 import org.thymeleaf.dom.Element;
+import net.sourceforge.html5val.performers.regexp_composer.DigitsRegexpComposer;
 
 public class DigitsPerformer implements ValidationPerformer<Digits> {
 

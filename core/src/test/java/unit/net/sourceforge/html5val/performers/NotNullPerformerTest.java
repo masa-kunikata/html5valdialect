@@ -1,7 +1,7 @@
 package unit.net.sourceforge.html5val.performers;
 
 import javax.validation.constraints.NotNull;
-import net.sourceforge.html5val.ValidationPerformer;
+import net.sourceforge.html5val.performers.ValidationPerformer;
 import unit.net.sourceforge.html5val.*;
 import net.sourceforge.html5val.performers.NotNullPerformer;
 import org.jmock.Mockery;

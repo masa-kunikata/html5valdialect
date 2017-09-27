@@ -1,4 +1,4 @@
-package net.sourceforge.html5val.performers;
+package net.sourceforge.html5val.performers.regexp_composer;
 
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;

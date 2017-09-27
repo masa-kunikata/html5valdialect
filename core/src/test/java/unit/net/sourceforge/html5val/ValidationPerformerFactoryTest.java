@@ -1,8 +1,8 @@
 package unit.net.sourceforge.html5val;
 
 import java.lang.annotation.Annotation;
-import net.sourceforge.html5val.ValidationPerformer;
-import net.sourceforge.html5val.ValidationPerformerFactory;
+import net.sourceforge.html5val.performers.ValidationPerformer;
+import net.sourceforge.html5val.performers.ValidationPerformerFactory;
 import net.sourceforge.html5val.performers.EmailPerformer;
 import org.hibernate.validator.constraints.Email;
 import org.jmock.Mockery;

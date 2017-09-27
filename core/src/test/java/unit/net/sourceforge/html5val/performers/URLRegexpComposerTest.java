@@ -1,6 +1,6 @@
 package unit.net.sourceforge.html5val.performers;
 
-import net.sourceforge.html5val.performers.URLRegexpComposer;
+import net.sourceforge.html5val.performers.regexp_composer.URLRegexpComposer;
 import org.hibernate.validator.constraints.URL;
 import org.junit.Test;
 import static org.junit.Assert.*;
