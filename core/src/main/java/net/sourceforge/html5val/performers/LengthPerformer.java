@@ -1,22 +1,29 @@
 package net.sourceforge.html5val.performers;
 
-import org.hibernate.validator.constraints.Length;
-import org.thymeleaf.dom.Element;
 import net.sourceforge.html5val.performers.regexp_composer.LengthRegexpComposer;
 
-public class LengthPerformer implements ValidationPerformer<Length> {
+import org.hibernate.validator.constraints.Length;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.model.IProcessableElementTag;
+import org.thymeleaf.model.IModelFactory;
 
+class LengthPerformer implements IValidationPerformer<Length> {
+
+	@Override
     public Class<Length> getConstraintClass() {
         return Length.class;
     }
 
-    public void putValidationCodeInto(Length length, Element element) {
-        element.setAttribute("pattern", LengthRegexpComposer.forLength(length).regexp());
+	@Override
+    public IProcessableElementTag toValidationTag(Length length, ITemplateContext context, IProcessableElementTag elementTag) {
+		final IModelFactory modelFactory = context.getModelFactory();
+        IProcessableElementTag modifiedTag = modelFactory.setAttribute(elementTag, "pattern", LengthRegexpComposer.forLength(length).regexp());
         if (length.min() > 0) {
-            element.setAttribute("required", "required");
+            modifiedTag = modelFactory.setAttribute(modifiedTag, "required", "required");
         }
 	    if (length.max() > 0 && length.max() < Integer.MAX_VALUE) {
-		    element.setAttribute("maxlength", length.max() + "");
+		    modifiedTag = modelFactory.setAttribute(modifiedTag, "maxlength", length.max() + "");
 	    }
+		return modifiedTag;
     }
 }

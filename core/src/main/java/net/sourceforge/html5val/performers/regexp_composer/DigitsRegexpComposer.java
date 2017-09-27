@@ -2,7 +2,7 @@ package net.sourceforge.html5val.performers.regexp_composer;
 
 import javax.validation.constraints.Digits;
 
-public class DigitsRegexpComposer implements RegexpComposer {
+public class DigitsRegexpComposer implements IRegexpComposer {
 
     private static final String EMPTY_STRING_REGEXP = "^$";
     private Digits digits;
@@ -15,6 +15,7 @@ public class DigitsRegexpComposer implements RegexpComposer {
         return new DigitsRegexpComposer(digits);
     }
 
+	@Override
     public String regexp() {
         if (neitherFractionNorInteger()) {
             return EMPTY_STRING_REGEXP;

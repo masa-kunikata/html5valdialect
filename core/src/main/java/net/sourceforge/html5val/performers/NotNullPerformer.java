@@ -1,16 +1,22 @@
 package net.sourceforge.html5val.performers;
 
-import org.thymeleaf.dom.Element;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.model.IProcessableElementTag;
+import org.thymeleaf.model.IModelFactory;
 
 import javax.validation.constraints.NotNull;
 
-public class NotNullPerformer implements ValidationPerformer<NotNull> {
+class NotNullPerformer implements IValidationPerformer<NotNull> {
 
+	@Override
     public Class<NotNull> getConstraintClass() {
         return NotNull.class;
     }
 
-    public void putValidationCodeInto(NotNull constraint, Element element) {
-        element.setAttribute("required", "required");
+	@Override
+    public IProcessableElementTag toValidationTag(NotNull constraint, ITemplateContext context, IProcessableElementTag elementTag) {
+		final IModelFactory modelFactory = context.getModelFactory();
+        IProcessableElementTag modifiedTag = modelFactory.setAttribute(elementTag, "required", "required");
+		return modifiedTag;
     }
 }

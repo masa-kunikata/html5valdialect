@@ -1,10 +1,9 @@
-
 package net.sourceforge.html5val.performers.regexp_composer;
 
 import org.hibernate.validator.constraints.URL;
-import static net.sourceforge.html5val.util.EmptyChecker.empty;
+import net.sourceforge.html5val.util.EmptyChecker;
 
-public class URLRegexpComposer implements RegexpComposer {
+public class URLRegexpComposer implements IRegexpComposer {
 
     public static final String DEFAULT_REGEXP = ".*";
     public static final int EMPTY_PORT = -1;
@@ -18,6 +17,7 @@ public class URLRegexpComposer implements RegexpComposer {
         return new URLRegexpComposer(url);
     }
 
+	@Override
     public String regexp() {
         if (containsRegexp()) {
             return url.regexp();
@@ -34,13 +34,13 @@ public class URLRegexpComposer implements RegexpComposer {
     private String buildRegexp() {
         StringBuilder sb = new StringBuilder();
         sb.append("^");
-        if (empty(url.protocol())) {
+        if (EmptyChecker.empty(url.protocol())) {
             sb.append(".+");
         } else {
             sb.append(url.protocol());
         }
         sb.append("://");
-        if (empty(url.host())) {
+        if (EmptyChecker.empty(url.host())) {
             sb.append(".+");
         } else {
             sb.append(url.host());

@@ -1,25 +1,32 @@
 package net.sourceforge.html5val.performers;
 
 import javax.validation.constraints.Pattern;
-import org.thymeleaf.dom.Element;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.model.IProcessableElementTag;
+import org.thymeleaf.model.IModelFactory;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class PatternPerformer implements ValidationPerformer<Pattern> {
+class PatternPerformer implements IValidationPerformer<Pattern> {
 
     private static final List<String> ALLOWED_TYPE_ATTRS = Arrays.asList(
             "text", "search", "email", "url", "tel", "password"
     );
 
+	@Override
     public Class<Pattern> getConstraintClass() {
         return Pattern.class;
     }
 
-    public void putValidationCodeInto(Pattern constraint, Element element) {
-        String type = element.getAttributeValue("type");
+	@Override
+    public IProcessableElementTag toValidationTag(Pattern constraint, ITemplateContext context, IProcessableElementTag elementTag) {
+        final String type = elementTag.getAttributeValue("type");
         if (ALLOWED_TYPE_ATTRS.contains(type)) {
-            element.setAttribute("pattern", constraint.regexp());
+			final IModelFactory modelFactory = context.getModelFactory();
+			IProcessableElementTag modifiedTag = modelFactory.setAttribute(elementTag, "pattern", constraint.regexp());
+			return modifiedTag;
         }
+		return elementTag;
     }
 }

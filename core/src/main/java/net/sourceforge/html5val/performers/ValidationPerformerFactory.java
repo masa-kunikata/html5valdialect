@@ -4,33 +4,22 @@ import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import net.sourceforge.html5val.performers.DigitsPerformer;
-import net.sourceforge.html5val.performers.EmailPerformer;
-import net.sourceforge.html5val.performers.LengthPerformer;
-import net.sourceforge.html5val.performers.MaxPerformer;
-import net.sourceforge.html5val.performers.MinPerformer;
-import net.sourceforge.html5val.performers.NotBlankPerformer;
-import net.sourceforge.html5val.performers.NotEmptyPerformer;
-import net.sourceforge.html5val.performers.NotNullPerformer;
-import net.sourceforge.html5val.performers.PatternPerformer;
-import net.sourceforge.html5val.performers.RangePerformer;
-import net.sourceforge.html5val.performers.SizePerformer;
-import net.sourceforge.html5val.performers.URLPerformer;
-import org.thymeleaf.dom.Element;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.model.IProcessableElementTag;
 
 public class ValidationPerformerFactory {
 
     private static final ValidationPerformerFactory SINGLE_INSTANCE = new ValidationPerformerFactory();
 
-    private static final ValidationPerformer NULL_PERFORMER = new ValidationPerformer() {
+    private static final IValidationPerformer NULL_PERFORMER = new IValidationPerformer() {
         public Class getConstraintClass() { return null; }
-        public void putValidationCodeInto(Annotation constraint, Element element) {}
+        public IProcessableElementTag toValidationTag(Annotation constraint, ITemplateContext context, IProcessableElementTag elementTag) {return null;}
     };
 
-    private final List<ValidationPerformer> performers;
+    private final List<IValidationPerformer> performers;
 
     private ValidationPerformerFactory() {
-        performers = Collections.synchronizedList(new ArrayList<ValidationPerformer>());
+        performers = Collections.synchronizedList(new ArrayList<IValidationPerformer>());
         performers.add(new DigitsPerformer());
         performers.add(new EmailPerformer());
         performers.add(new MaxPerformer());
@@ -48,16 +37,16 @@ public class ValidationPerformerFactory {
     /**
      * Add a custom ValidationPerformer to the list of performers.
      */
-    public static void addCustomPerformer(ValidationPerformer performer) {
-        SINGLE_INSTANCE.performers.add(performer);
+    public static void addCustomPerformer(IValidationPerformer performer) {
+        SINGLE_INSTANCE.performers.add(0, performer);
     }
 
-    public static ValidationPerformer getPerformerFor(Annotation constraint) {
+    public static IValidationPerformer getPerformerFor(Annotation constraint) {
         return SINGLE_INSTANCE.getPerformerForConstraint(constraint);
     }
 
-    private ValidationPerformer getPerformerForConstraint(Annotation constraint) {
-        for (ValidationPerformer performer : performers) {
+    private IValidationPerformer getPerformerForConstraint(Annotation constraint) {
+        for (IValidationPerformer performer : performers) {
             if (isPerformerForConstraint(performer, constraint)) {
                 return performer;
             }
@@ -65,7 +54,7 @@ public class ValidationPerformerFactory {
         return NULL_PERFORMER;
     }
 
-    private boolean isPerformerForConstraint(ValidationPerformer performer, Annotation constraint) {
+    private boolean isPerformerForConstraint(IValidationPerformer performer, Annotation constraint) {
         Class constraintClass = constraint.getClass();
         return performer.getConstraintClass().isAssignableFrom(constraintClass);
     }

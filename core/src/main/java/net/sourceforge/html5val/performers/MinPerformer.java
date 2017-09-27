@@ -1,18 +1,24 @@
 package net.sourceforge.html5val.performers;
 
 import javax.validation.constraints.Min;
-import org.thymeleaf.dom.Element;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.model.IProcessableElementTag;
+import org.thymeleaf.model.IModelFactory;
 
-public class MinPerformer implements ValidationPerformer<Min> {
+class MinPerformer implements IValidationPerformer<Min> {
 
+	@Override
     public Class<Min> getConstraintClass() {
         return Min.class;
     }
 
-    public void putValidationCodeInto(Min constraint, Element element) {
+	@Override
+    public IProcessableElementTag toValidationTag(Min constraint, ITemplateContext context, IProcessableElementTag elementTag) {
         // The annotated element must be a number with value greater or equal to the specified minimum.
         Min min = (Min) constraint;
-        element.setAttribute("type", "number");
-        element.setAttribute("min", Long.toString(min.value()));
+		final IModelFactory modelFactory = context.getModelFactory();
+        IProcessableElementTag modifiedTag = modelFactory.setAttribute(elementTag, "type", "number");
+        modifiedTag = modelFactory.setAttribute(modifiedTag, "min", Long.toString(min.value()));
+		return modifiedTag;
     }
 }

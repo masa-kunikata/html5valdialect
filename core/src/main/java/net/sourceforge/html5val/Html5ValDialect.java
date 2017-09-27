@@ -2,37 +2,41 @@ package net.sourceforge.html5val;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.thymeleaf.dialect.AbstractXHTMLEnabledDialect;
+
+import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;
+import org.thymeleaf.standard.StandardDialect;
+import org.thymeleaf.standard.processor.StandardXmlNsTagProcessor;
+import org.thymeleaf.templatemode.TemplateMode;
 
-import net.sourceforge.html5val.performers.ValidationPerformer;
 import net.sourceforge.html5val.performers.ValidationPerformerFactory;
+import net.sourceforge.html5val.performers.IValidationPerformer;
 
-/**
- * Custom extension to Thymeleaf dialect to provide HTML5 validation to forms.
- */
-public class Html5ValDialect extends AbstractXHTMLEnabledDialect {
-
-    public static final String ATTR_PREFIX = "val";
-
-    /**
+public class Html5ValDialect extends AbstractProcessorDialect {
+	
+	public static final String DIALECT_NAME = "Html5 Val Dialect";
+	public static final String DIALECT_PREFIX = "val";
+	
+	public Html5ValDialect() {
+        super(DIALECT_NAME, DIALECT_PREFIX, StandardDialect.PROCESSOR_PRECEDENCE);
+    }
+	
+    public Set<IProcessor> getProcessors(final String dialectPrefix) {
+        final Set<IProcessor> processors = new HashSet<IProcessor>();
+		processors.add(new ValidateFormAttributeModelProcessor(dialectPrefix));
+		processors.add(new ValidateFormAttributeModelDelayedProcessor(dialectPrefix));
+        // This will remove the xmlns:val attributes we might add for IDE validation
+        processors.add(new StandardXmlNsTagProcessor(TemplateMode.HTML, dialectPrefix));
+        return processors;
+    }
+	
+	    /**
      * Add a set of additional ValidationPerformers to ValidateProcessor.
      */
-    public void setAdditionalPerformers(Set<ValidationPerformer> additionalPerformers) {
-        for (ValidationPerformer performer : additionalPerformers) {
+    public void setAdditionalPerformers(Set<IValidationPerformer> additionalPerformers) {
+        for (IValidationPerformer performer : additionalPerformers) {
             ValidationPerformerFactory.addCustomPerformer(performer);
         }
     }
-    
-    public String getPrefix() {
-        return ATTR_PREFIX;
-    }
 
-    @Override
-    public Set<IProcessor> getProcessors() {
-        Set<IProcessor> attrProcessors = new HashSet<IProcessor>();
-        attrProcessors.add(new ValidateAttrProcessor());
-        attrProcessors.add(new ValidatePreviousFormAttrProcessor());
-        return attrProcessors;
-    }
 }

@@ -3,7 +3,7 @@ package net.sourceforge.html5val.performers.regexp_composer;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
 
-public class LengthRegexpComposer implements RegexpComposer {
+public class LengthRegexpComposer implements IRegexpComposer {
 
     public static final int MAX_BOUNDARY = Integer.MAX_VALUE;
 
@@ -28,6 +28,7 @@ public class LengthRegexpComposer implements RegexpComposer {
         return new LengthRegexpComposer(length.min(), length.max());
     }
 
+	@Override
     public String regexp() {
         StringBuilder sb = new StringBuilder();
         sb.append(".{");
