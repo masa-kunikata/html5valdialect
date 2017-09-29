@@ -1,4 +1,4 @@
-package unit.util;
+package net.sourceforge.html5val.util;
 
 import java.util.regex.Pattern;
 import org.hamcrest.Description;

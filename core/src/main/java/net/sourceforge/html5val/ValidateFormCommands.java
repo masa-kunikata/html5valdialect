@@ -13,6 +13,7 @@ import net.sourceforge.html5val.thymeleaf3.FormElementFinders;
 import net.sourceforge.html5val.thymeleaf3.ExpressionUtils;
 import net.sourceforge.html5val.performers.ValidationPerformerFactory;
 import net.sourceforge.html5val.performers.IValidationPerformer;
+import net.sourceforge.html5val.reflect.AnnotationExtractor;
 
 /** */
 @lombok.extern.log4j.Log4j2
