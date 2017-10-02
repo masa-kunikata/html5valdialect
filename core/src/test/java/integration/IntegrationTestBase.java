@@ -1,13 +1,18 @@
 package integration;
 
+import java.io.IOException;
+import java.io.StringReader;
+
 import org.junit.Before;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
-import integration.util.XmlUtils;
 import net.sourceforge.html5val.Html5ValDialect;
+import nu.validator.htmlparser.dom.HtmlDocumentBuilder;
 
 abstract public class IntegrationTestBase {
 
@@ -25,6 +30,12 @@ abstract public class IntegrationTestBase {
 
     protected Document processTemplate(String templateName, Context context) {
         String html = templateEngine.process(templateName, context);
-        return XmlUtils.toDom(html);
+        try {
+            HtmlDocumentBuilder builder = new HtmlDocumentBuilder();
+            StringReader reader = new StringReader(html);
+        	return builder.parse(new InputSource(reader));
+		} catch (SAXException | IOException e) {
+			throw new RuntimeException(e);
+		}
     }
 }

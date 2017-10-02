@@ -1,8 +1,9 @@
 package integration;
 
+import static org.junit.Assert.*;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import static org.junit.Assert.*;
 
 class HtmlChecker {
 
@@ -13,7 +14,7 @@ class HtmlChecker {
     }
 
     ElementChecker elementWithId(String elementId) {
-        Element element = null; //TODO DomUtils.getElementById(html, "input", elementId);
+        Element element = html.getElementById(elementId);
         assertNotNull("Element with id -" + elementId + "- not found", element);
         return new ElementChecker(element);
     }
