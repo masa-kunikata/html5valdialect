@@ -1,8 +1,11 @@
-package net.sourceforge.html5val.performers;
+package net.sourceforge.html5val.performers.regexp_composer;
 
 import javax.validation.constraints.Digits;
-import net.sourceforge.html5val.performers.regexp_composer.DigitsRegexpComposer;
+
 import org.junit.Test;
+
+import net.sourceforge.html5val.util.MockDigits;
+import net.sourceforge.html5val.util.ValidationChecker;
 
 public class DigitsRegexComposerTest {
 

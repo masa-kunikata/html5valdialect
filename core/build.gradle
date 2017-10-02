@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'eclipse'
 
 ext['thymeleafVersion'] = '3.0.7.RELEASE'
 

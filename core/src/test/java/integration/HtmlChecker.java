@@ -1,8 +1,7 @@
 package integration;
 
-import org.thymeleaf.dom.Document;
-import org.thymeleaf.dom.Element;
-import net.sourceforge.html5val.thymeleaf3.DomUtils;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import static org.junit.Assert.*;
 
 class HtmlChecker {
@@ -14,7 +13,7 @@ class HtmlChecker {
     }
 
     ElementChecker elementWithId(String elementId) {
-        Element element = DomUtils.getElementById(html, "input", elementId);
+        Element element = null; //TODO DomUtils.getElementById(html, "input", elementId);
         assertNotNull("Element with id -" + elementId + "- not found", element);
         return new ElementChecker(element);
     }

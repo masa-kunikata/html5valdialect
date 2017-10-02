@@ -1,11 +1,13 @@
-package net.sourceforge.html5val.performers;
+package net.sourceforge.html5val.performers.regexp_composer;
 
-import net.sourceforge.html5val.performers.regexp_composer.URLRegexpComposer;
+import static net.sourceforge.html5val.util.RegexpMatcher.*;
+import static net.sourceforge.html5val.util.RegexpMismatcher.*;
+import static org.junit.Assert.*;
+
 import org.hibernate.validator.constraints.URL;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import static unit.util.RegexpMatcher.matchesRegexp;
-import static unit.util.RegexpMismatcher.doesNotMatchRegexp;
+
+import net.sourceforge.html5val.util.MockURLBuilder;
 
 public class URLRegexpComposerTest {
 

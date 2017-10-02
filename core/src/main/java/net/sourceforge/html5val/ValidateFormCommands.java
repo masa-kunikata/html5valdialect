@@ -1,19 +1,19 @@
 package net.sourceforge.html5val;
 
-import org.thymeleaf.context.ITemplateContext;
-import org.thymeleaf.model.IProcessableElementTag;
-import org.thymeleaf.model.IModel;
-import org.thymeleaf.model.IModelFactory;
-
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
 
-import net.sourceforge.html5val.thymeleaf3.FormElementFinders;
-import net.sourceforge.html5val.thymeleaf3.ExpressionUtils;
-import net.sourceforge.html5val.performers.ValidationPerformerFactory;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.model.IModel;
+import org.thymeleaf.model.IModelFactory;
+import org.thymeleaf.model.IProcessableElementTag;
+
 import net.sourceforge.html5val.performers.IValidationPerformer;
+import net.sourceforge.html5val.performers.ValidationPerformerFactory;
 import net.sourceforge.html5val.reflect.AnnotationExtractor;
+import net.sourceforge.html5val.thymeleaf3.ExpressionUtils;
+import net.sourceforge.html5val.thymeleaf3.FormElementFinders;
 
 /** */
 @lombok.extern.log4j.Log4j2
@@ -30,7 +30,7 @@ enum ValidateFormCommands {
 				formElement,
 				getDialectPrefix() + ":" + ValidateFormAttributeModelProcessor.ATTR_NAME
 			);
-			
+
 			model.insert(
 				0,
 				modelFactory.createOpenElementTag(
@@ -42,9 +42,9 @@ enum ValidateFormCommands {
 			model.add(modelFactory.createCloseElementTag(ValidateFormAttributeModelDelayedProcessor.TAG_NAME));
 			model.replace(1, modFormElement);
 			//log.info(model);
-			
+
 		}
-		
+
 		private String getDialectPrefix(){
 			return Html5ValDialect.DIALECT_PREFIX;
 		}
@@ -58,7 +58,7 @@ enum ValidateFormCommands {
 			//TODO REMOVE outer form "div"
 			model.remove(model.size() - 1); // close tag
 			model.remove(0); // open tag
-			
+
 			log.info(model);
 		}
 
@@ -86,7 +86,7 @@ enum ValidateFormCommands {
 		}
 
 		private static final String TH_FIELD = "th:field"; // FIXME: get dynamic prefix (of Standard Dialect)
-		
+
 		private String getFieldName(final IProcessableElementTag elementTag) {
 			if (elementTag.getAttributeValue("name") != null) {
 				return elementTag.getAttributeValue("name");
@@ -98,7 +98,7 @@ enum ValidateFormCommands {
 		}
 	},
 	;
-	
+
 	/** */
 	abstract void execute(final ITemplateContext context, final IModel model, final String attributeValue);
 }

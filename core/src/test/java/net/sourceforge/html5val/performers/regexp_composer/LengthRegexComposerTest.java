@@ -1,8 +1,8 @@
-package net.sourceforge.html5val.performers;
+package net.sourceforge.html5val.performers.regexp_composer;
 
-import net.sourceforge.html5val.performers.regexp_composer.LengthRegexpComposer;
-import org.junit.Test;
 import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 public class LengthRegexComposerTest {
 

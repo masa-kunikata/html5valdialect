@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 import org.thymeleaf.context.Context;
-import org.thymeleaf.dom.Document;
+import org.w3c.dom.Document;
 
 public class Html5ValIntegrationTest extends IntegrationTestBase {
 
