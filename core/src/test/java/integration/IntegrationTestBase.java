@@ -22,7 +22,7 @@ abstract public class IntegrationTestBase {
     @Before
     public void setUpTemplateEngine() {
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("/META-INF/");
+        templateResolver.setPrefix("/templates/");
         templateResolver.setCacheable(false);
         templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
