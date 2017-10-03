@@ -1,10 +1,10 @@
-package integration;
+package integration.checker;
 
 import static org.junit.Assert.*;
 
 import org.w3c.dom.Element;
 
-class ElementChecker {
+public class ElementChecker {
 
     private Element element;
 

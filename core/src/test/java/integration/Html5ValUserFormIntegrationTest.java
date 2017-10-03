@@ -7,7 +7,10 @@ import org.junit.Test;
 import org.thymeleaf.context.Context;
 import org.w3c.dom.Document;
 
-public class Html5ValIntegrationTest extends IntegrationTestBase {
+import integration.bean.UserFormBean;
+import integration.checker.HtmlChecker;
+
+public class Html5ValUserFormIntegrationTest extends IntegrationTestBase {
 
     private static final String URL_REGEXP = "^.+://.+(:[0-9]+)?(/.*)?";
     private Context context = new Context();

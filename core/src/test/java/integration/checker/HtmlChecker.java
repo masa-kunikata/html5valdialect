@@ -1,11 +1,11 @@
-package integration;
+package integration.checker;
 
 import static org.junit.Assert.*;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-class HtmlChecker {
+public class HtmlChecker {
 
     private Document html;
 
@@ -13,7 +13,7 @@ class HtmlChecker {
         this.html = html;
     }
 
-    ElementChecker elementWithId(String elementId) {
+    public ElementChecker elementWithId(String elementId) {
         Element element = html.getElementById(elementId);
         assertNotNull("Element with id -" + elementId + "- not found", element);
         return new ElementChecker(element);
