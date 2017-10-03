@@ -18,7 +18,7 @@ public class Html5ValAllConstraintsTest {
     @Before
     public void setUp() {
         context.setVariable("allConstraintsBean", new AllConstraintsBean());
-        Document html = IntegrationTestUtils.processTemplate(IntegrationTestUtils.initTemplateEngine(),
+        Document html = IntegrationTestUtils.processTemplate(IntegrationTestUtils.initDefaultTemplateEngine(),
                 "allConstraintsNameAttrForm.html", context);
         checker = new HtmlChecker(html);
     }

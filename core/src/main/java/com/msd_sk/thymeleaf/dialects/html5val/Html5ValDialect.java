@@ -37,5 +37,11 @@ public class Html5ValDialect extends AbstractProcessorDialect {
             ValidationPerformerFactory.addCustomPerformer(performer);
         }
     }
+    /**
+     * Remove an additional ValidationPerformer.
+     */
+    public void removePerformer(IValidationPerformer performer) {
+        ValidationPerformerFactory.removeCustomPerformer(performer);
+    }
 
 }

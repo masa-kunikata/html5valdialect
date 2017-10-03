@@ -18,7 +18,7 @@ public class Html5ValUserFormIntegrationTest {
     @Before
     public void setUp() {
         context.setVariable("userFormBean", new UserFormBean());
-        Document html = IntegrationTestUtils.processTemplate(IntegrationTestUtils.initTemplateEngine(), "userForm.html",
+        Document html = IntegrationTestUtils.processTemplate(IntegrationTestUtils.initDefaultTemplateEngine(), "userForm.html",
                 context);
         checker = new HtmlChecker(html);
     }

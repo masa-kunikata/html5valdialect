@@ -1,10 +1,9 @@
 package com.msd_sk.thymeleaf.dialects.html5val.performers;
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ValidationPerformerFactory {
 
@@ -13,7 +12,7 @@ public class ValidationPerformerFactory {
     private final List<IValidationPerformer> performers;
 
     private ValidationPerformerFactory() {
-        performers = Collections.synchronizedList(new ArrayList<IValidationPerformer>());
+        performers = new CopyOnWriteArrayList<IValidationPerformer>();
         performers.addAll(Arrays.asList(DefaultPerformers.values()));
     }
 
@@ -22,6 +21,17 @@ public class ValidationPerformerFactory {
      */
     public static void addCustomPerformer(IValidationPerformer performer) {
         SINGLE_INSTANCE.performers.add(0, performer);
+    }
+
+    /**
+     * Remove a custom IValidationPerformer from the list of performers.
+     */
+    public static void removeCustomPerformer(IValidationPerformer performer) {
+        if(Arrays.asList(DefaultPerformers.values()).contains(performer)) {
+            return;
+        }
+
+        SINGLE_INSTANCE.performers.remove(performer);
     }
 
     public static IValidationPerformer getPerformerFor(Annotation constraint) {

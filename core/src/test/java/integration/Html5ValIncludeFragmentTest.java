@@ -18,7 +18,7 @@ public class Html5ValIncludeFragmentTest {
     @Before
     public void setUp() {
         context.setVariable("allConstraintsBean", new AllConstraintsBean());
-        Document html = IntegrationTestUtils.processTemplate(IntegrationTestUtils.initTemplateEngine(),
+        Document html = IntegrationTestUtils.processTemplate(IntegrationTestUtils.initDefaultTemplateEngine(),
                 "fragments/mainForm.html", context);
         checker = new HtmlChecker(html);
     }

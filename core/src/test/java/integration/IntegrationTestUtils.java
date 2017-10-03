@@ -22,6 +22,11 @@ class IntegrationTestUtils {
         templateResolver.setCacheable(false);
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
+        return templateEngine;
+    }
+
+    static TemplateEngine initDefaultTemplateEngine() {
+        TemplateEngine templateEngine = initTemplateEngine();
         templateEngine.addDialect(new Html5ValDialect());
         return templateEngine;
     }
