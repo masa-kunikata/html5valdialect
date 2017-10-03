@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:val="http://html5valdialect.sourceforge.net">
+    <head>
+        <title>HTML5 Validation dialect</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>HTML5 Validation dialect</h1>
+        <form val:validate="${allConstraintsBean}" method="post">
+            <p>
+                <label for="digitsInt3Frac2Field">digitsInt3Frac2Field</label>
+                <input type="text" name="digitsInt3Frac2Field" id="digitsInt3Frac2Field" />
+            </p>
+            <p>
+                <label for="max100Field">max100Field</label>
+                <input type="text" name="max100Field" id="max100Field" />
+            </p>
+            <p>
+                <label for="min18Field">min18Field</label>
+                <input type="text" name="min18Field" id="min18Field" />
+            </p>
+            <p>
+                <label for="min10Max200Field">min10Max200Field</label>
+                <input type="text" name="min10Max200Field" id="min10Max200Field" />
+            </p>
+            <p>
+                <label for="notNullField">notNullField</label>
+                <input type="text" name="notNullField" id="notNullField" />
+            </p>
+            <p>
+                <label for="patternAlphabet5charsField">patternAlphabet5charsField</label>
+                <input type="text" name="patternAlphabet5charsField" id="patternAlphabet5charsField" />
+            </p>
+            <p>
+                <label for="size5to10Field">size5to10Field</label>
+                <input type="text" name="size5to10Field" id="size5to10Field" />
+            </p>
+            <p>
+                <label for="emailField">emailField</label>
+                <input type="text" name="emailField" id="emailField" />
+            </p>
+            <p>
+                <label for="length6to11Field">length6to11Field</label>
+                <input type="text" name="length6to11Field" id="length6to11Field" />
+            </p>
+            <p>
+                <label for="notBlankField">notBlankField</label>
+                <input type="text" name="notBlankField" id="notBlankField" />
+            </p>
+            <p>
+                <label for="notEmptyField">notEmptyField</label>
+                <input type="text" name="notEmptyField" id="notEmptyField" />
+            </p>
+            <p>
+                <label for="rangeMin0Max10Field">rangeMin0Max10Field</label>
+                <input type="text" name="rangeMin0Max10Field" id="rangeMin0Max10Field" />
+            </p>
+            <p>
+                <label for="urlField">urlField</label>
+                <input type="text" name="urlField" id="urlField" />
+            </p>
+            <p>
+                <label for="urlHttpLocalhost8080Field">urlHttpLocalhost8080Field</label>
+                <input type="text" name="urlHttpLocalhost8080Field" id="urlHttpLocalhost8080Field" />
+            </p>
+            <input type="submit" />
+        </form>
+    </body>
+</html>
