@@ -18,7 +18,6 @@ import org.junit.Test;
 
 public class AnnotationExtractorTest {
 
-
     @Test
     public void nullField() {
         AnnotationExtractor extractor = AnnotationExtractor.forClass(AnnotatedExample.class);
@@ -70,7 +69,6 @@ public class AnnotationExtractorTest {
         Class<?> notEmptyClass = annotations.get(0).getClass();
         assertTrue(NotEmpty.class.isAssignableFrom(notEmptyClass));
 
-
     }
 
     @Test
@@ -107,12 +105,12 @@ public class AnnotationExtractorTest {
 
         annotations = extractor.getAnnotationsForField("child.postalCode");
         assertThat(annotations.size(), is(1));
-        notNullClass= annotations.get(0).getClass();
+        notNullClass = annotations.get(0).getClass();
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
 
         annotations = extractor.getAnnotationsForField("child.grandChild.phone");
         assertThat(annotations.size(), is(1));
-        notEmptyClass= annotations.get(0).getClass();
+        notEmptyClass = annotations.get(0).getClass();
         assertTrue(NotEmpty.class.isAssignableFrom(notEmptyClass));
     }
 }

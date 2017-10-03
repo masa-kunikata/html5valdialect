@@ -17,7 +17,7 @@ public class URLRegexpComposer implements IRegexpComposer {
         return new URLRegexpComposer(url);
     }
 
-	@Override
+    @Override
     public String regexp() {
         if (containsRegexp()) {
             return url.regexp();

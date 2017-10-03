@@ -5,6 +5,6 @@ import org.thymeleaf.model.IModel;
 
 /** */
 interface IValidateAttribute {
-	void execute(final ITemplateContext context, final IModel model, final String attributeValue);
+    void execute(final ITemplateContext context, final IModel model, final String attributeValue);
 
 }

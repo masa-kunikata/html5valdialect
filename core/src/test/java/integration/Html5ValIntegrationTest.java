@@ -53,6 +53,7 @@ public class Html5ValIntegrationTest extends IntegrationTestBase {
 
     private void checkHostingServer() {
         checker.elementWithId("applicationWebPage").containsAttributeWithValue("type", "url");
-        checker.elementWithId("applicationWebPage").containsAttributeWithValue("pattern", "^http://localhost:8080(/.*)?");
+        checker.elementWithId("applicationWebPage").containsAttributeWithValue("pattern",
+                "^http://localhost:8080(/.*)?");
     }
 }

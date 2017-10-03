@@ -28,7 +28,7 @@ public class LengthRegexpComposer implements IRegexpComposer {
         return new LengthRegexpComposer(length.min(), length.max());
     }
 
-	@Override
+    @Override
     public String regexp() {
         StringBuilder sb = new StringBuilder();
         sb.append(".{");

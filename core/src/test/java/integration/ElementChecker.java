@@ -13,7 +13,8 @@ class ElementChecker {
     }
 
     public void containsAttributeWithValue(String attributeName, String attributeValue) {
-        String errorMsg = String.format("Element with id -%s- does not contain attribute -%s- with value -%s-", element.getAttribute("id"), attributeName, attributeValue);
+        String errorMsg = String.format("Element with id -%s- does not contain attribute -%s- with value -%s-",
+                element.getAttribute("id"), attributeName, attributeValue);
         assertTrue(errorMsg, attributeValue.equals(element.getAttribute(attributeName)));
     }
 }

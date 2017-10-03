@@ -14,10 +14,10 @@ import net.sourceforge.html5val.performers.ValidationPerformerFactory;
 
 public class Html5ValDialect extends AbstractProcessorDialect {
 
-	public static final String DIALECT_NAME = "Html5 Val Dialect";
-	public static final String DIALECT_PREFIX = "val";
+    public static final String DIALECT_NAME = "Html5 Val Dialect";
+    public static final String DIALECT_PREFIX = "val";
 
-	public Html5ValDialect() {
+    public Html5ValDialect() {
         super(DIALECT_NAME, DIALECT_PREFIX, StandardDialect.PROCESSOR_PRECEDENCE);
     }
 
@@ -29,7 +29,7 @@ public class Html5ValDialect extends AbstractProcessorDialect {
         return processors;
     }
 
-	/**
+    /**
      * Add a set of additional ValidationPerformers to ValidateProcessor.
      */
     public void setAdditionalPerformers(Set<IValidationPerformer> additionalPerformers) {

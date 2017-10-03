@@ -25,36 +25,37 @@ import org.thymeleaf.templatemode.TemplateMode;
  */
 public class ValidateAttributeModelProcessor extends AbstractAttributeModelProcessor {
 
-	private static final String ATTR_NAME = "validate";
+    private static final String ATTR_NAME = "validate";
     private static final int PRECEDENCE = 10000;
 
     public ValidateAttributeModelProcessor(final String dialectPrefix) {
         super(
-            TemplateMode.HTML, // This processor will apply only to HTML mode
-            dialectPrefix,     // Prefix to be applied to name for matching
-            null,              // tag name: not specified
-            false,             // No prefix to be applied to tag name
-            ATTR_NAME,         // Name of the attribute that will be matched
-            true,              // Apply dialect prefix to attribute name
-            PRECEDENCE,        // Precedence (inside dialect's own precedence)
-            true);             // Remove the matched attribute afterwards
+                TemplateMode.HTML, // This processor will apply only to HTML mode
+                dialectPrefix, // Prefix to be applied to name for matching
+                null, // tag name: not specified
+                false, // No prefix to be applied to tag name
+                ATTR_NAME, // Name of the attribute that will be matched
+                true, // Apply dialect prefix to attribute name
+                PRECEDENCE, // Precedence (inside dialect's own precedence)
+                true); // Remove the matched attribute afterwards
     }
 
     private static final List<String> TAG_NAMES = Arrays.asList("form", "th:block");
+
     protected void doProcess(
             final ITemplateContext context, final IModel model,
             final AttributeName attributeName, final String attributeValue,
             final IElementModelStructureHandler structureHandler) {
 
-		final List<IProcessableElementTag> elementStack = context.getElementStack();
-		final IProcessableElementTag currentElement = elementStack.get(elementStack.size() - 1);
+        final List<IProcessableElementTag> elementStack = context.getElementStack();
+        final IProcessableElementTag currentElement = elementStack.get(elementStack.size() - 1);
 
-		if(!TAG_NAMES.contains(currentElement.getElementCompleteName())) {
-			return;
-		};
+        if (!TAG_NAMES.contains(currentElement.getElementCompleteName())) {
+            return;
+        }
+        ;
 
-		ValidateAttributeCommands.DEFAULT.execute(context, model, attributeValue);
+        ValidateAttributeCommands.DEFAULT.execute(context, model, attributeValue);
     }
-
 
 }

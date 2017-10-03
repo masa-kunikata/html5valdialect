@@ -20,7 +20,7 @@ abstract public class IntegrationTestBase {
 
     @Before
     public void setUpTemplateEngine() {
-    	ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("/META-INF/");
         templateResolver.setCacheable(false);
         templateEngine = new TemplateEngine();
@@ -33,9 +33,9 @@ abstract public class IntegrationTestBase {
         try {
             HtmlDocumentBuilder builder = new HtmlDocumentBuilder();
             StringReader reader = new StringReader(html);
-        	return builder.parse(new InputSource(reader));
-		} catch (SAXException | IOException e) {
-			throw new RuntimeException(e);
-		}
+            return builder.parse(new InputSource(reader));
+        } catch (SAXException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

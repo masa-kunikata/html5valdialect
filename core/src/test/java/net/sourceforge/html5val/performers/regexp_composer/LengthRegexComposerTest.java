@@ -16,7 +16,7 @@ public class LengthRegexComposerTest {
         assertEquals(regexpExpected, regexp);
     }
 
-     @Test
+    @Test
     public void onlyMin() {
         int min = 50;
         int max = LengthRegexpComposer.MAX_BOUNDARY;

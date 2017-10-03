@@ -9,5 +9,6 @@ public interface IValidationPerformer {
 
     Class<? extends Annotation> getConstraintClass();
 
-    IProcessableElementTag toValidationTag(Annotation constraint, ITemplateContext context, IProcessableElementTag elementTag);
+    IProcessableElementTag toValidationTag(Annotation constraint, ITemplateContext context,
+            IProcessableElementTag elementTag);
 }

@@ -15,7 +15,7 @@ public class DigitsRegexpComposer implements IRegexpComposer {
         return new DigitsRegexpComposer(digits);
     }
 
-	@Override
+    @Override
     public String regexp() {
         if (neitherFractionNorInteger()) {
             return EMPTY_STRING_REGEXP;

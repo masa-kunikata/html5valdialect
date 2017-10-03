@@ -17,7 +17,7 @@ public class URLRegexpComposerTest {
     public void annotationWithPattern() {
         URL urlAnnotation = new MockURLBuilder().withRegexp(REGEXP).build();
         assertEquals(REGEXP, URLRegexpComposer.forURL(urlAnnotation).regexp());
-     }
+    }
 
     @Test
     public void annotationWithProtocol() {
@@ -30,7 +30,7 @@ public class URLRegexpComposerTest {
         assertThat("http://www.ya.com:443/", matchesRegexp(pattern));
         String result = URLRegexpComposer.forURL(urlAnnotation).regexp();
         assertEquals(pattern, result);
-     }
+    }
 
     @Test
     public void annotationWithHost() {
@@ -47,7 +47,7 @@ public class URLRegexpComposerTest {
         assertThat("http://www.ya.com:443/show.html", matchesRegexp(pattern));
         String result = URLRegexpComposer.forURL(urlAnnotation).regexp();
         assertEquals(pattern, result);
-     }
+    }
 
     @Test
     public void annotationWithPort() {
@@ -62,7 +62,7 @@ public class URLRegexpComposerTest {
         assertThat("http://www.ya.com:443/show.html", matchesRegexp(pattern));
         String result = URLRegexpComposer.forURL(urlAnnotation).regexp();
         assertEquals(pattern, result);
-     }
+    }
 
     @Test
     public void annotationWithProtocolHostAndPort() {
@@ -73,6 +73,5 @@ public class URLRegexpComposerTest {
         assertThat("http://www.google.com:8080/showBill/234.html", matchesRegexp(pattern));
         String result = URLRegexpComposer.forURL(urlAnnotation).regexp();
         assertEquals(pattern, result);
-     }
+    }
 }
-

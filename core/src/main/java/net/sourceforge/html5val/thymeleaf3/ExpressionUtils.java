@@ -6,15 +6,14 @@ import org.thymeleaf.standard.expression.IStandardExpression;
 import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.standard.expression.StandardExpressions;
 
-
 /**
  * Simplifies evaluation of Thymeleaf expressions.
  */
 public class ExpressionUtils {
-    
+
     public static Object evaluate(final ITemplateContext context, final String expression) {
-		
-		final IEngineConfiguration configuration = context.getConfiguration();
+
+        final IEngineConfiguration configuration = context.getConfiguration();
 
         /* Obtain the Thymeleaf Standard Expression parser */
         final IStandardExpressionParser parser = StandardExpressions.getExpressionParser(configuration);

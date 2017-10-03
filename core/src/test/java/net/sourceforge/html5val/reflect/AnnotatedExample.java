@@ -19,7 +19,7 @@ class AnnotatedChild {
     private String postalCode;
 
     @SuppressWarnings("unused")
-	private AnnotatedGrandChild grandChild;
+    private AnnotatedGrandChild grandChild;
 }
 
 class AnnotatedGrandChild {
@@ -28,8 +28,7 @@ class AnnotatedGrandChild {
     private String phone;
 }
 
-
-class AnnotatedParent extends  AnnotatedGrandParent {
+class AnnotatedParent extends AnnotatedGrandParent {
 
     @NotNull
     private String name;
@@ -49,6 +48,5 @@ class AnnotatedExample extends AnnotatedParent {
     private String email;
 
     @SuppressWarnings("unused")
-	private AnnotatedChild child;
+    private AnnotatedChild child;
 }
-
