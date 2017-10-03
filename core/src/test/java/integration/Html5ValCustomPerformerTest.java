@@ -30,7 +30,7 @@ public class Html5ValCustomPerformerTest {
     @Before
     public void setUp() {
 
-        IValidationPerformer customEmailPerformer = new IValidationPerformer(){
+        final IValidationPerformer customEmailPerformer = new IValidationPerformer(){
             @Override
             public Class<Email> getConstraintClass() {
                 return Email.class;
@@ -46,17 +46,16 @@ public class Html5ValCustomPerformerTest {
             }
         };
 
-        Set<IValidationPerformer> performers = new HashSet<>();
+        final Set<IValidationPerformer> performers = new HashSet<>();
         performers.add(customEmailPerformer);
-        Html5ValDialect html5ValDialect = new Html5ValDialect();
+        final Html5ValDialect html5ValDialect = new Html5ValDialect();
         html5ValDialect.setAdditionalPerformers(performers);
 
-        TemplateEngine templateEngine = IntegrationTestUtils.initTemplateEngine();
+        final TemplateEngine templateEngine = IntegrationTestUtils.initTemplateEngine();
         templateEngine.addDialect(html5ValDialect);
 
         context.setVariable("allConstraintsBean", new AllConstraintsBean());
-        Document html = IntegrationTestUtils.processTemplate(templateEngine, "allConstraintsNameAttrForm.html", context);
-        System.out.println(html);
+        final Document html = IntegrationTestUtils.processTemplate(templateEngine, "allConstraintsNameAttrForm.html", context);
         checker = new HtmlChecker(html);
 
         html5ValDialect.removePerformer(customEmailPerformer);
