@@ -1,5 +1,22 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+        classpath fileTree(dir: "lib", include: "**/*.jar")
+        classpath "com.github.marceloemanoel:gradle-migrations:0.2.1"
+    }
+}
+
 apply plugin: 'java'
-apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot' 
 
 group = 'net.sourceforge.html5valdialect'
 version = '2.1.3-SNAPSHOT'
@@ -18,12 +35,11 @@ repositories {
      mavenCentral()
 }
 dependencies {
-	compile group: 'net.sourceforge.html5valdialect', name: 'html5valdialect', version: '2.1.2'
-	compile group: 'org.thymeleaf', name: 'thymeleaf', version:'2.1.4.RELEASE'
-    compile group: 'org.thymeleaf', name: 'thymeleaf-spring3', version:'2.1.4.RELEASE'
-    compile group: 'org.springframework', name: 'spring-context', version:'3.2.4.RELEASE'
-    compile group: 'org.springframework', name: 'spring-webmvc', version:'3.2.4.RELEASE'
+
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    compile group: 'net.sourceforge.html5valdialect', name: 'html5valdialect', version: '2.1.2'
     compile group: 'javax.validation', name: 'validation-api', version:'1.0.0.GA'
     compile group: 'org.hibernate', name: 'hibernate-validator', version:'4.3.0.Final'
-    //providedCompile group: 'javax', name: 'javaee-web-api', version:'6.0'
 }
