@@ -11,15 +11,15 @@ import net.sourceforge.html5val.util.EmptyChecker;
 
 public class AnnotationExtractor {
 
-    private Class targetClass;
+    private Class<?> targetClass;
     private String targetFieldName;
     private FieldFinder fieldFinder = new FieldFinder();
 
-    private AnnotationExtractor(Class annotatedClass) {
+    private AnnotationExtractor(Class<?> annotatedClass) {
         this.targetClass = annotatedClass;
     }
 
-    public static AnnotationExtractor forClass(Class annotatedClass) {
+    public static AnnotationExtractor forClass(Class<?> annotatedClass) {
         return new AnnotationExtractor(annotatedClass);
     }
 
@@ -42,7 +42,7 @@ public class AnnotationExtractor {
         if (field != null) {
             return Arrays.asList(field.getAnnotations());
         } else {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         }
     }
 }

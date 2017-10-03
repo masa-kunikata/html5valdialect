@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import java.lang.annotation.Annotation;
 
 import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Size;
 
@@ -22,29 +23,76 @@ import org.hibernate.validator.internal.constraintvalidators.URLValidator;
  */
 public class ValidationChecker {
 
-    private ConstraintValidator validator;
+    private ConstraintValidator<Annotation, CharSequence> validator;
     private String pattern;
     private Annotation annotation;
 
     public ValidationChecker(Annotation annotation, String pattern) {
         this.pattern = pattern;
         this.annotation = annotation;
-        validator = validatorFor(annotation);
+        validator = ConstraintValidators.validatorFor(annotation);
         validator.initialize(annotation);
     }
 
-    private ConstraintValidator validatorFor(Annotation annotation) {
-        if (annotation instanceof Digits) {
-            return new DigitsValidatorForCharSequence();
-        } else if (annotation instanceof URL) {
-            return new URLValidator();
-        } else if (annotation instanceof Length) {
-            return new LengthValidator();
-        } else if (annotation instanceof Size) {
-            return new SizeValidatorForCharSequence();
-        } else {
+    private enum ConstraintValidators implements ConstraintValidator<Annotation, CharSequence>{
+    	DIGITS{
+        	private DigitsValidatorForCharSequence vdt = new DigitsValidatorForCharSequence();
+			@Override
+			public void initialize(Annotation constraintAnnotation) {
+				vdt.initialize((Digits)constraintAnnotation);
+			}
+
+			@Override
+			public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
+				return vdt.isValid(value, context);
+			}
+    	},
+    	URL{
+        	private URLValidator vdt = new URLValidator();
+			@Override
+			public void initialize(Annotation constraintAnnotation) {
+				vdt.initialize((URL)constraintAnnotation);
+			}
+
+			@Override
+			public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
+				return vdt.isValid(value, context);
+			}
+
+    	},
+    	LENGTH{
+        	private LengthValidator vdt = new LengthValidator();
+			@Override
+			public void initialize(Annotation constraintAnnotation) {
+				vdt.initialize((Length)constraintAnnotation);
+			}
+
+			@Override
+			public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
+				return vdt.isValid(value, context);
+			}
+    	},
+    	SIZE{
+        	private SizeValidatorForCharSequence vdt = new SizeValidatorForCharSequence();
+			@Override
+			public void initialize(Annotation constraintAnnotation) {
+				vdt.initialize((Size)constraintAnnotation);
+			}
+
+			@Override
+			public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
+				return vdt.isValid(value, context);
+			}
+    	},
+    	;
+    	static ConstraintValidator<Annotation, CharSequence> validatorFor(Annotation annotation){
+            if (annotation instanceof Digits) return DIGITS;
+            if (annotation instanceof URL)    return URL;
+            if (annotation instanceof Length) return LENGTH;
+            if (annotation instanceof Size)   return SIZE;
+
             throw new IllegalArgumentException("ConstraintValidator unknown");
-        }
+    	}
     }
 
     public void isValid(String value) {

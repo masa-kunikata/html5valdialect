@@ -1,19 +1,20 @@
 package net.sourceforge.html5val.reflect;
 
-import net.sourceforge.html5val.reflect.AnnotationExtractor;
+import static junit.framework.TestCase.assertNotNull;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
+
+import java.lang.annotation.Annotation;
+import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
 import org.junit.Test;
-
-import javax.validation.constraints.NotNull;
-import java.lang.annotation.Annotation;
-import java.util.List;
-
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class AnnotationExtractorTest {
 
@@ -39,8 +40,8 @@ public class AnnotationExtractorTest {
         AnnotationExtractor extractor = AnnotationExtractor.forClass(AnnotatedChild.class);
         List<Annotation> annotations = extractor.getAnnotationsForField("postalCode");
         assertNotNull(annotations);
-        assertEquals(1, annotations.size());
-        Class notNullClass = annotations.get(0).getClass();
+        assertThat(annotations.size(), is(1));
+        Class<?> notNullClass = annotations.get(0).getClass();
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
     }
 
@@ -50,23 +51,23 @@ public class AnnotationExtractorTest {
         // Own fields
         List<Annotation> annotations = extractor.getAnnotationsForField("name");
         assertNotNull(annotations);
-        assertEquals(1, annotations.size());
-        Class notNullClass = annotations.get(0).getClass();
+        assertThat(annotations.size(), is(1));
+        Class<?> notNullClass = annotations.get(0).getClass();
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
 
         annotations = extractor.getAnnotationsForField("age");
         assertNotNull(annotations);
-        assertEquals(2, annotations.size());
+        assertThat(annotations.size(), is(2));
         notNullClass = annotations.get(0).getClass();
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
-        Class lengthClass = annotations.get(1).getClass();
+        Class<?> lengthClass = annotations.get(1).getClass();
         assertTrue(Length.class.isAssignableFrom(lengthClass));
 
         // Parent fields
         annotations = extractor.getAnnotationsForField("type");
         assertNotNull(annotations);
-        assertEquals(1, annotations.size());
-        Class notEmptyClass = annotations.get(0).getClass();
+        assertThat(annotations.size(), is(1));
+        Class<?> notEmptyClass = annotations.get(0).getClass();
         assertTrue(NotEmpty.class.isAssignableFrom(notEmptyClass));
 
 
@@ -76,41 +77,41 @@ public class AnnotationExtractorTest {
     public void extractAnnotations() {
         AnnotationExtractor extractor = AnnotationExtractor.forClass(AnnotatedExample.class);
         List<Annotation> annotations = extractor.getAnnotationsForField("type");
-        assertEquals(1, annotations.size());
-        Class notEmptyClass = annotations.get(0).getClass();
+        assertThat(annotations.size(), is(1));
+        Class<?> notEmptyClass = annotations.get(0).getClass();
         assertTrue(NotEmpty.class.isAssignableFrom(notEmptyClass));
 
         annotations = extractor.getAnnotationsForField("email");
-        assertEquals(2, annotations.size());
-        Class emailClass = annotations.get(0).getClass();
+        assertThat(annotations.size(), is(2));
+        Class<?> emailClass = annotations.get(0).getClass();
         assertTrue(Email.class.isAssignableFrom(emailClass));
         notEmptyClass = annotations.get(1).getClass();
         assertTrue(NotEmpty.class.isAssignableFrom(notEmptyClass));
 
         annotations = extractor.getAnnotationsForField("name");
-        assertEquals(1, annotations.size());
-        Class notNullClass = annotations.get(0).getClass();
+        assertThat(annotations.size(), is(1));
+        Class<?> notNullClass = annotations.get(0).getClass();
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
 
         annotations = extractor.getAnnotationsForField("age");
-        assertEquals(2, annotations.size());
+        assertThat(annotations.size(), is(2));
         notNullClass = annotations.get(0).getClass();
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
-        Class lengthClass = annotations.get(1).getClass();
+        Class<?> lengthClass = annotations.get(1).getClass();
         assertTrue(Length.class.isAssignableFrom(lengthClass));
 
         annotations = extractor.getAnnotationsForField("location");
-        assertEquals(1, annotations.size());
-        Class urlClass = annotations.get(0).getClass();
+        assertThat(annotations.size(), is(1));
+        Class<?> urlClass = annotations.get(0).getClass();
         assertTrue(URL.class.isAssignableFrom(urlClass));
 
         annotations = extractor.getAnnotationsForField("child.postalCode");
-        assertEquals(1, annotations.size());
+        assertThat(annotations.size(), is(1));
         notNullClass= annotations.get(0).getClass();
         assertTrue(NotNull.class.isAssignableFrom(notNullClass));
 
         annotations = extractor.getAnnotationsForField("child.grandChild.phone");
-        assertEquals(1, annotations.size());
+        assertThat(annotations.size(), is(1));
         notEmptyClass= annotations.get(0).getClass();
         assertTrue(NotEmpty.class.isAssignableFrom(notEmptyClass));
     }
