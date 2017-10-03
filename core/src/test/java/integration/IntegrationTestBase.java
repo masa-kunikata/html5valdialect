@@ -11,7 +11,8 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import net.sourceforge.html5val.Html5ValDialect;
+import com.msd_sk.thymeleaf.dialects.html5val.Html5ValDialect;
+
 import nu.validator.htmlparser.dom.HtmlDocumentBuilder;
 
 abstract public class IntegrationTestBase {
