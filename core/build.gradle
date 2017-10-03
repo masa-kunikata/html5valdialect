@@ -4,8 +4,8 @@ apply plugin: 'eclipse'
 
 ext['thymeleafVersion'] = '3.0.7.RELEASE'
 
-group = 'net.sourceforge.html5valdialect'
-version = '3.0.7-SNAPSHOT'
+group = 'com.msd_sk.html5valdialect'
+version = '3.0.1-SNAPSHOT'
 
 description = """html5valdialect"""
 

@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'net.sourceforge.html5valdialect'
+version = '2.1.3-SNAPSHOT'
+
+description = """html5valdialect-example-webapp"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+     mavenCentral()
+}
+dependencies {
+	compile group: 'net.sourceforge.html5valdialect', name: 'html5valdialect', version: '2.1.2'
+	compile group: 'org.thymeleaf', name: 'thymeleaf', version:'2.1.4.RELEASE'
+    compile group: 'org.thymeleaf', name: 'thymeleaf-spring3', version:'2.1.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version:'3.2.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version:'3.2.4.RELEASE'
+    compile group: 'javax.validation', name: 'validation-api', version:'1.0.0.GA'
+    compile group: 'org.hibernate', name: 'hibernate-validator', version:'4.3.0.Final'
+    //providedCompile group: 'javax', name: 'javaee-web-api', version:'6.0'
+}
