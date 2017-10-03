@@ -53,7 +53,7 @@ enum ValidateFormCommands {
 	OUTER_FORM_COMMAND{
 		@Override
 		void execute(final ITemplateContext context, final IModel model, final String attributeValue) {
-			final Class jsr303AnnotatedClass = readJsr303AnnotatedClass(context, attributeValue);
+			final Class<?> jsr303AnnotatedClass = readJsr303AnnotatedClass(context, attributeValue);
 			processFields(context, jsr303AnnotatedClass, model);
 			//TODO REMOVE outer form "div"
 			model.remove(model.size() - 1); // close tag
@@ -62,11 +62,11 @@ enum ValidateFormCommands {
 			log.info(model);
 		}
 
-		private Class readJsr303AnnotatedClass(final ITemplateContext context, final String attributeValue) {
+		private Class<?> readJsr303AnnotatedClass(final ITemplateContext context, final String attributeValue) {
 			return ExpressionUtils.evaluate(context, attributeValue).getClass();
 		}
 
-		private void processFields(final ITemplateContext context, final Class jsr303AnnotatedClass, final IModel model) {
+		private void processFields(final ITemplateContext context, final Class<?> jsr303AnnotatedClass, final IModel model) {
 			Map<Integer, IProcessableElementTag> tags =  FormElementFinders.findFormElements(model);
 			for (Map.Entry<Integer, IProcessableElementTag> tag : tags.entrySet()) {
 				IProcessableElementTag modifiedTag = processFieldValidation(context, jsr303AnnotatedClass, tag.getValue());
@@ -74,10 +74,10 @@ enum ValidateFormCommands {
 			}
 		}
 
-		private IProcessableElementTag processFieldValidation(final ITemplateContext context, final Class jsr303AnnotatedClass, final IProcessableElementTag elementTag) {
+		private IProcessableElementTag processFieldValidation(final ITemplateContext context, final Class<?> jsr303AnnotatedClass, final IProcessableElementTag elementTag) {
 			IProcessableElementTag modifiedTag = elementTag;
 			final String fieldName = getFieldName(modifiedTag);
-			final List<Annotation> constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsForField(fieldName);
+			final List<? extends Annotation> constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass).getAnnotationsForField(fieldName);
 			for (final Annotation constraint : constraints) {
 				IValidationPerformer performer = ValidationPerformerFactory.getPerformerFor(constraint);
 				modifiedTag = performer.toValidationTag(constraint, context, modifiedTag);

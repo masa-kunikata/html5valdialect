@@ -1,12 +1,13 @@
 package net.sourceforge.html5val.performers;
 
 import java.lang.annotation.Annotation;
+
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.IProcessableElementTag;
 
-public interface IValidationPerformer<T extends Annotation> {
+public interface IValidationPerformer {
 
-    Class<T> getConstraintClass();
+    Class<? extends Annotation> getConstraintClass();
 
-    IProcessableElementTag toValidationTag(T constraint, ITemplateContext context, IProcessableElementTag elementTag);
+    IProcessableElementTag toValidationTag(Annotation constraint, ITemplateContext context, IProcessableElementTag elementTag);
 }

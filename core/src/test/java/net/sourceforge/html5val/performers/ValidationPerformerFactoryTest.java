@@ -9,9 +9,6 @@ import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.Test;
 
-import net.sourceforge.html5val.performers.IValidationPerformer;
-import net.sourceforge.html5val.performers.ValidationPerformerFactory;
-
 // FIXME: only test the "happy path". Test the boundary conditions.
 public class ValidationPerformerFactoryTest {
 
@@ -20,7 +17,7 @@ public class ValidationPerformerFactoryTest {
     @Test
     public void getPerformerFor() {
         Email emailAnnotation = context.mock(Email.class);
-        assertGetPerformer(EmailPerformer.class, emailAnnotation);
+        assertGetPerformer(DefaultPerformers.EMAIL, emailAnnotation);
     }
 
     private static void assertGetPerformer(Class expectedPerformerClass, Annotation annotation) {

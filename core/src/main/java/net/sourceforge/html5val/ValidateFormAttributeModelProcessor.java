@@ -1,14 +1,8 @@
 package net.sourceforge.html5val;
 
-import java.util.List;
-
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
-import org.thymeleaf.exceptions.TemplateProcessingException;
 import org.thymeleaf.model.IModel;
-import org.thymeleaf.model.IModelFactory;
-import org.thymeleaf.model.IOpenElementTag;
-import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.AbstractAttributeModelProcessor;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -47,9 +41,9 @@ public class ValidateFormAttributeModelProcessor extends AbstractAttributeModelP
             final ITemplateContext context, final IModel model,
             final AttributeName attributeName, final String attributeValue,
             final IElementModelStructureHandler structureHandler) {
-				
 
-				
+
+
 		ValidateFormCommands.FORM_COMMAND.execute(context, model, attributeValue);
     }
 
