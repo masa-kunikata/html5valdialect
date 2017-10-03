@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:val="http://html5valdialect.sourceforge.net">
+    <th:block th:fragment="subForm(passingBean)">
+        <th:block val:validate="${passingBean}">
+            <p>
+                <label for="notNullField">notNullField</label>
+                <input type="text" name="notNullField" id="notNullField" />
+            </p>
+            <p>
+                <label for="patternAlphabet5charsField">patternAlphabet5charsField</label>
+                <input type="text" name="patternAlphabet5charsField" id="patternAlphabet5charsField" />
+            </p>
+            <p>
+                <label for="size5to10Field">size5to10Field</label>
+                <input type="text" name="size5to10Field" id="size5to10Field" />
+            </p>
+        </th:block>
+    </th:block>
+</html>
