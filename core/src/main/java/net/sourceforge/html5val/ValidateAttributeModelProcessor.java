@@ -1,8 +1,12 @@
 package net.sourceforge.html5val;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IModel;
+import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.AbstractAttributeModelProcessor;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -13,23 +17,22 @@ import org.thymeleaf.templatemode.TemplateMode;
  * Usage:
  * <pre>
  * {@code
- *    <form val:validate="${product}">
- *         <input type="text" name="description" />
+ *    <form val:validate="${modelInstance}">
+ *         <input type="text" th:field="*{property}" />
  *    </form>
  * }
  * </pre>
  */
-public class ValidateFormAttributeModelProcessor extends AbstractAttributeModelProcessor {
+public class ValidateAttributeModelProcessor extends AbstractAttributeModelProcessor {
 
-    static final String TAG_NAME = "form";
-    static final String ATTR_NAME = "validate";
+	private static final String ATTR_NAME = "validate";
     private static final int PRECEDENCE = 10000;
 
-    public ValidateFormAttributeModelProcessor(final String dialectPrefix) {
+    public ValidateAttributeModelProcessor(final String dialectPrefix) {
         super(
             TemplateMode.HTML, // This processor will apply only to HTML mode
             dialectPrefix,     // Prefix to be applied to name for matching
-            TAG_NAME,          // tag name: match "form" tag
+            null,              // tag name: not specified
             false,             // No prefix to be applied to tag name
             ATTR_NAME,         // Name of the attribute that will be matched
             true,              // Apply dialect prefix to attribute name
@@ -37,14 +40,20 @@ public class ValidateFormAttributeModelProcessor extends AbstractAttributeModelP
             true);             // Remove the matched attribute afterwards
     }
 
+    private static final List<String> TAG_NAMES = Arrays.asList("form", "th:block");
     protected void doProcess(
             final ITemplateContext context, final IModel model,
             final AttributeName attributeName, final String attributeValue,
             final IElementModelStructureHandler structureHandler) {
 
+		final List<IProcessableElementTag> elementStack = context.getElementStack();
+		final IProcessableElementTag currentElement = elementStack.get(elementStack.size() - 1);
 
+		if(!TAG_NAMES.contains(currentElement.getElementCompleteName())) {
+			return;
+		};
 
-		ValidateFormCommands.FORM_COMMAND.execute(context, model, attributeValue);
+		ValidateAttributeCommands.DEFAULT.execute(context, model, attributeValue);
     }
 
 
