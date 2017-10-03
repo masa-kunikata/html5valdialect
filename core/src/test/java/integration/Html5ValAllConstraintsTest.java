@@ -10,7 +10,7 @@ import org.w3c.dom.Document;
 import integration.bean.AllConstraintsBean;
 import integration.checker.HtmlChecker;
 
-public class Html5ValAllConstraintsTest extends IntegrationTestBase {
+public class Html5ValAllConstraintsTest {
 
     private Context context = new Context();
     private HtmlChecker checker;
@@ -18,15 +18,16 @@ public class Html5ValAllConstraintsTest extends IntegrationTestBase {
     @Before
     public void setUp() {
         context.setVariable("allConstraintsBean", new AllConstraintsBean());
-        Document html = processTemplate("allConstraintsNameAttrForm.html", context);
+        Document html = IntegrationTestUtils.processTemplate(IntegrationTestUtils.initTemplateEngine(),
+                "allConstraintsNameAttrForm.html", context);
         checker = new HtmlChecker(html);
     }
-
 
     @Test
     public void allConstraintsNameAttrForm() throws IOException {
         checker.elementWithId("digitsInt3Frac2Field").containsAttributeWithValue("type", "text");
-        checker.elementWithId("digitsInt3Frac2Field").containsAttributeWithValue("pattern", "([0-9]{1,3}\\.?|\\.[0-9]{1,2}|[0-9]{1,3}\\.[0-9]{1,2}){1}");
+        checker.elementWithId("digitsInt3Frac2Field").containsAttributeWithValue("pattern",
+                "([0-9]{1,3}\\.?|\\.[0-9]{1,2}|[0-9]{1,3}\\.[0-9]{1,2}){1}");
 
         checker.elementWithId("max100Field").containsAttributeWithValue("type", "number");
         checker.elementWithId("max100Field").containsAttributeWithValue("max", "100");
@@ -70,7 +71,8 @@ public class Html5ValAllConstraintsTest extends IntegrationTestBase {
         checker.elementWithId("urlField").containsAttributeWithValue("pattern", "^.+://.+(:[0-9]+)?(/.*)?");
 
         checker.elementWithId("urlHttpLocalhost8080Field").containsAttributeWithValue("type", "url");
-        checker.elementWithId("urlHttpLocalhost8080Field").containsAttributeWithValue("pattern", "^http://localhost:8080(/.*)?");
+        checker.elementWithId("urlHttpLocalhost8080Field").containsAttributeWithValue("pattern",
+                "^http://localhost:8080(/.*)?");
     }
 
 }

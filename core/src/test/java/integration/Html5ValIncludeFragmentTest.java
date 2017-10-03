@@ -10,7 +10,7 @@ import org.w3c.dom.Document;
 import integration.bean.AllConstraintsBean;
 import integration.checker.HtmlChecker;
 
-public class Html5ValIncludeFragmentTest extends IntegrationTestBase {
+public class Html5ValIncludeFragmentTest {
 
     private Context context = new Context();
     private HtmlChecker checker;
@@ -18,18 +18,19 @@ public class Html5ValIncludeFragmentTest extends IntegrationTestBase {
     @Before
     public void setUp() {
         context.setVariable("allConstraintsBean", new AllConstraintsBean());
-        Document html = processTemplate("fragments/mainForm.html", context);
+        Document html = IntegrationTestUtils.processTemplate(IntegrationTestUtils.initTemplateEngine(),
+                "fragments/mainForm.html", context);
         checker = new HtmlChecker(html);
     }
 
-
     @Test
     public void allConstraintsNameAttrForm() throws IOException {
-
+        //normal form
         checker.elementWithId("min10Max200Field").containsAttributeWithValue("type", "number");
         checker.elementWithId("min10Max200Field").containsAttributeWithValue("max", "200");
         checker.elementWithId("min10Max200Field").containsAttributeWithValue("min", "10");
 
+        //th:included fragment
         checker.elementWithId("notNullField").containsAttributeWithValue("type", "text");
         checker.elementWithId("notNullField").containsAttributeWithValue("required", "required");
 

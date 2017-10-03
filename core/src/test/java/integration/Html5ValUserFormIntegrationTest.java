@@ -10,16 +10,16 @@ import org.w3c.dom.Document;
 import integration.bean.UserFormBean;
 import integration.checker.HtmlChecker;
 
-public class Html5ValUserFormIntegrationTest extends IntegrationTestBase {
+public class Html5ValUserFormIntegrationTest {
 
-    private static final String URL_REGEXP = "^.+://.+(:[0-9]+)?(/.*)?";
     private Context context = new Context();
     private HtmlChecker checker;
 
     @Before
     public void setUp() {
         context.setVariable("userFormBean", new UserFormBean());
-        Document html = processTemplate("userForm.html", context);
+        Document html = IntegrationTestUtils.processTemplate(IntegrationTestUtils.initTemplateEngine(), "userForm.html",
+                context);
         checker = new HtmlChecker(html);
     }
 
@@ -48,6 +48,8 @@ public class Html5ValUserFormIntegrationTest extends IntegrationTestBase {
         checker.elementWithId("highSchoolMark").containsAttributeWithValue("min", "0");
         checker.elementWithId("highSchoolMark").containsAttributeWithValue("max", "10");
     }
+
+    private static final String URL_REGEXP = "^.+://.+(:[0-9]+)?(/.*)?";
 
     private void checkPersonalWebPage() {
         checker.elementWithId("personalWebPage").containsAttributeWithValue("type", "url");

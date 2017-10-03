@@ -3,7 +3,6 @@ package integration;
 import java.io.IOException;
 import java.io.StringReader;
 
-import org.junit.Before;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
@@ -15,21 +14,19 @@ import com.msd_sk.thymeleaf.dialects.html5val.Html5ValDialect;
 
 import nu.validator.htmlparser.dom.HtmlDocumentBuilder;
 
-abstract public class IntegrationTestBase {
+class IntegrationTestUtils {
 
-    private TemplateEngine templateEngine;
-
-    @Before
-    public void setUpTemplateEngine() {
+    static TemplateEngine initTemplateEngine() {
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("/templates/");
         templateResolver.setCacheable(false);
-        templateEngine = new TemplateEngine();
+        TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
         templateEngine.addDialect(new Html5ValDialect());
+        return templateEngine;
     }
 
-    protected Document processTemplate(String templateName, Context context) {
+    static Document processTemplate(TemplateEngine templateEngine, String templateName, Context context) {
         String html = templateEngine.process(templateName, context);
         try {
             HtmlDocumentBuilder builder = new HtmlDocumentBuilder();
@@ -39,4 +36,7 @@ abstract public class IntegrationTestBase {
             throw new RuntimeException(e);
         }
     }
+
+
+
 }

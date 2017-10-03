@@ -1,5 +1,7 @@
 package integration.bean;
 
+import java.math.BigDecimal;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -21,7 +23,7 @@ import org.hibernate.validator.constraints.URL;
 public class AllConstraintsBean {
 
     @Digits(integer = 3, fraction = 2)
-    private Long digitsInt3Frac2Field;
+    private BigDecimal digitsInt3Frac2Field;
 
     @Max(value = 100)
     private Integer max100Field;
