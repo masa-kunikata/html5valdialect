@@ -215,10 +215,12 @@ public enum DefaultPerformers implements IValidationPerformer{
 			return modifiedTag;
 	    }
 	},
-	NULL{
+	__NULL_PERFORMER{
+		@Override
 	    public Class<Annotation> getConstraintClass() {
 	    	return null;
 	    }
+		@Override
 	    public IProcessableElementTag toValidationTag(Annotation constraint, ITemplateContext context, IProcessableElementTag elementTag) {
 	    	return null;
 	    }

@@ -34,7 +34,7 @@ public class ValidationPerformerFactory {
                 return performer;
             }
         }
-        return DefaultPerformers.NULL;
+        return DefaultPerformers.__NULL_PERFORMER;
     }
 
     private boolean isPerformerForConstraint(IValidationPerformer performer, Annotation constraint) {
