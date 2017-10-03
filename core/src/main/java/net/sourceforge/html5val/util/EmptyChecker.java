@@ -10,7 +10,7 @@ public class EmptyChecker {
     }
 
     /** If the provided Collection is empty or null. */
-    public static boolean empty(Collection collection) {
+    public static boolean empty(Collection<?> collection) {
         return collection == null || collection.isEmpty();
     }
 

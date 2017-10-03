@@ -1,10 +1,14 @@
 package net.sourceforge.html5val.util;
 
 import java.lang.annotation.Annotation;
+
 import javax.validation.Payload;
-import net.sourceforge.html5val.performers.regexp_composer.LengthRegexpComposer;
+
 import org.hibernate.validator.constraints.Length;
 
+import net.sourceforge.html5val.performers.regexp_composer.LengthRegexpComposer;
+
+@SuppressWarnings("all")
 public class MockLength implements Length {
 
     private int min;

@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 public class FieldFinder {
 
-    public Field findField(Class targetClass, String targetFieldName) {
+    public Field findField(Class<?> targetClass, String targetFieldName) {
         if (isCompositeField(targetFieldName)) {
             return compositeField(targetClass, targetFieldName);
         } else {
@@ -16,7 +16,7 @@ public class FieldFinder {
      * Return a field given its name.
      * Return null if the given field name doesn't match any of the class or superclass fields.
      */
-    private Field fieldInClassOrSuperclass(Class type, String fieldName) {
+    private Field fieldInClassOrSuperclass(Class<?> type, String fieldName) {
         Field field = getField(type, fieldName);
         if (field != null) {
             return field;
@@ -27,7 +27,7 @@ public class FieldFinder {
         return null;
     }
 
-    private Field getField(Class type, String attribute) {
+    private Field getField(Class<?> type, String attribute) {
         for (Field classField : type.getDeclaredFields()) {
             if (classField.getName().equals(attribute)) {
                 return classField;
@@ -57,7 +57,7 @@ public class FieldFinder {
      *
      *  Note that the field 'doo' could be in a superclass of Bar.
      */
-    private Field compositeField(Class type, String compositeFieldName) {
+    private Field compositeField(Class<?> type, String compositeFieldName) {
         if (isCompositeField(compositeFieldName)) {
             String attribute = getParentField(compositeFieldName);
             Field field = fieldInClassOrSuperclass(type, attribute);

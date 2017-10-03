@@ -1,9 +1,11 @@
 package net.sourceforge.html5val.util;
 
 import java.lang.annotation.Annotation;
+
 import javax.validation.Payload;
 import javax.validation.constraints.Digits;
 
+@SuppressWarnings("all")
 public class MockDigits implements Digits {
 
     private int integer;

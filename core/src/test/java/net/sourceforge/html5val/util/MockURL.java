@@ -1,11 +1,15 @@
 package net.sourceforge.html5val.util;
 
 import java.lang.annotation.Annotation;
+
 import javax.validation.Payload;
 import javax.validation.constraints.Pattern.Flag;
-import net.sourceforge.html5val.performers.regexp_composer.URLRegexpComposer;
+
 import org.hibernate.validator.constraints.URL;
 
+import net.sourceforge.html5val.performers.regexp_composer.URLRegexpComposer;
+
+@SuppressWarnings("all")
 public class MockURL implements URL {
 
     private String protocol;

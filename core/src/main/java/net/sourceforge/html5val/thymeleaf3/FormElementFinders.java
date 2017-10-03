@@ -1,14 +1,12 @@
 package net.sourceforge.html5val.thymeleaf3;
 
-import org.thymeleaf.model.IProcessableElementTag;
-import org.thymeleaf.model.IModel;
-import org.thymeleaf.util.ArrayUtils;
-import org.thymeleaf.exceptions.TemplateProcessingException;
-
-import java.util.Map;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Map;
+
+import org.thymeleaf.exceptions.TemplateProcessingException;
+import org.thymeleaf.model.IModel;
+import org.thymeleaf.model.IProcessableElementTag;
+import org.thymeleaf.util.ArrayUtils;
 
 import net.sourceforge.html5val.util.EmptyChecker;
 
@@ -128,8 +126,8 @@ public enum FormElementFinders {
 	;
 
 	protected abstract Map<Integer, IProcessableElementTag> find(final IModel form);
-	
-	
+
+
     /**
      * Given a from element, return all valid input names.
      */

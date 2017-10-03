@@ -1,10 +1,13 @@
 package net.sourceforge.html5val.util;
 
 import java.lang.annotation.Annotation;
+
 import javax.validation.Payload;
 import javax.validation.constraints.Size;
+
 import net.sourceforge.html5val.performers.regexp_composer.LengthRegexpComposer;
 
+@SuppressWarnings("all")
 public class MockSize implements Size {
 
     private int min;

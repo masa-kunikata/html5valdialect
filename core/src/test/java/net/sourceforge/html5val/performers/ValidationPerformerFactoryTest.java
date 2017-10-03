@@ -20,13 +20,14 @@ public class ValidationPerformerFactoryTest {
         assertGetPerformer(DefaultPerformers.EMAIL, emailAnnotation);
     }
 
-    private static void assertGetPerformer(Class expectedPerformerClass, Annotation annotation) {
-        IValidationPerformer performer = ValidationPerformerFactory.getPerformerFor(annotation);
-        assertEquals(expectedPerformerClass, performer.getClass());
-    }
-
     /** Public method to be used in every IValidationPerformer test. */
     public static void assertGetPerformer(IValidationPerformer expectedPerformer, Annotation annotation) {
         assertGetPerformer(expectedPerformer.getClass(), annotation);
     }
+
+    private static void assertGetPerformer(Class<?> expectedPerformerClass, Annotation annotation) {
+        IValidationPerformer performer = ValidationPerformerFactory.getPerformerFor(annotation);
+        assertEquals(expectedPerformerClass, performer.getClass());
+    }
+
 }

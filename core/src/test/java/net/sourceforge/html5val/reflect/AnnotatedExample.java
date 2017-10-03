@@ -1,11 +1,11 @@
 package net.sourceforge.html5val.reflect;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
-
-import javax.validation.constraints.NotNull;
 
 abstract class AnnotatedGrandParent {
 
@@ -18,7 +18,8 @@ class AnnotatedChild {
     @NotNull
     private String postalCode;
 
-    private AnnotatedGrandChild grandChild;
+    @SuppressWarnings("unused")
+	private AnnotatedGrandChild grandChild;
 }
 
 class AnnotatedGrandChild {
@@ -47,6 +48,7 @@ class AnnotatedExample extends AnnotatedParent {
     @NotEmpty
     private String email;
 
-    private AnnotatedChild child;
+    @SuppressWarnings("unused")
+	private AnnotatedChild child;
 }
 
