@@ -1,4 +1,4 @@
-3.0.7
+3.0.1
 =====
 - Version compatible with Thymleaf 3.0.7 or higher.
 
