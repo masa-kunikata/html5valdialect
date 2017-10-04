@@ -1,37 +1,38 @@
-package com.msd_sk.thymeleaf.dialects.html5val.util;
+package com.github.masa_kunikata.html5val.util;
 
 import java.lang.annotation.Annotation;
 
 import javax.validation.Payload;
-
-import org.hibernate.validator.constraints.Length;
-
-import com.github.masa_kunikata.html5val.performers.regexp_composer.LengthRegexpComposer;
+import javax.validation.constraints.Digits;
 
 @SuppressWarnings("all")
-public class MockLength implements Length {
+public class MockDigits implements Digits {
 
-    private int min;
-    /** By default max attribute is MAX_INT */
-    private int max = LengthRegexpComposer.MAX_BOUNDARY;
+    private int integer;
+    private int fraction;
 
-    public MockLength() {
+    public MockDigits() {
     }
 
-    public void setMin(int min) {
-        this.min = min;
+    public MockDigits(int integer, int fraction) {
+        this.integer = integer;
+        this.fraction = fraction;
     }
 
-    public int min() {
-        return min;
+    public int fraction() {
+        return fraction;
     }
 
-    public void setMax(int max) {
-        this.max = max;
+    public int integer() {
+        return integer;
     }
 
-    public int max() {
-        return max;
+    public void setInteger(int integer) {
+        this.integer = integer;
+    }
+
+    public void setFraction(int fraction) {
+        this.fraction = fraction;
     }
 
     public String message() {

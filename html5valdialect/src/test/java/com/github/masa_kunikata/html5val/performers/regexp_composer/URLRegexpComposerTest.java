@@ -1,14 +1,14 @@
-package com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer;
+package com.github.masa_kunikata.html5val.performers.regexp_composer;
 
-import static com.msd_sk.thymeleaf.dialects.html5val.util.RegexpMatcher.*;
-import static com.msd_sk.thymeleaf.dialects.html5val.util.RegexpMismatcher.*;
+import static com.github.masa_kunikata.html5val.util.RegexpMatcher.*;
+import static com.github.masa_kunikata.html5val.util.RegexpMismatcher.*;
 import static org.junit.Assert.*;
 
 import org.hibernate.validator.constraints.URL;
 import org.junit.Test;
 
 import com.github.masa_kunikata.html5val.performers.regexp_composer.URLRegexpComposer;
-import com.msd_sk.thymeleaf.dialects.html5val.util.MockURLBuilder;
+import com.github.masa_kunikata.html5val.util.MockURLBuilder;
 
 public class URLRegexpComposerTest {
 

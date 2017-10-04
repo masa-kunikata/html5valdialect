@@ -1,12 +1,12 @@
-package com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer;
+package com.github.masa_kunikata.html5val.performers.regexp_composer;
 
 import javax.validation.constraints.Digits;
 
 import org.junit.Test;
 
 import com.github.masa_kunikata.html5val.performers.regexp_composer.DigitsRegexpComposer;
-import com.msd_sk.thymeleaf.dialects.html5val.util.MockDigits;
-import com.msd_sk.thymeleaf.dialects.html5val.util.ValidationChecker;
+import com.github.masa_kunikata.html5val.util.MockDigits;
+import com.github.masa_kunikata.html5val.util.ValidationChecker;
 
 public class DigitsRegexComposerTest {
 

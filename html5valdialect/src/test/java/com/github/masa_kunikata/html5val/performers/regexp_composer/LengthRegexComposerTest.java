@@ -1,4 +1,4 @@
-package com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer;
+package com.github.masa_kunikata.html5val.performers.regexp_composer;
 
 import static org.junit.Assert.*;
 

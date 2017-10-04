@@ -1,4 +1,4 @@
-package com.msd_sk.thymeleaf.dialects.html5val.reflect;
+package com.github.masa_kunikata.html5val.reflect;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.hamcrest.CoreMatchers.*;

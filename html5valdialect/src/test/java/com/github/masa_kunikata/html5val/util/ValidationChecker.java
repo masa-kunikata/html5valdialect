@@ -1,7 +1,7 @@
-package com.msd_sk.thymeleaf.dialects.html5val.util;
+package com.github.masa_kunikata.html5val.util;
 
-import static com.msd_sk.thymeleaf.dialects.html5val.util.RegexpMatcher.*;
-import static com.msd_sk.thymeleaf.dialects.html5val.util.RegexpMismatcher.*;
+import static com.github.masa_kunikata.html5val.util.RegexpMatcher.*;
+import static com.github.masa_kunikata.html5val.util.RegexpMismatcher.*;
 import static org.junit.Assert.*;
 
 import java.lang.annotation.Annotation;
