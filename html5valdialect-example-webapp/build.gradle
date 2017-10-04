@@ -18,7 +18,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
-group = 'net.sourceforge.html5valdialect'
+group = 'com.github.masa-kunikata.html5val'
 version = '3.0.1-SNAPSHOT'
 
 description = """html5valdialect-example-webapp"""
