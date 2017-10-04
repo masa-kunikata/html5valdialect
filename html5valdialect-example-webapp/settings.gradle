@@ -1,1 +1,2 @@
 rootProject.name = 'html5valdialect-example-webapp'
+includeFlat 'html5valdialect'
