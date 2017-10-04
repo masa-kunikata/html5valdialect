@@ -19,7 +19,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 group = 'net.sourceforge.html5valdialect'
-version = '2.1.3-SNAPSHOT'
+version = '3.0.1-SNAPSHOT'
 
 description = """html5valdialect-example-webapp"""
 
@@ -34,13 +34,16 @@ tasks.withType(JavaCompile) {
 repositories {
      mavenCentral()
 }
+
+ext['thymeleaf.version'] = '3.0.7.RELEASE'
+ext['thymeleaf-layout-dialect.version'] = '2.2.2'
+
 dependencies {
 
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 
-    compile group: 'net.sourceforge.html5valdialect', name: 'html5valdialect', version: '2.1.2'
-    //compile project(':html5valdialect')
+    compile project(':html5valdialect')
     compile group: 'javax.validation', name: 'validation-api', version:'1.0.0.GA'
     compile group: 'org.hibernate', name: 'hibernate-validator', version:'4.3.0.Final'
 }

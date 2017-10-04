@@ -15,9 +15,6 @@
 	<!-- User @Controller, @Service... annotations -->
     <context:component-scan base-package="net.sourceforge.html5val.examples" />
 	
-	<!-- 独自タグ -->
-	<bean id="html5ValDialect" class="net.sourceforge.html5val.Html5ValDialect"/>
-	<!--
+	<!-- Custom tag -->
 	<bean id="html5ValDialect" class="com.msd_sk.thymeleaf.dialects.html5val.Html5ValDialect"/>
-	-->
 </beans>
