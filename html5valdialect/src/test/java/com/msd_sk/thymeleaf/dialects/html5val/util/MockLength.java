@@ -6,7 +6,7 @@ import javax.validation.Payload;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer.LengthRegexpComposer;
+import com.github.masa_kunikata.html5val.performers.regexp_composer.LengthRegexpComposer;
 
 @SuppressWarnings("all")
 public class MockLength implements Length {

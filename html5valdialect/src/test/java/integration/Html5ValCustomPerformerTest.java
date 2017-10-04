@@ -15,8 +15,8 @@ import org.thymeleaf.model.IModelFactory;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.w3c.dom.Document;
 
-import com.msd_sk.thymeleaf.dialects.html5val.Html5ValDialect;
-import com.msd_sk.thymeleaf.dialects.html5val.performers.IValidationPerformer;
+import com.github.masa_kunikata.html5val.Html5ValDialect;
+import com.github.masa_kunikata.html5val.performers.IValidationPerformer;
 
 import integration.bean.AllConstraintsBean;
 import integration.checker.HtmlChecker;

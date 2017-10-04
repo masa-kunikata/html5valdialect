@@ -1,4 +1,4 @@
-package com.msd_sk.thymeleaf.dialects.html5val;
+package com.github.masa_kunikata.html5val;
 
 import java.lang.annotation.Annotation;
 import java.util.List;
@@ -8,11 +8,11 @@ import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IProcessableElementTag;
 
-import com.msd_sk.thymeleaf.dialects.html5val.performers.IValidationPerformer;
-import com.msd_sk.thymeleaf.dialects.html5val.performers.ValidationPerformerFactory;
-import com.msd_sk.thymeleaf.dialects.html5val.reflect.AnnotationExtractor;
-import com.msd_sk.thymeleaf.dialects.html5val.thymeleaf3.ExpressionUtils;
-import com.msd_sk.thymeleaf.dialects.html5val.thymeleaf3.FormElementFinders;
+import com.github.masa_kunikata.html5val.performers.IValidationPerformer;
+import com.github.masa_kunikata.html5val.performers.ValidationPerformerFactory;
+import com.github.masa_kunikata.html5val.reflect.AnnotationExtractor;
+import com.github.masa_kunikata.html5val.thymeleaf3.ExpressionUtils;
+import com.github.masa_kunikata.html5val.thymeleaf3.FormElementFinders;
 
 /**
  *

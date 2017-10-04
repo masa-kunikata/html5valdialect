@@ -1,4 +1,4 @@
-package com.msd_sk.thymeleaf.dialects.html5val.util;
+package com.github.masa_kunikata.html5val.util;
 
 import java.util.Collection;
 

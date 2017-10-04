@@ -1,4 +1,4 @@
-package com.msd_sk.thymeleaf.dialects.html5val.thymeleaf3;
+package com.github.masa_kunikata.html5val.thymeleaf3;
 
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.context.ITemplateContext;

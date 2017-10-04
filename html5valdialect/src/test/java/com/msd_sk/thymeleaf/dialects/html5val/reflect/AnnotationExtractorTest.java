@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
 import org.junit.Test;
 
-import com.msd_sk.thymeleaf.dialects.html5val.reflect.AnnotationExtractor;
+import com.github.masa_kunikata.html5val.reflect.AnnotationExtractor;
 
 public class AnnotationExtractorTest {
 

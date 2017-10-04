@@ -1,4 +1,4 @@
-package com.msd_sk.thymeleaf.dialects.html5val;
+package com.github.masa_kunikata.html5val;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,8 +9,8 @@ import org.thymeleaf.standard.StandardDialect;
 import org.thymeleaf.standard.processor.StandardXmlNsTagProcessor;
 import org.thymeleaf.templatemode.TemplateMode;
 
-import com.msd_sk.thymeleaf.dialects.html5val.performers.IValidationPerformer;
-import com.msd_sk.thymeleaf.dialects.html5val.performers.ValidationPerformerFactory;
+import com.github.masa_kunikata.html5val.performers.IValidationPerformer;
+import com.github.masa_kunikata.html5val.performers.ValidationPerformerFactory;
 
 public class Html5ValDialect extends AbstractProcessorDialect {
 

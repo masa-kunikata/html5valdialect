@@ -1,4 +1,4 @@
-package com.msd_sk.thymeleaf.dialects.html5val.thymeleaf3;
+package com.github.masa_kunikata.html5val.thymeleaf3;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.util.ArrayUtils;
 
-import com.msd_sk.thymeleaf.dialects.html5val.util.EmptyChecker;
+import com.github.masa_kunikata.html5val.util.EmptyChecker;
 
 public enum FormElementFinders {
     /**  */

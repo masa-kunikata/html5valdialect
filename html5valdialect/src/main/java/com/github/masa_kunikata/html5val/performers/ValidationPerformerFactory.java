@@ -1,4 +1,4 @@
-package com.msd_sk.thymeleaf.dialects.html5val.performers;
+package com.github.masa_kunikata.html5val.performers;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;

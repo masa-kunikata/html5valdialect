@@ -1,4 +1,4 @@
-package com.msd_sk.thymeleaf.dialects.html5val.reflect;
+package com.github.masa_kunikata.html5val.reflect;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.msd_sk.thymeleaf.dialects.html5val.util.EmptyChecker;
+import com.github.masa_kunikata.html5val.util.EmptyChecker;
 
 public class AnnotationExtractor {
 

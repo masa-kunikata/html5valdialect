@@ -5,7 +5,7 @@ import java.lang.annotation.Annotation;
 import javax.validation.Payload;
 import javax.validation.constraints.Size;
 
-import com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer.LengthRegexpComposer;
+import com.github.masa_kunikata.html5val.performers.regexp_composer.LengthRegexpComposer;
 
 @SuppressWarnings("all")
 public class MockSize implements Size {

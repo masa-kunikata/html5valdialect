@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 import org.hibernate.validator.constraints.URL;
 import org.junit.Test;
 
-import com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer.URLRegexpComposer;
+import com.github.masa_kunikata.html5val.performers.regexp_composer.URLRegexpComposer;
 import com.msd_sk.thymeleaf.dialects.html5val.util.MockURLBuilder;
 
 public class URLRegexpComposerTest {

@@ -7,7 +7,7 @@ import javax.validation.constraints.Pattern.Flag;
 
 import org.hibernate.validator.constraints.URL;
 
-import com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer.URLRegexpComposer;
+import com.github.masa_kunikata.html5val.performers.regexp_composer.URLRegexpComposer;
 
 @SuppressWarnings("all")
 public class MockURL implements URL {

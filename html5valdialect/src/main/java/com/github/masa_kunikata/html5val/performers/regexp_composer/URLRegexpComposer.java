@@ -1,8 +1,8 @@
-package com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer;
+package com.github.masa_kunikata.html5val.performers.regexp_composer;
 
 import org.hibernate.validator.constraints.URL;
 
-import com.msd_sk.thymeleaf.dialects.html5val.util.EmptyChecker;
+import com.github.masa_kunikata.html5val.util.EmptyChecker;
 
 public class URLRegexpComposer implements IRegexpComposer {
 

@@ -1,4 +1,4 @@
-package com.msd_sk.thymeleaf.dialects.html5val.performers;
+package com.github.masa_kunikata.html5val.performers;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
@@ -21,9 +21,9 @@ import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.IModelFactory;
 import org.thymeleaf.model.IProcessableElementTag;
 
-import com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer.DigitsRegexpComposer;
-import com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer.LengthRegexpComposer;
-import com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer.URLRegexpComposer;
+import com.github.masa_kunikata.html5val.performers.regexp_composer.DigitsRegexpComposer;
+import com.github.masa_kunikata.html5val.performers.regexp_composer.LengthRegexpComposer;
+import com.github.masa_kunikata.html5val.performers.regexp_composer.URLRegexpComposer;
 
 public enum DefaultPerformers implements IValidationPerformer {
     DIGITS {

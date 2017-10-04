@@ -10,7 +10,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.msd_sk.thymeleaf.dialects.html5val.Html5ValDialect;
+import com.github.masa_kunikata.html5val.Html5ValDialect;
 
 import nu.validator.htmlparser.dom.HtmlDocumentBuilder;
 

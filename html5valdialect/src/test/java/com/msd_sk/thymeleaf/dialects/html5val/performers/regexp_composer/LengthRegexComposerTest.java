@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.msd_sk.thymeleaf.dialects.html5val.performers.regexp_composer.LengthRegexpComposer;
+import com.github.masa_kunikata.html5val.performers.regexp_composer.LengthRegexpComposer;
 
 public class LengthRegexComposerTest {
 
