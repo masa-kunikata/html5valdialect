@@ -17,6 +17,7 @@ import org.w3c.dom.Document;
 
 import com.github.masa_kunikata.html5val.Html5ValDialect;
 import com.github.masa_kunikata.html5val.performers.IValidationPerformer;
+import com.github.masa_kunikata.html5val.performers.ValidationPerformerFactory;
 
 import integration.bean.AllConstraintsBean;
 import integration.checker.HtmlChecker;
@@ -29,7 +30,7 @@ public class Html5ValCustomPerformerTest {
 
     @Before
     public void setUp() {
-
+        /* Custom IValidationPerformer */
         final IValidationPerformer customEmailPerformer = new IValidationPerformer(){
             @Override
             public Class<Email> getConstraintClass() {
@@ -48,17 +49,17 @@ public class Html5ValCustomPerformerTest {
 
         final Set<IValidationPerformer> performers = new HashSet<>();
         performers.add(customEmailPerformer);
-        final Html5ValDialect html5ValDialect = new Html5ValDialect();
-        html5ValDialect.setAdditionalPerformers(performers);
+        final Html5ValDialect customHtml5ValDialect = new Html5ValDialect();
+        customHtml5ValDialect.setAdditionalPerformers(performers);
 
         final TemplateEngine templateEngine = IntegrationTestUtils.initTemplateEngine();
-        templateEngine.addDialect(html5ValDialect);
+        templateEngine.addDialect(customHtml5ValDialect);
 
         context.setVariable("allConstraintsBean", new AllConstraintsBean());
         final Document html = IntegrationTestUtils.processTemplate(templateEngine, "allConstraintsNameAttrForm.html", context);
         checker = new HtmlChecker(html);
 
-        html5ValDialect.removePerformer(customEmailPerformer);
+        ValidationPerformerFactory.removeCustomPerformer(customEmailPerformer);
     }
 
     @Test
