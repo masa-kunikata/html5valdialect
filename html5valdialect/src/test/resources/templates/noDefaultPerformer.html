@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:val="http://html5valdialect.sourceforge.net">
+    <head>
+        <title>HTML5 Validation dialect</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>HTML5 Validation dialect</h1>
+        <form val:validate="${defaultPerformerNotSupportedBean}" method="post">
+            <p>
+                <label for="decimalMinField">decimalMinField</label>
+                <input type="text" name="decimalMinField" id="decimalMinField" />
+            </p>
+            <p>
+                <label for="decimalMaxField">decimalMaxField</label>
+                <input type="text" name="decimalMaxField" id="decimalMaxField" />
+            </p>
+            <p>
+                <label for="assertTrueField">assertTrueField</label>
+                <input type="text" name="assertTrueField" id="assertTrueField" />
+            </p>
+            <p>
+                <label for="assertFalseField">assertFalseField</label>
+                <input type="text" name="assertFalseField" id="assertFalseField" />
+            </p>
+            <p>
+                <label for="futureField">futureField</label>
+                <input type="text" name="futureField" id="futureField" />
+            </p>
+            <p>
+                <label for="pastField">pastField</label>
+                <input type="text" name="pastField" id="pastField" />
+            </p>
+            <input type="submit" />
+        </form>
+    </body>
+</html>

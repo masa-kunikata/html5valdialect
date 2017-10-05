@@ -13,10 +13,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
-import org.hibernate.validator.internal.constraintvalidators.DigitsValidatorForCharSequence;
-import org.hibernate.validator.internal.constraintvalidators.LengthValidator;
-import org.hibernate.validator.internal.constraintvalidators.SizeValidatorForCharSequence;
-import org.hibernate.validator.internal.constraintvalidators.URLValidator;
+import org.hibernate.validator.internal.constraintvalidators.bv.DigitsValidatorForCharSequence;
+import org.hibernate.validator.internal.constraintvalidators.bv.size.SizeValidatorForCharSequence;
+import org.hibernate.validator.internal.constraintvalidators.hv.LengthValidator;
+import org.hibernate.validator.internal.constraintvalidators.hv.URLValidator;
 
 /**
  * Performs both Hibernate-validator and Regexp-based validations.

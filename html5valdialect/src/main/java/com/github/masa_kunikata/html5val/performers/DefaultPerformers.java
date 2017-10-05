@@ -5,16 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 import org.thymeleaf.context.ITemplateContext;
@@ -228,16 +228,5 @@ public enum DefaultPerformers implements IValidationPerformer {
             return modifiedTag;
         }
     },
-    __NULL_PERFORMER {
-        @Override
-        public Class<Annotation> getConstraintClass() {
-            return null;
-        }
-
-        @Override
-        public IProcessableElementTag toValidationTag(Annotation constraint, ITemplateContext context,
-                IProcessableElementTag elementTag) {
-            return null;
-        }
-    };
+    ;
 }

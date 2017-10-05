@@ -8,15 +8,13 @@ import static org.junit.Assert.assertTrue;
 import java.lang.annotation.Annotation;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
 import org.junit.Test;
-
-import com.github.masa_kunikata.html5val.reflect.AnnotationExtractor;
 
 public class AnnotationExtractorTest {
 

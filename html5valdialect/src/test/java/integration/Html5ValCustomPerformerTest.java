@@ -5,7 +5,8 @@ import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.validator.constraints.Email;
+import javax.validation.constraints.Email;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.thymeleaf.TemplateEngine;

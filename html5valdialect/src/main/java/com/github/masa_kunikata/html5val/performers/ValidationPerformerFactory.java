@@ -5,9 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class ValidationPerformerFactory {
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.model.IProcessableElementTag;
 
-    private static final ValidationPerformerFactory SINGLE_INSTANCE = new ValidationPerformerFactory();
+public enum ValidationPerformerFactory {
+    SINGLE_INSTANCE;
 
     private final List<IValidationPerformer> performers;
 
@@ -38,13 +40,26 @@ public class ValidationPerformerFactory {
         return SINGLE_INSTANCE.getPerformerForConstraint(constraint);
     }
 
+    private static final IValidationPerformer NULL_OBJECT_PERFORMER = new IValidationPerformer(){
+        @Override
+        public Class<Annotation> getConstraintClass() {
+            return Annotation.class;
+        }
+
+        @Override
+        public IProcessableElementTag toValidationTag(Annotation constraint, ITemplateContext context,
+                IProcessableElementTag elementTag) {
+            return elementTag;
+        }
+    };
+
     private IValidationPerformer getPerformerForConstraint(Annotation constraint) {
         for (IValidationPerformer performer : performers) {
             if (isPerformerForConstraint(performer, constraint)) {
                 return performer;
             }
         }
-        return DefaultPerformers.__NULL_PERFORMER;
+        return NULL_OBJECT_PERFORMER;
     }
 
     private boolean isPerformerForConstraint(IValidationPerformer performer, Annotation constraint) {
