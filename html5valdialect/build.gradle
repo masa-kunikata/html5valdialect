@@ -40,13 +40,17 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
+
+            pom.withXml {
+                asNode().appendNode('description', 'HTML5 validation dialect for the Thymeleaf template engine')
+                asNode().appendNode('url', 'https://github.com/masa-kunikata/html5valdialect')
+            }
         }
     }
-}
-publishing {
+
     repositories {
         maven {
-            url "$buildDir/repo"
+            url "file://c:/temp/gh_pages/masa-kunikata.github.io/maven"
         }
     }
 }
