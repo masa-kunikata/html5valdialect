@@ -31,10 +31,12 @@ ext['thymeleaf.version'] = '3.0.7.RELEASE'
 ext['thymeleaf-layout-dialect.version'] = '2.2.2'
 
 repositories {
+    mavenCentral()
     maven { url 'https://masa-kunikata.github.io/maven/' }
 }
 dependencies {
-    compile("com.github.masa-kunikata.html5valdialect:html5valdialect:3.0.1-SNAPSHOT")
+    compile(group: 'javax.validation', name: 'validation-api', version:'2.0.0.Final')
+    compile(group: 'com.github.masa-kunikata.html5valdialect', name: 'html5valdialect', version:'3.0.1')
 }
 ```
 
