@@ -3,14 +3,14 @@
 ## Overview
 
 <p>
-    This Thymeleaf dialect reads JSR-303 annotations and modifies HTML code introducing
+    This Thymeleaf dialect reads JSR-380 annotations and modifies HTML code introducing
     HTML5 form validation code matching the annotations.
 </p>
 
 ## Rationale
 
 <p>
-    JSR-303 provides server-side validation for Java web applications, but client side validation
+    JSR-380 provides server-side validation for Java web applications, but client side validation
     has usually been achieved using Javascript. <br />
     Fortunately, HTML5 has brought new attributes for simple browser validation. <br />
     Although HTML5 validation is not supported by all browsers, nowadays the
@@ -178,7 +178,7 @@ Html5ValDialect html5ValDialect() {
 
 ### Spring users
 
-#### Configure JSR-303 annotations in your form bean
+#### Configure JSR-380 annotations in your form bean
 
 ```java
 class UserFormBean {
