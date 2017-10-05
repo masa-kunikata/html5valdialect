@@ -13,7 +13,7 @@
 	<!-- Use @MVC annotations -->
     <mvc:annotation-driven />
 	<!-- User @Controller, @Service... annotations -->
-    <context:component-scan base-package="net.sourceforge.html5val.examples" />
+    <context:component-scan base-package="com.github.masa_kunikata.html5val.examples" />
 	
 	<!-- Custom tag -->
 	<bean id="html5ValDialect" class="com.github.masa_kunikata.html5val.Html5ValDialect"/>
