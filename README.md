@@ -270,3 +270,19 @@ class UserFormBean {
     usually would combine <b>val:validate</b> with <b>th:object</b> and <b>th:errors</b>.
 </p>
 
+
+## Quick start the example application
+
+1. Install JDK and Gradle.
+2. Download source code
+3. At the command prompt, execute `cd html5valdialect-example-webapp` and make it current directory.
+4. Run `gradle bootRun`
+3. Open [http://localhost:8080/](http://localhost:8080/)
+
+
+## License
+
+This software is licensed under the [Apache License 2.0]
+(http://www.apache.org/licenses/LICENSE-2.0.html).
+
+
