@@ -3,20 +3,20 @@
 ## Overview
 
 <p>
-	This Thymeleaf dialect reads JSR-303 annotations and modifies HTML code introducing
-	HTML5 form validation code matching the annotations.
+    This Thymeleaf dialect reads JSR-303 annotations and modifies HTML code introducing
+    HTML5 form validation code matching the annotations.
 </p>
 
 ## Rationale
 
 <p>
-	JSR-303 provides server-side validation for Java web applications, but client side validation
-	has usually been achieved using Javascript. <br />
-	Fortunately, HTML5 has brought new attributes for simple browser validation. <br />
-	Although HTML5 validation is not supported by all browsers, nowadays the
-	<a href="http://caniuse.com/#feat=form-validation">form validation support</a> is quite good,
-	so we prefer favoring users with modern browsers and rely on server validation for users with
-	older browsers.
+    JSR-303 provides server-side validation for Java web applications, but client side validation
+    has usually been achieved using Javascript. <br />
+    Fortunately, HTML5 has brought new attributes for simple browser validation. <br />
+    Although HTML5 validation is not supported by all browsers, nowadays the
+    <a href="http://caniuse.com/#feat=form-validation">form validation support</a> is quite good,
+    so we prefer favoring users with modern browsers and rely on server validation for users with
+    older browsers.
 </p>
 
 ## Installation
@@ -26,16 +26,18 @@
 #### Add the dependence to the <b>build.gradle</b>
 
 
-    ext['thymeleaf.version'] = '3.0.7.RELEASE'
-    ext['thymeleaf-layout-dialect.version'] = '2.2.2'
-    
-    dependencies {
-        //TODO upload to mavencentral
-        compile("com.github.masa-kunikata.html5val:html5valdialect:3.0.1-SNAPSHOT")
-    }
+```groovy
+ext['thymeleaf.version'] = '3.0.7.RELEASE'
+ext['thymeleaf-layout-dialect.version'] = '2.2.2'
+
+dependencies {
+    //TODO upload to mavencentral
+    compile("com.github.masa-kunikata.html5val:html5valdialect:3.0.1-SNAPSHOT")
+}
+```
 
 <p>
-	Note that 3.0.x versions are compatible with Thymeleaf 3.0.x versions.
+    Note that 3.0.x versions are compatible with Thymeleaf 3.0.x versions.
 </p>
 
 #### Add the dialect bean to your Spring configuration
@@ -51,125 +53,125 @@
 ```java
 @Bean
 Html5ValDialect html5ValDialect() {
-	return new Html5ValDialect();
+    return new Html5ValDialect();
 }
 ```
 
 ## Custom validation rules
 
 <p>
-	In order to add a custom validation rule you have to implement the <b>IValidationPerformer</b> interface
-	and add it to the configuration:
+    In order to add a custom validation rule you have to implement the <b>IValidationPerformer</b> interface
+    and add it to the configuration:
 </p>
 
 * Spring Boot xml configuration example
 
 ```xml
 <bean id="html5ValDialect" class="com.github.masa_kunikata.html5val.Html5ValDialect">
-	<property name="additionalPerformers">
-		<set>
-			<bean class="fqcn.to.MyCustomPerformer" />
-		</set>
-	</property>
+    <property name="additionalPerformers">
+        <set>
+            <bean class="fqcn.to.MyCustomPerformer" />
+        </set>
+    </property>
 </bean>
 ```
-	
+    
 * Spring java configuration example
-	
+    
 ```java
 @Bean
 Html5ValDialect html5ValDialect() {
 
-	IValidationPerformer myCustomPerformer = new fqcn.to.MyCustomPerformer();
-	final Set<IValidationPerformer> performers = new HashSet<>();
-	performers.add(myCustomPerformer);
-	
-	final Html5ValDialect html5ValDialect = new Html5ValDialect();
-	html5ValDialect.setAdditionalPerformers(performers);
+    IValidationPerformer myCustomPerformer = new fqcn.to.MyCustomPerformer();
+    final Set<IValidationPerformer> performers = new HashSet<>();
+    performers.add(myCustomPerformer);
+    
+    final Html5ValDialect html5ValDialect = new Html5ValDialect();
+    html5ValDialect.setAdditionalPerformers(performers);
 
-	return html5ValDialect;
+    return html5ValDialect;
 }
 ```
-	
+    
 ## Default supported constraints
 
 <table class="doc">
-	<thead>
-		<tr>
-			<th>Constraint</th>
-			<th>Usage</th>
-			<th>Before</th>
-			<th>After</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>javax.validation.constraints.Size</td>
-			<td>@Size(min = 5, max = 10)</td>
-			<td>&lt;input type="text" name="code" /&gt;</td>
-			<td>&lt;input type="text" name="code" pattern=".{5,10}" required="required" /&gt;</td>
-		</tr>
-		<tr>
-			<td>javax.validation.constraints.Min</td>
-			<td>@Min(value = 18)</td>
-			<td>&lt;input type="text" name="age" /&gt;</td>
-			<td>&lt;input type="number" name="age" min="18" /&gt;</td>
-		</tr>
-		<tr>
-			<td>javax.validation.constraints.Max</td>
-			<td>@Max(value = 65)</td>
-			<td>&lt;input type="text" name="age" /&gt;</td>
-			<td>&lt;input type="number" name="age" max="65" /&gt;</td>
-		</tr>
-		<tr>
-			<td>javax.validation.constraints.Digits</td>
-			<td>@Digits(integer = 3, fraction = 2)</td>
-			<td>&lt;input type="text" name="price" /&gt;</td>
-			<td>&lt;input type="text" name="price" pattern="([0-9]{1,3}\.?|\.[0-9]{1,2}|[0-9]{1,3}\.[0-9]{1,2}){1}" /&gt;</td>
-		</tr>
-		<tr>
-			<td>javax.validation.constraints.NotNull</td>
-			<td>@NotNull</td>
-			<td>&lt;input type="text" name="code" /&gt;</td>
-			<td>&lt;input type="text" name="code" required="required" /&gt;</td>
-		</tr>
-		<tr>
-			<td>org.hibernate.validator.constraints.NotEmpty</td>
-			<td>@NotEmpty</td>
-			<td>&lt;input type="text" name="code" /&gt;</td>
-			<td>&lt;input type="text" name="code" required="required" /&gt;</td>
-		</tr>
-		<tr>
-			<td>org.hibernate.validator.constraints.NotBlank</td>
-			<td>@NotBlank</td>
-			<td>&lt;input type="text" name="code" /&gt;</td>
-			<td>&lt;input type="text" name="code" required="required" /&gt;</td>
-		</tr>
-		<tr>
-			<td>org.hibernate.validator.constraints.Range</td>
-			<td>@Range(min = 0, max = 10)</td>
-			<td>&lt;input type="text" name="rank" /&gt;</td>
-			<td>&lt;input type="range" name="rank" min="0" max="10" /&gt;</td>
-		</tr>
-		<tr>
-			<td>org.hibernate.validator.constraints.Length</td>
-			<td>@Length(min = 1, max = 10)</td>
-			<td>&lt;input type="text" name="rank" /&gt;</td>
-			<td>&lt;input type="text" name="rank" pattern=".{1,10}" required="required" /&gt;</td>
-		</tr>
-		<tr>
-			<td>org.hibernate.validator.constraints.Email</td>
-			<td>@Email</td>
-			<td>&lt;input type="text" name="userEmail" /&gt;</td>
-			<td>&lt;input type="email" name="userEmail" /&gt;</td>
-		</tr>
-		<tr>
-			<td>org.hibernate.validator.constraints.URL</td>
-			<td>@URL(protocol = "https")</td>
-			<td>&lt;input type="text" name="website" /&gt;</td>
-			<td>&lt;input type="text" name="website" pattern="^ht<span>tps://</span>.+(:[0-9]+)?(/.*)?" /&gt;</td>
-		</tr>
-	</tbody>
+    <thead>
+        <tr>
+            <th>Constraint</th>
+            <th>Usage</th>
+            <th>Before</th>
+            <th>After</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>javax.validation.constraints.Size</td>
+            <td>@Size(min = 5, max = 10)</td>
+            <td>&lt;input type="text" name="code" /&gt;</td>
+            <td>&lt;input type="text" name="code" pattern=".{5,10}" required="required" /&gt;</td>
+        </tr>
+        <tr>
+            <td>javax.validation.constraints.Min</td>
+            <td>@Min(value = 18)</td>
+            <td>&lt;input type="text" name="age" /&gt;</td>
+            <td>&lt;input type="number" name="age" min="18" /&gt;</td>
+        </tr>
+        <tr>
+            <td>javax.validation.constraints.Max</td>
+            <td>@Max(value = 65)</td>
+            <td>&lt;input type="text" name="age" /&gt;</td>
+            <td>&lt;input type="number" name="age" max="65" /&gt;</td>
+        </tr>
+        <tr>
+            <td>javax.validation.constraints.Digits</td>
+            <td>@Digits(integer = 3, fraction = 2)</td>
+            <td>&lt;input type="text" name="price" /&gt;</td>
+            <td>&lt;input type="text" name="price" pattern="([0-9]{1,3}\.?|\.[0-9]{1,2}|[0-9]{1,3}\.[0-9]{1,2}){1}" /&gt;</td>
+        </tr>
+        <tr>
+            <td>javax.validation.constraints.NotNull</td>
+            <td>@NotNull</td>
+            <td>&lt;input type="text" name="code" /&gt;</td>
+            <td>&lt;input type="text" name="code" required="required" /&gt;</td>
+        </tr>
+        <tr>
+            <td>javax.validation.constraints.NotEmpty</td>
+            <td>@NotEmpty</td>
+            <td>&lt;input type="text" name="code" /&gt;</td>
+            <td>&lt;input type="text" name="code" required="required" /&gt;</td>
+        </tr>
+        <tr>
+            <td>javax.validation.constraints.NotBlank</td>
+            <td>@NotBlank</td>
+            <td>&lt;input type="text" name="code" /&gt;</td>
+            <td>&lt;input type="text" name="code" required="required" /&gt;</td>
+        </tr>
+        <tr>
+            <td>org.hibernate.validator.constraints.Range</td>
+            <td>@Range(min = 0, max = 10)</td>
+            <td>&lt;input type="text" name="rank" /&gt;</td>
+            <td>&lt;input type="range" name="rank" min="0" max="10" /&gt;</td>
+        </tr>
+        <tr>
+            <td>org.hibernate.validator.constraints.Length</td>
+            <td>@Length(min = 1, max = 10)</td>
+            <td>&lt;input type="text" name="rank" /&gt;</td>
+            <td>&lt;input type="text" name="rank" pattern=".{1,10}" required="required" /&gt;</td>
+        </tr>
+        <tr>
+            <td>javax.validation.constraints.Email</td>
+            <td>@Email</td>
+            <td>&lt;input type="text" name="userEmail" /&gt;</td>
+            <td>&lt;input type="email" name="userEmail" /&gt;</td>
+        </tr>
+        <tr>
+            <td>org.hibernate.validator.constraints.URL</td>
+            <td>@URL(protocol = "https")</td>
+            <td>&lt;input type="text" name="website" /&gt;</td>
+            <td>&lt;input type="text" name="website" pattern="^ht<span>tps://</span>.+(:[0-9]+)?(/.*)?" /&gt;</td>
+        </tr>
+    </tbody>
 </table>
 
 ## Usage
@@ -264,7 +266,7 @@ class UserFormBean {
 ```
 
 <p>
-	In order to make the example simpler, <b>th:field</b> is not used, but you
-	usually would combine <b>val:validate</b> with <b>th:object</b> and <b>th:errors</b>.
+    In order to make the example simpler, <b>th:field</b> is not used, but you
+    usually would combine <b>val:validate</b> with <b>th:object</b> and <b>th:errors</b>.
 </p>
 
