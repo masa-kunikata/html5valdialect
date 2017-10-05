@@ -22,31 +22,31 @@ enum ValidateAttributeCommands implements IValidateAttribute {
     DEFAULT {
         @Override
         public void execute(final ITemplateContext context, final IModel model, final String attributeValue) {
-            final Class<?> jsr303AnnotatedClass = readJsr303AnnotatedClass(context, attributeValue);
-            processFields(context, jsr303AnnotatedClass, model);
+            final Class<?> jsr380AnnotatedClass = readJsr380AnnotatedClass(context, attributeValue);
+            processFields(context, jsr380AnnotatedClass, model);
         }
 
     },
     ;
 
-    protected Class<?> readJsr303AnnotatedClass(final ITemplateContext context, final String attributeValue) {
+    protected Class<?> readJsr380AnnotatedClass(final ITemplateContext context, final String attributeValue) {
         return ExpressionUtils.evaluate(context, attributeValue).getClass();
     }
 
-    protected void processFields(final ITemplateContext context, final Class<?> jsr303AnnotatedClass,
+    protected void processFields(final ITemplateContext context, final Class<?> jsr380AnnotatedClass,
             final IModel model) {
         Map<Integer, IProcessableElementTag> tags = FormElementFinders.findFormElements(model);
         for (Map.Entry<Integer, IProcessableElementTag> tag : tags.entrySet()) {
-            IProcessableElementTag modifiedTag = processFieldValidation(context, jsr303AnnotatedClass, tag.getValue());
+            IProcessableElementTag modifiedTag = processFieldValidation(context, jsr380AnnotatedClass, tag.getValue());
             model.replace(tag.getKey(), modifiedTag);
         }
     }
 
     protected IProcessableElementTag processFieldValidation(final ITemplateContext context,
-            final Class<?> jsr303AnnotatedClass, final IProcessableElementTag elementTag) {
+            final Class<?> jsr380AnnotatedClass, final IProcessableElementTag elementTag) {
         IProcessableElementTag modifiedTag = elementTag;
         final String fieldName = getFieldName(modifiedTag);
-        final List<? extends Annotation> constraints = AnnotationExtractor.forClass(jsr303AnnotatedClass)
+        final List<? extends Annotation> constraints = AnnotationExtractor.forClass(jsr380AnnotatedClass)
                 .getAnnotationsForField(fieldName);
         for (final Annotation constraint : constraints) {
             IValidationPerformer performer = ValidationPerformerFactory.getPerformerFor(constraint);

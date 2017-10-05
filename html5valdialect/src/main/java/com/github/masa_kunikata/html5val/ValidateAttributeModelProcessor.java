@@ -12,7 +12,7 @@ import org.thymeleaf.processor.element.IElementModelStructureHandler;
 import org.thymeleaf.templatemode.TemplateMode;
 
 /**
- * Client-side validation using HTML5 validation for a JSR-303 annotated Java class.
+ * Client-side validation using HTML5 validation for a JSR-380 annotated Java class.
  * <p/>
  * Usage:
  * <pre>
