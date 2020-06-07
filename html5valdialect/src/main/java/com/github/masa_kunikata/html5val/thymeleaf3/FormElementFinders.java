@@ -43,50 +43,8 @@ public enum FormElementFinders {
             String name = getInputName(input);
             return EmptyChecker.notEmpty(name);
         }
-
-        /*
-         * Returns the input name (i.e. description in <input type="text" name="description" />).
-         * In absence of name attribute, takes it from th:field processor. (i.e., th:field="*{description}")
-         * Returns null if there are no name or th:field attribute.
-         */
-        private String getInputName(IProcessableElementTag input) {
-            if (notEmptyStandardAttribute(input)) {
-                return standardAttributeValue(input);
-            } else if (notEmptyProcessorAttribute(input)) {
-                return processorAttributeValue(input);
-            } else {
-                return null;
-            }
-        }
-
-        private boolean notEmptyStandardAttribute(IProcessableElementTag input) {
-            return standardAttributeValue(input) != null;
-        }
-
-        private boolean notEmptyProcessorAttribute(IProcessableElementTag input) {
-            return input.getAttributeValue("th:field") != null;
-        }
-
-        private String standardAttributeValue(IProcessableElementTag input) {
-            return input.getAttributeValue("name");
-        }
-
-        private String processorAttributeValue(IProcessableElementTag input) {
-            String expression = input.getAttributeValue("th:field");
-            if (isProcessorExpression(expression)) {
-                return expressionValue(expression);
-            } else {
-                throw new TemplateProcessingException("Could not retrieve input name from th:field : " + expression);
-            }
-        }
-
-        private boolean isProcessorExpression(String aux) {
-            return aux.indexOf("*{") == 0 && aux.indexOf("}") == aux.length() - 1;
-        }
-
-        private String expressionValue(String expression) {
-            return expression.substring(2, expression.length() - 1);
-        }
+       
+        
     },
     /**  */
     SELECT_FINDER() {
@@ -102,7 +60,7 @@ public enum FormElementFinders {
         }
 
         private boolean hasNotEmptyName(IProcessableElementTag tag) {
-            String name = tag.getAttributeValue("name");
+        	String name = getInputName(tag);
             return EmptyChecker.notEmpty(name);
         }
     },
@@ -120,7 +78,7 @@ public enum FormElementFinders {
         }
 
         private boolean hasNotEmptyName(IProcessableElementTag tag) {
-            String name = tag.getAttributeValue("name");
+            String name = getInputName(tag);
             return EmptyChecker.notEmpty(name);
         }
     },
@@ -139,5 +97,49 @@ public enum FormElementFinders {
                 tags.putAll(findResult);
         }
         return tags;
+    }
+    
+    /*
+     * Returns the input name (i.e. description in <input type="text" name="description" />).
+     * In absence of name attribute, takes it from th:field processor. (i.e., th:field="*{description}")
+     * Returns null if there are no name or th:field attribute.
+     */
+    private static String getInputName(IProcessableElementTag input) {
+        if (notEmptyStandardAttribute(input)) {
+            return standardAttributeValue(input);
+        } else if (notEmptyProcessorAttribute(input)) {
+            return processorAttributeValue(input);
+        } else {
+            return null;
+        }
+    }
+    
+    private static boolean notEmptyStandardAttribute(IProcessableElementTag input) {
+        return standardAttributeValue(input) != null;
+    }
+
+    private static boolean notEmptyProcessorAttribute(IProcessableElementTag input) {
+        return input.getAttributeValue("th:field") != null;
+    }
+
+    private static String standardAttributeValue(IProcessableElementTag input) {
+        return input.getAttributeValue("name");
+    }
+
+    private static String processorAttributeValue(IProcessableElementTag input) {
+        String expression = input.getAttributeValue("th:field");
+        if (isProcessorExpression(expression)) {
+            return expressionValue(expression);
+        } else {
+            throw new TemplateProcessingException("Could not retrieve input name from th:field : " + expression);
+        }
+    }
+
+    private static boolean isProcessorExpression(String aux) {
+        return aux.indexOf("*{") == 0 && aux.indexOf("}") == aux.length() - 1;
+    }
+
+    private static String expressionValue(String expression) {
+        return expression.substring(2, expression.length() - 1);
     }
 }
