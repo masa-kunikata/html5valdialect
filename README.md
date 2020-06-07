@@ -36,7 +36,7 @@ repositories {
 }
 dependencies {
     compile(group: 'javax.validation', name: 'validation-api', version:'2.0.0.Final')
-    compile(group: 'com.github.masa-kunikata.html5valdialect', name: 'html5valdialect', version:'3.0.1')
+    compile(group: 'com.github.masa-kunikata.html5valdialect', name: 'html5valdialect', version:'3.0.2')
 }
 ```
 
