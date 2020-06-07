@@ -60,7 +60,7 @@ public enum FormElementFinders {
         }
 
         private boolean hasNotEmptyName(IProcessableElementTag tag) {
-        	String name = getInputName(tag);
+            String name = getInputName(tag);
             return EmptyChecker.notEmpty(name);
         }
     },

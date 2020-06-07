@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:val="http://html5valdialect.sourceforge.net">
+    <head>
+        <title>HTML5 Validation dialect</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>HTML5 Validation dialect</h1>
+        <form action="requiedSave.do" val:validate="${requiedFormBean}" method="post">
+            <p>
+                <label for="requiredString">requiredString</label>
+                <input type="text" th:field="*{requiredString}" id="requiredString"/>
+            </p>
+            <p>
+                <label for="requiredSelection">requiredSelection</label>
+                <select th:field="*{requiredSelection}" id="requiredSelection">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </p>
+            <p>
+                <label for="requiredText">requiredText</label>
+                <textarea th:field="*{requiredText}" id="requiredText"></textarea>
+            </p>
+            <input type="submit" />
+        </form>
+    </body>
+</html>
