@@ -26,7 +26,17 @@ import org.thymeleaf.templatemode.TemplateMode;
 public class ValidateAttributeModelProcessor extends AbstractAttributeModelProcessor {
 
     private static final String ATTR_NAME = "validate";
-    private static final int PRECEDENCE = 10000;
+    //I do not know how to communicate this problem. So I am using code comment.
+    //There is a problem with Spring CSRF token protection and this library.
+    //CSRF token insertion is handled with one of the thymeleaf processors (elementTagProcessor with precedence 1000), which inserts csrf token into the form.
+    //Then in ProcessorTemplateHandler::handleOpenElement vars.modelAfter (or vars.modelBefore, I am not sure now) is not empty,
+    //after processing this thymeleaf elementTagProcessor processor.
+    //And then jumps this ValidateAttributeModelProcessor into the game. It fails on line 1479 (ProcessorTemplateHandler),
+    //because vars.modelAfter is not empty. What results into TemplateProcessingException.
+    //To avoid this problem we need run this processor before Thymeleaf processor which inserts CSRF token.
+    //For now it works for us in our project without any side efffects.
+    //But I am still not sure, if this is the best solution.
+    private static final int PRECEDENCE = 999;
 
     public ValidateAttributeModelProcessor(final String dialectPrefix) {
         super(
