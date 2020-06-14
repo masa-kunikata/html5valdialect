@@ -281,8 +281,7 @@ class UserFormBean {
 2. Download source code
 3. At the command prompt, execute `cd html5valdialect-example-webapp` and make it current directory.
 4. Run `gradle bootRun`
-3. Open [http://localhost:8080/](http://localhost:8080/)
-
+5. Open [http://localhost:8080/](http://localhost:8080/) (User: `user` Password: `password`)
 
 ## License
 

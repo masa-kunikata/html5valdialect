@@ -10,12 +10,10 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath fileTree(dir: "lib", include: "**/*.jar")
-        classpath "com.github.marceloemanoel:gradle-migrations:0.2.1"
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 group = 'com.github.masa-kunikata.html5val'
@@ -29,8 +27,6 @@ tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
 
-
-
 repositories {
      mavenCentral()
 }
@@ -39,9 +35,9 @@ ext['thymeleaf.version'] = '3.0.7.RELEASE'
 ext['thymeleaf-layout-dialect.version'] = '2.2.2'
 
 dependencies {
-
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-security")
 
     compile project(':html5valdialect')
     compile(group: 'javax.validation', name: 'validation-api', version:'2.0.0.Final')

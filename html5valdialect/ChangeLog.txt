@@ -1,3 +1,11 @@
+3.0.3
+=====
+- Prevent TemplateProcessingException for CSRF protection [GitHub #2][Patch by PeterBusfy]
+
+3.0.2
+=====
+- Read element name from th:field if name is empty for SELECT and TEXTAREA tags. [GitHub #1][Patch by PeterBusfy]
+
 3.0.1
 =====
 - Version compatible with Thymleaf 3.0.7 or higher.

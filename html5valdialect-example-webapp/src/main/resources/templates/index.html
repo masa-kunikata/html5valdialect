@@ -11,7 +11,7 @@
         <p>
             If your browser does not trigger HTML5 validation for all fields, try using Google Chrome.
         </p>
-        <form action="userSave.do" th:object="${userFormBean}" val:validate="${userFormBean}" method="post">
+        <form th:action="@{/userSave.do}" th:object="${userFormBean}" val:validate="${userFormBean}" method="post">
             <p>
                 <label for="username">E-mail</label>
                 <input type="text" id="username" th:field="*{username}" />
