@@ -17,7 +17,7 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
 group = 'com.github.masa-kunikata.html5val'
-version = '3.0.2'
+version = '3.0.3'
 
 description = """html5valdialect-example-webapp"""
 
